@@ -5759,3 +5759,9 @@ body.page-categories-2 .page-footer:before {
 .uk-offcanvas-bar .uk-nav-parent-icon>.uk-parent.uk-open>a:after {
   display: none;
 }
+
+/* search */
+.section-find .find-box__form input,
+.section-find .find-box__form select {
+  padding-right: 40px !important;
+}
