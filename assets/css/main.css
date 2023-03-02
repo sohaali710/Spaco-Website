@@ -5824,7 +5824,7 @@ body.page-categories-2 .page-footer:before {
   font-weight: 600;
 }
 
-.list-checked li::before {
+.equipment-detail__desc .list-checked li::before {
   margin-right: 0;
   margin-left: 14px;
 }
@@ -5843,10 +5843,6 @@ body.page-categories-2 .page-footer:before {
   width: 100% !important;
   direction: ltr;
 }
-
-/* .equipment-detail__btns .fas {
-  margin-left: 50px !important;
-} */
 
 .equipment-order-total {
   margin-top: 0;
