@@ -5844,10 +5844,11 @@ body.page-categories-2 .page-footer:before {
   direction: ltr;
 }
 
-.equipment-order-total {
-  margin-top: 0;
-  padding-top: 10px;
-  background-color: transparent;
+@media only screen and (min-width: 639px) {
+  .equipment-order-total {
+    margin-top: 0;
+    padding: 10px 20px;
+  }
 }
 
 :root {
