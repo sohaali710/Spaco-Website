@@ -5742,6 +5742,7 @@ body.page-categories-2 .page-footer:before {
   color: var(--dark-pink) !important;
 }
 
+/* footer */
 .page-footer .contacts-list-item__icon {
   margin-left: 20px;
 }
@@ -5778,6 +5779,23 @@ body.page-categories-2 .page-footer:before {
 .find-box__form select {
   padding-right: 40px !important;
 }
+
+/* contacts page */
+.widjet__title {
+  padding-left: 0;
+  padding-right: 40px;
+}
+
+.widjet__title::before {
+  right: 0;
+  margin-top: 0 !important;
+  background-image: url(../img/decor/decor-title-left-reversed.svg);
+}
+
+.widjet-contacts .contacts-list-item__icon {
+  margin-left: 20px !important;
+}
+
 
 /* sign-up & log-in page */
 @media (min-width: 960px) {
@@ -5860,9 +5878,11 @@ body.page-categories-2 .page-footer:before {
 }
 
 /* equipments-list page */
-.page-head__form .uk-grid {
-  width: 800px !important;
-  margin: auto !important;
+@media only screen and (min-width: 900px) {
+  .page-head__form .uk-grid {
+    width: 800px !important;
+    margin: auto !important;
+  }
 }
 
 .rental-item__specifications ul li::before {
@@ -5874,30 +5894,46 @@ body.page-categories-2 .page-footer:before {
   padding-right: 20px;
 }
 
-.more-details-style {
+.rental-item__desc {
   width: 60%;
 
   display: flex;
   flex-direction: column;
 }
 
-.more-details-style .rental-item__price {
+.rental-item__desc .rental-item__price {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.more-details-style .rental-item__price :is(button, a) {
-  margin-top: 16px !important;
+.rental-item__desc .rental-item__specifications {
+  margin-bottom: 16px !important;
 }
 
-.more-details-style .rental-item__price button {
+.rental-item__desc .rental-item__price button {
   width: 50%;
 }
 
-.more-details-style .rental-item__title {
+.rental-item__desc .rental-item__title {
   text-align: center;
 }
+
+.widjet-category .list-category li a::before {
+  margin-right: 0;
+  margin-left: 13px;
+}
+
+.list-category li a:hover::before,
+.list-category li a:focus::before,
+.list-category li a:active::before {
+  color: var(--dark-pink);
+}
+
+.range-box .irs--round .irs-bar {
+  background-color: var(--dark-pink);
+}
+
 
 :root {
   --dark-pink: #E03E4E;
