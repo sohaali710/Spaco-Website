@@ -341,7 +341,7 @@ body {
 .uk-button:hover,
 .uk-button:focus,
 .uk-button:active {
-  background-color: var(--dark-pink);
+  background-color: var(--light-cyan);
   color: #ffffff;
 }
 
@@ -5738,7 +5738,7 @@ body.page-categories-2 .page-footer:before {
   font-weight: 600 !important;
 }
 
-.page-header-bottom__right .uk-navbar-nav li:hover a {
+.page-header-bottom__right .uk-navbar-nav li:hover>a {
   color: var(--dark-pink) !important;
 }
 
@@ -5816,6 +5816,10 @@ body.page-categories-2 .page-footer:before {
 .contacts-block input {
   padding-right: 20px !important;
   margin-bottom: 20px !important;
+}
+
+.contacts-block .msg-btn button {
+  margin-top: 30px !important;
 }
 
 .contacts-block .section-cta__btn {
@@ -5934,8 +5938,16 @@ body.page-categories-2 .page-footer:before {
   background-color: var(--dark-pink);
 }
 
+/* cart */
+.cart-btn:hover {
+  background-color: var(--light-cyan);
+  color: #ffffff;
+}
+
 
 :root {
   --dark-pink: #E03E4E;
+  --light-pink: #e06975;
   --dark-cyan: #1C8C84;
+  --light-cyan: #2aada4;
 }
