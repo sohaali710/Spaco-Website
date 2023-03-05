@@ -9,8 +9,8 @@ let taxesInput = document.getElementById('taxes')
 let addressInput = document.getElementById('address')
 
 let data = {};
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
+const emailRegex = /^(?=[^@]{4,}@)([\w\.-]*[a-zA-Z0-9_]@(?=.{4,}\.[^.]*$)[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z])$/;
+const passwordRegex = /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
 
 
 formElement.addEventListener('submit', event => {
@@ -70,11 +70,9 @@ let checkEmail = () => {
 let checkPassword = () => {
     if (passwordInput.value === '') {
         setErrorFor(passwordInput, 'من فضلك ادخل كلمة المرور.')
-    }
-    // else if (passwordRegex.test(passwordInput.value)) {
-    //     setErrorFor(passwordInput, 'كلمة المرور يجب أن تحتوي على أحرف و أرقام و رموز.')
-    // }
-    else {
+    } else if (passwordRegex.test(passwordInput.value)) {
+        setErrorFor(passwordInput, 'كلمة المرور يجب ألا تقل عن 8 أحرف و تحتوي على حروف إنجليزية كبيرة و صغيرة و أرقام و رموز.')
+    } else {
         setSuccessFor(passwordInput)
     }
 }
