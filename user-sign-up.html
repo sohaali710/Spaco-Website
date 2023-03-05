@@ -18,6 +18,7 @@
   <meta name="theme-color" content="#222222">
   <link rel="stylesheet" href="assets/css/libs.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/styles/sign-up-log-in.css">
 </head>
 
 <body class="page-contacts">
@@ -121,18 +122,58 @@
                     <p>لا تقلق عنوان بريدك الإلكتروني لن يتم نشره. حقل البيانات المطلوب بجانبه علامة * نجمة</p>
                     <form id="sign-up-form">
                       <div class="uk-grid uk-grid-small uk-child-width-1-2@s" data-uk-grid>
-                        <div class="uk-width-1-1"><input class="uk-input uk-form-large" type="text" name="name"
-                            placeholder="الاسم *"></div>
-                        <div class="uk-width-1-1"><input class="uk-input uk-form-large" type="email" name="email"
-                            placeholder="الايميل *"></div>
-                        <div class="uk-width-1-1"><input class="uk-input uk-form-large" type="password" name="password"
-                            placeholder="كلمة المرور *"></div>
-                        <div class="uk-width-1-1"><input class="uk-input uk-form-large" type="password"
-                            name="confirm-password" placeholder="تأكيد كلمة المرور *"></div>
-                        <div class="uk-width-1-1"><input class="uk-input uk-form-large" type="tel" name="phone"
-                            placeholder="رقم الجوال *"></div>
-                        <div class="uk-width-1-1"><input class="uk-input uk-form-large" type="text" name="address"
-                            placeholder="العنوان *"></div>
+
+                        <div class="uk-width-1-1">
+                          <div class="custom-form-control">
+                            <input class="uk-input uk-form-large" type="text" name="username" id="username"
+                              placeholder="الاسم *">
+                            <small></small>
+                          </div>
+                        </div>
+
+                        <div class="uk-width-1-1">
+                          <div class="custom-form-control">
+                            <input class="uk-input uk-form-large" type="email" name="email" placeholder="الايميل *"
+                              id="email">
+                            <small></small>
+                          </div>
+                        </div>
+
+                        <div class="uk-width-1-1">
+                          <div class="custom-form-control">
+                            <input class="uk-input uk-form-large" type="password" name="password"
+                              placeholder="كلمة المرور *" id="password">
+                            <small></small>
+                          </div>
+                        </div>
+
+                        <div class="uk-width-1-1">
+                          <div class="custom-form-control">
+                            <input class="uk-input uk-form-large" type="password" name="confirm-password"
+                              placeholder="تأكيد كلمة المرور *" id="confirm-password">
+                            <small></small>
+                          </div>
+                        </div>
+
+                        <div class="uk-width-1-1">
+                          <div class="custom-form-control">
+                            <input class="uk-input uk-form-large" type="tel" name="phone" placeholder="رقم الجوال *"
+                              id="phone">
+                            <small></small>
+                          </div>
+                        </div>
+
+                        <div class="uk-width-1-1">
+                          <div class="custom-form-control">
+                            <input class="uk-input uk-form-large" type="text" name="address" placeholder="العنوان *"
+                              id="address">
+                            <small></small>
+                          </div>
+                        </div>
+
+                        <div class="uk-width-1-1">
+                          <small class="formErrorMsg"></small>
+                        </div>
 
                         <div class="section-cta__btn"><button type="submit"
                             class="uk-button uk-button-large"><span>إنشاء حساب</span>
