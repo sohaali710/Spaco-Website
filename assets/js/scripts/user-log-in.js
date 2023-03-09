@@ -5,8 +5,7 @@ let passwordInput = document.getElementById('password')
 
 let data = {};
 const emailRegex = /^(?=[^@]{4,}@)([\w\.-]*[a-zA-Z0-9_]@(?=.{4,}\.[^.]*$)[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z])$/;
-const passwordRegex = /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*)$/;
-// const passwordRegex = /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
+const passwordRegex = /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
 
 
 formElement.addEventListener('submit', event => {
@@ -54,7 +53,7 @@ let checkPassword = () => {
     if (passwordInput.value === '') {
         setErrorFor(passwordInput, 'من فضلك ادخل كلمة المرور.')
     } else if (passwordRegex.test(passwordInput.value)) {
-        setErrorFor(passwordInput, 'كلمة المرور يجب ألا تقل عن 8 أحرف و تحتوي على حروف إنجليزية كبيرة و صغيرة و أرقام .')
+        setErrorFor(passwordInput, 'كلمة المرور يجب ألا تقل عن 8 أحرف و تحتوي على الأقل على حرف إنجليزي كبير و حرف صغير و رقم و رمز .')
     } else {
         setSuccessFor(passwordInput)
     }
