@@ -5,7 +5,7 @@ let passwordInput = document.getElementById('password')
 
 let data = {};
 const emailRegex = /^(?=[^@]{4,}@)([\w\.-]*[a-zA-Z0-9_]@(?=.{4,}\.[^.]*$)[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z])$/;
-const passwordRegex = /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*)$/;
+const passwordRegex = /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
 
 
 formElement.addEventListener('submit', event => {
@@ -17,7 +17,7 @@ formElement.addEventListener('submit', event => {
     const formData = new FormData(formElement);
     data = Object.fromEntries(formData)
 
-    fetch('https://reqres.in/api/login', {
+    fetch('http://localhost:5000/supplier/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ formElement.addEventListener('submit', event => {
             setFormError()
             if (res.status == 200) {
                 console.log(res);
-                location.href = 'index.html';
+                location.href = 'products-CRUD.html';
                 return res.json();
             }
         })
@@ -53,7 +53,7 @@ let checkPassword = () => {
     if (passwordInput.value === '') {
         setErrorFor(passwordInput, 'من فضلك ادخل كلمة المرور.')
     } else if (passwordRegex.test(passwordInput.value)) {
-        setErrorFor(passwordInput, 'كلمة المرور يجب ألا تقل عن 8 أحرف و تحتوي على حروف إنجليزية كبيرة و صغيرة و أرقام .')
+        setErrorFor(passwordInput, 'كلمة المرور يجب ألا تقل عن 8 أحرف و تحتوي على الأقل على حرف إنجليزي كبير و حرف صغير و رقم و رمز .')
     } else {
         setSuccessFor(passwordInput)
     }
