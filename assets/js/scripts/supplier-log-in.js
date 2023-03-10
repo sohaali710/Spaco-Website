@@ -6,37 +6,43 @@ let passwordInput = document.getElementById('password')
 let data = {};
 const emailRegex = /^(?=[^@]{4,}@)([\w\.-]*[a-zA-Z0-9_]@(?=.{4,}\.[^.]*$)[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z])$/;
 const passwordRegex = /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
+let token = ''
 
+if (formElement) {
+    formElement.addEventListener('submit', event => {
+        event.preventDefault();
 
-formElement.addEventListener('submit', event => {
-    event.preventDefault();
+        checkEmail()
+        checkPassword()
 
-    checkEmail()
-    checkPassword()
+        const formData = new FormData(formElement);
+        data = Object.fromEntries(formData)
 
-    const formData = new FormData(formElement);
-    data = Object.fromEntries(formData)
-
-    fetch('http://localhost:5000/supplier/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(res => {
-            setFormError()
-            if (res.status == 200) {
-                console.log(res);
-                location.href = 'products-CRUD.html';
-                return res.json();
-            }
+        fetch('http://localhost:5000/supplier/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
+            .then(res => {
+                setFormError()
+                console.log(res);
+                if (res.status == 200) {
+                    return res.json();
+                }
+            })
+            .then(data => {
+                if (data) {
+                    console.log(data)
+                    token = data.token
+                    location.href = 'products-CRUD.html';
+                }
+            })
+            .catch(err => console.log(err))
 
-})
-
+    })
+}
 
 let checkEmail = () => {
     if (emailInput.value === '') {
@@ -87,3 +93,5 @@ let setFormError = () => {
 
     }
 }
+
+export { token }
