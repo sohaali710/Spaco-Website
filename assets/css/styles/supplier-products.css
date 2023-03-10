@@ -1,0 +1,113 @@
+:root {
+    --dark-pink: #E03E4E;
+    --light-pink: #e06975;
+    --dark-cyan: #1C8C84;
+    --light-cyan: #2aada4;
+}
+
+.card,
+select,
+input,
+img {
+    border-radius: 1px !important;
+}
+
+.btn,
+.modal-content {
+    border-radius: 2px !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.card-body {
+    padding: 16px 8px;
+}
+
+.card img {
+    width: auto !important;
+    height: 280px;
+}
+
+
+.modal {
+    direction: rtl;
+}
+
+.modal .modal-header {
+    justify-content: center !important;
+}
+
+.modal .modal-header .modal-title {
+    width: 100%;
+    text-align: center;
+}
+
+.modal .modal-header .btn-close {
+    align-self: end !important;
+
+    position: relative;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-25%);
+
+    border: 2px solid darkgray;
+    border-radius: 2px;
+}
+
+select,
+input {
+    width: 204px !important;
+}
+
+.btn-outline-success,
+.btn-outline-success:focus {
+    color: var(--dark-cyan);
+    border-color: var(--dark-cyan);
+
+    padding-left: 50px;
+}
+
+.btn-outline-success:hover {
+    background-color: var(--dark-cyan);
+    color: #fff;
+}
+
+.btn-success,
+.btn-primary,
+.btn-success:focus,
+.btn-primary:focus {
+    background-color: var(--dark-cyan);
+}
+
+.btn-success:hover,
+.btn-primary:hover {
+    background-color: var(--light-cyan);
+}
+
+.form-control:focus {
+    border-color: var(--light-cyan);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--light-cyan);
+}
+
+/* section-offers-request  display-price page*/
+.section-offers-request {
+    display: block;
+    position: relative;
+    padding: 50px 0 120px;
+}
+
+.section-offers-request #price {
+    width: 110px;
+    margin: auto;
+}
+
+table tr td {
+    line-height: 70px;
+}
+
+.request-price-modal input {
+    width: 120px !important;
+}
