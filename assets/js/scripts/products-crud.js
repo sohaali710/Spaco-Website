@@ -6,9 +6,8 @@ let descriptionInput = document.getElementById('description')
 let detailsInput = document.getElementById('details')
 let imgsInput = document.getElementById('imgs')
 
-let formData = []
-let data = {}
 let images = []
+let bodyData = {}
 
 addProductForm.addEventListener('submit', event => {
     event.preventDefault();
@@ -19,12 +18,18 @@ addProductForm.addEventListener('submit', event => {
     checkDetails()
     checkImgs()
 
-    formData = new FormData(addProductForm);
-    data = Object.fromEntries(formData)
-    data.imgs = images
+    let formData = new FormData(addProductForm);
 
-    let { name, category, description, ...details } = data;
-    // console.log(details)
+
+    if (imgsInput.files.length > 0) {
+        for (const file of imgsInput.files) {
+            formData.append('files', file, file.name);
+        }
+    }
+
+    let data = Object.fromEntries(formData)
+
+    let { name, category, description, imgs, files, ...details } = data;
 
     let d = []
     for (let i in details) {
@@ -32,20 +37,20 @@ addProductForm.addEventListener('submit', event => {
     }
     data.details = d
 
-    console.log(data)
+    // console.log(data)
 
-
-    let bodyData = {
+    bodyData = {
         name, category, description,
+        files,
         details: d
     }
 
     console.log(bodyData)
 
     const myHeaders = new Headers();
-    console.log(document.cookie.split('=')[1])
+    // console.log(`Bearer ${document.cookie.split('=')[1]}`)
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('authorization', document.cookie.split('=')[1].trim());
+    myHeaders.append('authorization', `Bearer ${document.cookie.split('=')[1]}`);
 
     fetch('http://localhost:5000/products/add-new', {
         method: 'POST',
@@ -53,11 +58,11 @@ addProductForm.addEventListener('submit', event => {
         body: JSON.stringify(bodyData)
     })
         .then(res => {
-            if (res.status == 200) {
-                console.log(res);
-                // location.href = 'products-CRUD.html';
-                return res.json();
-            }
+            console.log(res);
+            return res.json();
+            // if (res.status == 200) {
+            // location.href = 'products-CRUD.html';
+            // }
         })
         .then(data => console.log(data))
         .catch(err => console.log(err))
@@ -117,15 +122,15 @@ let setErrorFor = (input, msg) => {
 }
 
 // upload img
-// let files = []
 // function selectMultipleFiles(event) {
 //     console.log(event.target.files)
-//     files = event.target.files
 //     if (event.target.files.length > 0) {
 //         for (let i = 0; i < event.target.files.length; i++) {
-//         files[i] = event.target.files[i]
-//         formData.append("files", files.files[i]);
-//         formData.append("files", event.target.files[i]);
+//             // files[i] = event.target.files[i]
+//             // formData.append("files", event.target.files[i]);
+//             // formData.append("files", event.target.files[i]);
+
+//             bodyData.append('files[]', file, event.target.files[i].name)
 //         }
 //     }
 // }
