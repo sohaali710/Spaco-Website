@@ -338,9 +338,9 @@ body {
   margin-left: 14px;
 }
 
-.uk-button:hover,
-.uk-button:focus,
-.uk-button:active {
+.uk-button:not(.uk-button-secondary):hover,
+.uk-button:not(.uk-button-secondary):focus,
+.uk-button:not(.uk-button-secondary):active {
   background-color: var(--light-cyan);
   color: #ffffff;
 }
