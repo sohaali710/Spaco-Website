@@ -1,4 +1,3 @@
-import { token } from './supplier-log-in.js'
 let addProductForm = document.getElementById('add-product-form')
 
 let nameInput = document.getElementById('name')
@@ -12,7 +11,6 @@ let data = {}
 let images = []
 
 addProductForm.addEventListener('submit', event => {
-    console.log('token = ', token)
     event.preventDefault();
 
     checkName()
@@ -45,13 +43,13 @@ addProductForm.addEventListener('submit', event => {
     console.log(bodyData)
 
     const myHeaders = new Headers();
-
+    console.log(document.cookie.split('=')[1])
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', token);
+    myHeaders.append('authorization', document.cookie.split('=')[1].trim());
 
     fetch('http://localhost:5000/products/add-new', {
         method: 'POST',
-        headers: { myHeaders },
+        headers: myHeaders,
         body: JSON.stringify(bodyData)
     })
         .then(res => {
@@ -120,14 +118,14 @@ let setErrorFor = (input, msg) => {
 
 // upload img
 // let files = []
-function selectMultipleFiles(event) {
-    console.log(event.target.files)
-    files = event.target.files
-    if (event.target.files.length > 0) {
-        // for (let i = 0; i < event.target.files.length; i++) {
-        // files[i] = event.target.files[i]
-        // formData.append("files", files.files[i]);
-        // formData.append("files", event.target.files[i]);
-        // }
-    }
-}
+// function selectMultipleFiles(event) {
+//     console.log(event.target.files)
+//     files = event.target.files
+//     if (event.target.files.length > 0) {
+//         for (let i = 0; i < event.target.files.length; i++) {
+//         files[i] = event.target.files[i]
+//         formData.append("files", files.files[i]);
+//         formData.append("files", event.target.files[i]);
+//         }
+//     }
+// }

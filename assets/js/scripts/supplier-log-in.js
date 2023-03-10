@@ -15,6 +15,11 @@ if (formElement) {
         checkEmail()
         checkPassword()
 
+        var date = new Date();
+        // expired after 100 days
+        date.setTime(date.getTime() + (100 * 24 * 60 * 60 * 1000));
+        const expires = "; expires=" + date.toUTCString();
+
         const formData = new FormData(formElement);
         data = Object.fromEntries(formData)
 
@@ -35,7 +40,7 @@ if (formElement) {
             .then(data => {
                 if (data) {
                     console.log(data)
-                    token = data.token
+                    document.cookie = `access_token=${data.token}${expires};`
                     location.href = 'products-CRUD.html';
                 }
             })
@@ -93,5 +98,3 @@ let setFormError = () => {
 
     }
 }
-
-export { token }
