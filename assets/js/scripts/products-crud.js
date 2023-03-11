@@ -1,3 +1,5 @@
+import { getCookie } from './cookies.js'
+
 let addProductForm = document.getElementById('add-product-form')
 
 let nameInput = document.getElementById('name')
@@ -50,9 +52,9 @@ addProductForm.addEventListener('submit', event => {
     console.log(bodyData)
 
     const myHeaders = new Headers();
-    // console.log(`Bearer ${getTokenCookie(cookieName)}`)
+    console.log(`Bearer ${getCookie(cookieName)}`)
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('authorization', `Bearer ${getTokenCookie(cookieName)}`);
+    myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
 
     fetch('http://localhost:5000/products/add-new', {
         method: 'POST',
@@ -139,34 +141,10 @@ let setErrorFor = (input, msg) => {
 
 
 /* log-in | log-out nav */
-if (getTokenCookie(cookieName)) {
+if (getCookie(cookieName)) {
     let logOutNav = document.getElementById('log-out')
     let logInNav = document.getElementById('log-in')
 
     logOutNav.style.display = 'inline';
     logInNav.style.display = 'none';
-}
-
-
-/**handling cookie */
-function getAllCookies() {
-    var allCookies = [];
-    var keyValCookies = document.cookie.split(";");
-
-    if (keyValCookies[0]) {
-        for (var i = 0; i < keyValCookies.length; i++) {
-            allCookies[keyValCookies[i].split("=")[0].trim()] = keyValCookies[i].split("=")[1].trim();
-        }
-
-        return allCookies;
-    }
-}
-function getTokenCookie(cookieName) {
-    var all = getAllCookies();
-
-    for (let i in all) {
-        if (i == cookieName) {
-            return all[i];
-        }
-    }
 }

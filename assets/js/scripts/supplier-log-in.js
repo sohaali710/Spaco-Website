@@ -1,3 +1,5 @@
+import { setCookie } from './cookies.js'
+
 const formElement = document.getElementById('log-in-form');
 
 let emailInput = document.getElementById('email')
@@ -36,7 +38,7 @@ if (formElement) {
             .then(data => {
                 if (data) {
                     console.log(data)
-                    setTokenCookie(cookieName, data.token)
+                    setCookie(cookieName, data.token)
                     location.href = 'products-CRUD.html';
                 }
             })
@@ -93,14 +95,4 @@ let setFormError = () => {
         passwordInput.parentElement.querySelector('small').innerHTML = ''
 
     }
-}
-
-
-/**handling cookies */
-function setTokenCookie(cookieName, cookieVal) {
-    var date = new Date();
-    // expired after 3 months
-    date.setMonth(date.getMonth() + 3);
-
-    document.cookie = `${cookieName}=${cookieVal}; expires=${date}`;
 }
