@@ -48,9 +48,9 @@ addProductForm.addEventListener('submit', event => {
     console.log(bodyData)
 
     const myHeaders = new Headers();
-    // console.log(`Bearer ${document.cookie.split('=')[1]}`)
+    console.log(`Bearer ${getTokenCookie()}`)
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('authorization', `Bearer ${document.cookie.split('=')[1]}`);
+    myHeaders.append('authorization', `Bearer ${getTokenCookie()}`);
 
     fetch('http://localhost:5000/products/add-new', {
         method: 'POST',
@@ -134,3 +134,29 @@ let setErrorFor = (input, msg) => {
 //         }
 //     }
 // }
+
+
+/* log-in | log-out nav */
+document.cookie
+
+
+/**handling cookie */
+function getAllCookies() {
+    var allCookies = [];
+    var keyValCookies = document.cookie.split(";");
+
+    for (var i = 0; i < keyValCookies.length; i++) {
+        allCookies[keyValCookies[i].split("=")[0].trim()] = keyValCookies[i].split("=")[1].trim();
+    }
+
+    return allCookies;
+}
+function getTokenCookie() {
+    var all = getAllCookies();
+
+    for (let i in all) {
+        if (i == 'access_token') {
+            return all[i];
+        }
+    }
+}

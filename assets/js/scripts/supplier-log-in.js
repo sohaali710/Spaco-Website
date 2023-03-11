@@ -15,11 +15,6 @@ if (formElement) {
         checkEmail()
         checkPassword()
 
-        var date = new Date();
-        // expired after 100 days
-        date.setTime(date.getTime() + (100 * 24 * 60 * 60 * 1000));
-        const expires = "; expires=" + date.toUTCString();
-
         const formData = new FormData(formElement);
         data = Object.fromEntries(formData)
 
@@ -40,7 +35,7 @@ if (formElement) {
             .then(data => {
                 if (data) {
                     console.log(data)
-                    document.cookie = `access_token=${data.token}${expires};`
+                    setTokenCookie(data.token)
                     location.href = 'products-CRUD.html';
                 }
             })
@@ -97,4 +92,14 @@ let setFormError = () => {
         passwordInput.parentElement.querySelector('small').innerHTML = ''
 
     }
+}
+
+
+/**handling cookies */
+function setTokenCookie(cookieVal) {
+    var date = new Date();
+    // expired after 3 month
+    date.setMonth(date.getMonth() + 3);
+
+    document.cookie = `access_token=${cookieVal}; expires=${date}`;
 }
