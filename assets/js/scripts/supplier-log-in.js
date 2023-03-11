@@ -6,7 +6,8 @@ let passwordInput = document.getElementById('password')
 let data = {};
 const emailRegex = /^(?=[^@]{4,}@)([\w\.-]*[a-zA-Z0-9_]@(?=.{4,}\.[^.]*$)[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z])$/;
 const passwordRegex = /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
-let token = ''
+
+let cookieName = 'supplier_access_token'
 
 if (formElement) {
     formElement.addEventListener('submit', event => {
@@ -35,7 +36,7 @@ if (formElement) {
             .then(data => {
                 if (data) {
                     console.log(data)
-                    setTokenCookie(data.token)
+                    setTokenCookie(cookieName, data.token)
                     location.href = 'products-CRUD.html';
                 }
             })
@@ -96,10 +97,10 @@ let setFormError = () => {
 
 
 /**handling cookies */
-function setTokenCookie(cookieVal) {
+function setTokenCookie(cookieName, cookieVal) {
     var date = new Date();
-    // expired after 3 month
+    // expired after 3 months
     date.setMonth(date.getMonth() + 3);
 
-    document.cookie = `access_token=${cookieVal}; expires=${date}`;
+    document.cookie = `${cookieName}=${cookieVal}; expires=${date}`;
 }

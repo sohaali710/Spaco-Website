@@ -9,6 +9,8 @@ let imgsInput = document.getElementById('imgs')
 let images = []
 let bodyData = {}
 
+let cookieName = 'supplier_access_token'
+
 addProductForm.addEventListener('submit', event => {
     event.preventDefault();
 
@@ -48,9 +50,9 @@ addProductForm.addEventListener('submit', event => {
     console.log(bodyData)
 
     const myHeaders = new Headers();
-    console.log(`Bearer ${getTokenCookie()}`)
+    // console.log(`Bearer ${getTokenCookie(cookieName)}`)
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('authorization', `Bearer ${getTokenCookie()}`);
+    myHeaders.append('authorization', `Bearer ${getTokenCookie(cookieName)}`);
 
     fetch('http://localhost:5000/products/add-new', {
         method: 'POST',
@@ -137,7 +139,13 @@ let setErrorFor = (input, msg) => {
 
 
 /* log-in | log-out nav */
-document.cookie
+if (getTokenCookie(cookieName)) {
+    let logOutNav = document.getElementById('log-out')
+    let logInNav = document.getElementById('log-in')
+
+    logOutNav.style.display = 'inline';
+    logInNav.style.display = 'none';
+}
 
 
 /**handling cookie */
@@ -145,17 +153,19 @@ function getAllCookies() {
     var allCookies = [];
     var keyValCookies = document.cookie.split(";");
 
-    for (var i = 0; i < keyValCookies.length; i++) {
-        allCookies[keyValCookies[i].split("=")[0].trim()] = keyValCookies[i].split("=")[1].trim();
-    }
+    if (keyValCookies[0]) {
+        for (var i = 0; i < keyValCookies.length; i++) {
+            allCookies[keyValCookies[i].split("=")[0].trim()] = keyValCookies[i].split("=")[1].trim();
+        }
 
-    return allCookies;
+        return allCookies;
+    }
 }
-function getTokenCookie() {
+function getTokenCookie(cookieName) {
     var all = getAllCookies();
 
     for (let i in all) {
-        if (i == 'access_token') {
+        if (i == cookieName) {
             return all[i];
         }
     }
