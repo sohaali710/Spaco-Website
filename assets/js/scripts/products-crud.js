@@ -1,4 +1,5 @@
 import { getCookie } from './cookies.js'
+import { logInOutNav } from './log-in-out-nav.js'
 
 let addProductForm = document.getElementById('add-product-form')
 
@@ -139,12 +140,4 @@ let setErrorFor = (input, msg) => {
 //     }
 // }
 
-
-/* log-in | log-out nav */
-if (getCookie(cookieName)) {
-    let logOutNav = document.getElementById('log-out')
-    let logInNav = document.getElementById('log-in')
-
-    logOutNav.style.display = 'inline';
-    logInNav.style.display = 'none';
-}
+logInOutNav(cookieName)
