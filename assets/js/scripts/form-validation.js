@@ -57,6 +57,15 @@ let checkTaxes = (taxrecordInput) => {
     }
 }
 
+let removeCheckTaxes = (taxrecordInput) => {
+    const formControl = taxrecordInput.parentElement
+    const small = formControl.querySelector('small')
+
+    small.innerText = ''
+
+    formControl.className = "custom-form-control"
+}
+
 let checkAddress = (addressInput) => {
     if (addressInput.value === '') {
         setErrorFor(addressInput, 'من فضلك ادخل العنوان .')
@@ -101,4 +110,4 @@ let deleteFormError = (formElement) => {
 }
 
 
-export { checkUsername, checkEmail, checkPassword, checkConfirmPass, checkMobile, checkAddress, checkTaxes, setFormError, deleteFormError }
+export { checkUsername, checkEmail, checkPassword, checkConfirmPass, checkMobile, checkAddress, checkTaxes, setFormError, deleteFormError, removeCheckTaxes }

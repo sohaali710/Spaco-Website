@@ -5938,11 +5938,17 @@ body.page-categories-2 .page-footer:before {
   background-color: var(--dark-pink);
 }
 
+/* log-in | log-out nav */
+#log-out {
+  display: none;
+}
+
 /* cart */
 .cart-btn:hover {
   background-color: var(--light-cyan);
   color: #ffffff;
 }
+
 
 
 :root {

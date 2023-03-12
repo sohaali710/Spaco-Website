@@ -70,3 +70,53 @@
 #add-product-form .custom-form-control small {
     bottom: 0;
 }
+
+/* choose user type radio buttons */
+
+.custom-radio {
+    margin-bottom: 10px;
+
+    position: relative;
+    right: 36px;
+}
+
+.chooseUserType label {
+    font-weight: 500;
+
+    position: relative;
+    top: -5px;
+}
+
+.chooseUserType input[type='radio'] {
+    display: none;
+}
+
+.chooseUserType label::before {
+    position: absolute;
+    right: -36px;
+    top: 0;
+    content: '';
+
+    width: 18px;
+    height: 18px;
+
+    border: 4px solid var(--dark-cyan);
+    border-radius: 50%;
+}
+
+
+.chooseUserType input[type='radio']:checked+label::before {
+    width: 18px;
+    height: 18px;
+
+    background: url(../../img/icons/circle-dot-solid.svg);
+}
+
+
+#taxrecord {
+    display: none;
+}
+
+.custom-form-control:has(#taxrecord) {
+    padding-bottom: 0;
+}

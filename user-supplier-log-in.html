@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>تسجيل الدخول كبائع</title>
+  <title>تسجيل الدخول</title>
   <meta content="Templines" name="author">
   <meta content="Spaco" name="description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,7 +109,19 @@
           <div class="contacts-block">
             <div class="uk-grid uk-grid-collapse" data-uk-grid>
               <div class="uk-width-2-3@m">
-                <p>ليس لديك حساب كبائع ؟<a href="supplier-sign-up.html"> إنشاء حساب جديد</a></p>
+                <div class="chooseUserType">
+                  <div class="custom-radio">
+                    <input type="radio" checked id="user" name="userType" value="user">
+                    <label for="user">تسجيل الدخول كمشتري</label>
+                  </div>
+                  <div class="custom-radio">
+                    <input type="radio" id="supplier" name="userType" value="supplier">
+                    <label for="supplier">تسجيل الدخول كبائع</label>
+                  </div>
+                </div>
+
+                <p>ليس لديك حساب ؟<a href="user-supplier-sign-up.html"> إنشاء حساب جديد</a></p>
+
               </div>
 
               <div class="uk-width-2-3@m">
@@ -278,7 +290,7 @@
     </footer>
   </div>
 
-  <script src="assets/js/scripts/supplier-log-in.js" type="module"></script>
+  <script src="assets/js/scripts/user-supplier-log-in.js" type="module"></script>
   <script src="assets/js/libs.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
