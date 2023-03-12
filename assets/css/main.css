@@ -5949,6 +5949,15 @@ body.page-categories-2 .page-footer:before {
   color: #ffffff;
 }
 
+/* li bullet color */
+.rental-item__specifications ul li {
+  color: var(--dark-cyan);
+}
+
+.rental-item__specifications ul li span {
+  color: black;
+}
+
 
 
 :root {
