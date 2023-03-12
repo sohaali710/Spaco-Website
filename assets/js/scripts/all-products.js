@@ -26,7 +26,7 @@ fetch(url)
             }
 
             allProductsDiv.innerHTML += `<div class="rental-item">
-                <div class="rental-item__media"> <img src="./assets/img/rental-item-1.jpg" alt="Standard Excavator"></div>
+                <div class="rental-item__media"> <img src="${imgs[0].replace('public', 'http://localhost:5000')}" alt="Standard Excavator"></div>
                 <div class="rental-item__desc" dir="rtl">
                     <div class="rental-item__title">${name}</div>
                     <div class="rental-item__price-delivery"> <span>تفاصيل المنتج</span></div>
