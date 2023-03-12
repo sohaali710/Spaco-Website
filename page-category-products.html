@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>تسجيل الدخول</title>
+  <title>المنتجات</title>
   <meta content="Templines" name="author">
   <meta content="Spaco" name="description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +18,13 @@
   <meta name="theme-color" content="#222222">
   <link rel="stylesheet" href="assets/css/libs.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/styles/form-validation.css">
 </head>
 
-<body class="page-contacts">
+<body class="page-article">
 
   <!-- Loader-->
   <div id="page-preloader"><span class="spinner border-t_second_b border-t_prim_a"></span></div>
   <!-- Loader end-->
-
 
   <div class="page-wrapper">
     <header class="page-header">
@@ -46,8 +44,8 @@
                     class="fab fa-pinterest-p"></i></a></li>
             </ul>
           </div>
-          <div class="login-link"><i class="fas fa-sign-in-alt"></i><a href="user-supplier-sign-up.html">إنشاء حساب
-              جديد</a>
+          <div class="login-link"><i class="fas fa-sign-in-alt"></i><a href="user-supplier-log-in.html">تسجيل
+              الدخول</a>
           </div>
 
         </div>
@@ -83,10 +81,9 @@
                       style="margin-right: 8px;"></i></a>
                   <div class="uk-navbar-dropdown">
                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                      <li><a href="#">قسم</a></li>
-                      <li><a href="#">قسم</a></li>
-                      <li><a href="#">قسم</a></li>
-                      <li><a href="#">قسم</a></li>
+                      <li><a href="./page-category-products.html?category=categ1">قسم 1</a></li>
+                      <li><a href="./page-category-products.html?category=categ2">قسم 2</a></li>
+                      <li><a href="./page-category-products.html?category=categ3">قسم 3</a></li>
                     </ul>
                   </div>
                 </li>
@@ -104,64 +101,79 @@
       </div>
     </header>
     <main class="page-main">
-
-      <div class="page-content">
-        <div class="uk-section-large uk-container" dir="rtl">
-          <div class="contacts-block">
-            <div class="uk-grid uk-grid-collapse" data-uk-grid>
-              <div class="uk-width-2-3@m">
-                <div class="chooseUserType">
-                  <div class="custom-radio">
-                    <input type="radio" checked id="user" name="userType" value="user">
-                    <label for="user">تسجيل الدخول كمشتري</label>
-                  </div>
-                  <div class="custom-radio">
-                    <input type="radio" id="supplier" name="userType" value="supplier">
-                    <label for="supplier">تسجيل الدخول كبائع</label>
-                  </div>
-                </div>
-
-                <p>ليس لديك حساب ؟<a href="user-supplier-sign-up.html"> إنشاء حساب جديد</a></p>
+      <div class="page-head">
+        <div class="page-head__bg" style="background-image: url(./assets/img/bg/bg_contacts.jpg)">
+          <div class="page-head__content" data-uk-parallax="y: 0, 100">
+            <div class="uk-container uk-container-xlarge">
+              <div class="uk-margin-remove-top page-head__title">
 
               </div>
-
-              <div class="uk-width-2-3@m">
-                <div class="block-form">
-                  <div class="section-title">
-                    <div class="uk-h2">تسجيل الدخول</div>
-                  </div>
-                  <div class="section-content">
-                    <form method="post" id="log-in-form">
-                      <div class="uk-grid uk-grid-small uk-child-width-1-2@s" data-uk-grid>
-                        <div class="uk-width-1-1">
-                          <div class="custom-form-control">
-                            <input class="uk-input uk-form-large" type="email" name="email" placeholder="الايميل *"
-                              id="email">
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small></small>
-                          </div>
-                        </div>
-                        <div class="uk-width-1-1">
-                          <div class="custom-form-control">
-                            <input class="uk-input uk-form-large" type="password" name="password" id="password"
-                              placeholder=" كلمة المرور *">
-                            <i class="fas fa-check-circle"></i>
-                            <i class="fas fa-exclamation-circle"></i>
-                            <small></small>
-                          </div>
-                        </div>
-                        <div class="uk-width-1-1">
-                          <small class="formErrorMsg"></small>
-                        </div>
-                        <div class="section-cta__btn"><button type="submit"
-                            class="uk-button uk-button-large"><span>تسجيل الدخول</span></button>
-                        </div>
+              <div class="page-head__breadcrumb">
+                <ul class="uk-breadcrumb">
+                  <li><a href="index.html">الانتقال إلي الصفحة الرئيسية</a></li>
+                </ul>
+              </div>
+              <div class="page-head__form">
+                <div class="find-box__title"> <span>ابحث عن منتج</span></div>
+                <div class="find-box__form" dir="rtl">
+                  <form action="#!">
+                    <div class="uk-grid uk-grid-medium uk-flex-middle uk-child-width-1-2@m uk-child-width-1-2@s"
+                      data-uk-grid>
+                      <div>
+                        <div class="uk-inline uk-width-1-1"><span class="uk-form-icon"><img
+                              src="./assets/img/icons/derrick.svg" alt="derrick" data-uk-svg></span><input
+                            class="uk-input uk-form-large uk-width-1-1" type="text" placeholder="اسم المنتج"></div>
                       </div>
-                    </form>
-                  </div>
+                      <div>
+                        <div class="uk-inline uk-width-1-1"><span class="uk-form-icon"><img
+                              src="./assets/img/icons/truck.svg" alt="truck" data-uk-svg></span><select
+                            class="uk-select uk-form-large" name="category">
+                            <option value="">اختر القسم</option>
+                            <option value="">مثال مثال </option>
+                            <option value="">مثال مثال</option>
+                            <option value="">مثال مثال</option>
+                          </select></div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-content">
+        <div class="uk-section-large uk-container uk-container-xlarge">
+          <div class="uk-grid" data-uk-grid>
+            <div class="uk-width-1-3@l">
+              <div class="uk-hidden@l uk-margin-small-bottom"><button
+                  class="js-more-filter uk-button uk-button-large uk-width-1-1" type="button"><span>فلترة
+                    المنتجات</span><i class="fas fa-sliders-h"></i></button></div>
+              <aside class="js-filter-content sidebar" dir="rtl">
+                <div class="widjet widjet-category">
+                  <h4 class="widjet__title">الأقسام</h4>
+                  <ul class="list-category">
+                    <li><a href="#">هذا النص هو مثال لنص</a></li>
+                    <li><a href="#">هذا النص هو مثال لنص</a></li>
+                    <li><a href="#">هذا النص هو مثال لنص</a></li>
+                    <li><a href="#">هذا النص هو مثال لنص</a></li>
+                  </ul>
+                </div>
+              </aside>
+            </div>
+            <div class="uk-width-2-3@l">
+              <div class="category-products">
+
+
+              </div>
+
+              <ul class="uk-pagination uk-margin-large-top">
+                <li class="uk-active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a class="uk-pagination-next" href="#"><img src="./assets/img/icons/arrow.svg" alt=""
+                      data-uk-svg></a></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -239,12 +251,13 @@
           <div class="uk-margin">
             <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
               <li class="uk-active"><a href="index.html">الرئيسية</a></li>
+              <li><a href="page-products-list.html">جميع المنتجات</a></li>
               <li class="uk-parent"><a href="page-categories-1.html">الأقسام<i class="fas fa-angle-down"
                     style="margin-right: 8px;"></i></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="">قسم</a></li>
-                  <li><a href="">قسم</a></li>
-                  <li><a href="">قسم</a></li>
+                  <li><a href="./page-category-products.html?category=categ1">قسم 1</a></li>
+                  <li><a href="./page-category-products.html?category=categ2">قسم 2</a></li>
+                  <li><a href="./page-category-products.html?category=categ3">قسم 3</a></li>
                 </ul>
               </li>
               <li><a href="typography.html">من نحن</a></li>
@@ -290,10 +303,9 @@
       </div>
     </footer>
   </div>
-
-  <script src="assets/js/scripts/user-supplier-log-in.js" type="module"></script>
   <script src="assets/js/libs.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/scripts/category-products.js"></script>
 </body>
 
 </html>
