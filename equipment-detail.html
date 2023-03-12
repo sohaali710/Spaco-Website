@@ -21,6 +21,11 @@
 </head>
 
 <body class="page-equipment-detail">
+
+    <!-- Loader-->
+    <div id="page-preloader"><span class="spinner border-t_second_b border-t_prim_a"></span></div>
+    <!-- Loader end-->
+
     <div class="page-wrapper">
         <header class="page-header">
             <div class="page-header-top">
@@ -99,259 +104,140 @@
         <main class="page-main">
             <div class="page-content">
                 <div class="uk-section-large uk-container">
-                    <div class="uk-grid" data-uk-grid>
-                        <div class="uk-width-2-3@m">
-                            <div class="equipment-detail">
-                                <div class="equipment-detail__gallery">
-                                    <div data-uk-slideshow="min-height: 300; max-height: 430">
-                                        <div class="uk-position-relative">
-                                            <ul class="uk-slideshow-items uk-child-width-1-1"
-                                                data-uk-lightbox="animation: scale">
-                                                <li><a href="assets/img/img-article-intro-3.jpg"><img
-                                                            class="uk-width-1-1"
-                                                            src="assets/img/img-article-intro-3.jpg" alt="img-gallery"
-                                                            data-uk-cover></a></li>
-                                                <li><a href="assets/img/img-article-intro-2.jpg"><img
-                                                            class="uk-width-1-1"
-                                                            src="assets/img/img-article-intro-2.jpg" alt="img-gallery"
-                                                            data-uk-cover></a></li>
-                                                <li><a href="assets/img/img-article-intro-1.jpg"><img
-                                                            class="uk-width-1-1"
-                                                            src="assets/img/img-article-intro-1.jpg" alt="img-gallery"
-                                                            data-uk-cover></a></li>
-                                                <li><a href="assets/img/img-article-intro-4.jpg"><img
-                                                            class="uk-width-1-1"
-                                                            src="assets/img/img-article-intro-4.jpg" alt="img-gallery"
-                                                            data-uk-cover></a></li>
-                                                <li><a href="assets/img/img-article-intro-2.jpg"><img
-                                                            class="uk-width-1-1"
-                                                            src="assets/img/img-article-intro-2.jpg" alt="img-gallery"
-                                                            data-uk-cover></a></li>
-                                            </ul><a class="uk-position-center-left uk-position-small uk-hidden-hover"
-                                                href="#" data-uk-slidenav-previous
-                                                data-uk-slideshow-item="previous"></a><a
-                                                class="uk-position-center-right uk-position-small uk-hidden-hover"
-                                                href="#" data-uk-slidenav-next data-uk-slideshow-item="next"></a>
-                                        </div>
-                                        <div class="uk-margin-top" data-uk-slider>
-                                            <ul
-                                                class="uk-thumbnav uk-slider-items uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l">
-                                                <li data-uk-slideshow-item="0"><a href="#"><img
-                                                            src="assets/img/img-article-intro-3.jpg"
-                                                            alt="img-gallery"></a></li>
-                                                <li data-uk-slideshow-item="1"><a href="#"><img
-                                                            src="assets/img/img-article-intro-2.jpg"
-                                                            alt="img-gallery"></a></li>
-                                                <li data-uk-slideshow-item="2"><a href="#"><img
-                                                            src="assets/img/img-article-intro-1.jpg"
-                                                            alt="img-gallery"></a></li>
-                                                <li data-uk-slideshow-item="3"><a href="#"><img
-                                                            src="assets/img/img-article-intro-4.jpg"
-                                                            alt="img-gallery"></a></li>
-                                                <li data-uk-slideshow-item="4"><a href="#"><img
-                                                            src="assets/img/img-article-intro-2.jpg"
-                                                            alt="img-gallery"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="uk-width-1-3@m" dir="rtl">
-                            <div class="equipment-order-total">
-                                <div class="equipment-detail__title">اسم المنتج</div>
-                                <div class="equipment-detail__location"> <span data-uk-icon="location"></span>اسم الشركة
-                                    الموردة</div>
-                                <button class="uk-button uk-button-large uk-width-1-1" type="submit"><span>اضف إلى
-                                        السلة</span><img src="./assets/img/icons/cart-shopping-solid.svg" alt=""
-                                        style="margin-right: 10px;"></button>
 
-                                <div class="equipment-detail__btns">
-                                    <a href="#!"><i class="fas fa-star"></i>اضف إلى المفضلة</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="uk-width-3-3@m  uk-width-expand" dir="rtl">
-                            <div class="equipment-detail__desc">
-                                <div class="section-title">
-                                    <div class="uk-h2">وصف المنتج</div>
-                                </div>
-                                <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد
-                                    النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى
-                                    زيادة عدد الحروف التى يولدها التطبيق.</p>
-                                <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد
-                                    النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى
-                                    زيادة عدد الحروف التى يولدها التطبيق.</p>
-                                <ul class="list-checked">
-                                    <li>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</li>
-                                    <li>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</li>
-                                    <li>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</li>
-                                    <li>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</li>
-                                </ul>
-                            </div>
-                            <div class="equipment-detail__specification">
-                                <div class="section-title">
-                                    <div class="uk-h2">تفاصيل أكثر عن المنتج</div>
-                                </div>
-                                <table class="uk-table uk-table-striped">
-                                    <div class="tbody">
-                                        <tr>
-                                            <td>الوزن التقريبي للمنتج</td>
-                                            <td>5.5 كم</td>
-                                        </tr>
-                                        <tr>
-                                            <td>مثال</td>
-                                            <td>مثال</td>
-                                        </tr>
-                                        <tr>
-                                            <td>مثال</td>
-                                            <td>مثال</td>
-                                        </tr>
-                                        <tr>
-                                            <td>مثال</td>
-                                            <td>مثال</td>
-                                        </tr>
-                                        <tr>
-                                            <td>مثال</td>
-                                            <td>مثال</td>
-                                        </tr>
-                                    </div>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>
-    </div>
-    </main>
-    <footer class="page-footer" dir="rtl">
-        <div class="uk-container uk-container-large">
-            <div class="page-footer-middle">
-                <div class="uk-grid uk-child-width-1-3@l uk-child-width-1-2@s" data-uk-grid>
-                    <div class="uk-flex-first@l">
-                        <div class="title">من نحن</div>
-                        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص
-                            العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد
-                            الحروف التى يولدها التطبيق.</p>
-                        <ul class="social-list" dir="ltr">
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-facebook-f"></i></a></li>
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-twitter"></i></a></li>
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-google-plus-g"></i></a></li>
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-linkedin-in"></i></a></li>
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-vimeo-v"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="uk-flex-last@l">
-                        <div class="title">ابق على اتصال</div>
-                        <ul class="contacts-list">
-                            <li class="contacts-list-item">
-                                <div class="contacts-list-item__icon"><img src="./assets/img/icons/ico-phone24.svg"
-                                        data-uk-svg alt="For Rental Support"></div>
-                                <div class="contacts-list-item__desc">
-                                    <div class="contacts-list-item__label">للدعم الفني</div>
-                                    <div class="contacts-list-item__content"> <a href="tel:12367995500/6600"
-                                            dir="ltr">+1
-                                            (236) 799 5500 / 6600</a></div>
-                                </div>
-                            </li>
-                            <li class="contacts-list-item">
-                                <div class="contacts-list-item__icon"><img src="./assets/img/icons/ico-mail.svg"
-                                        data-uk-svg alt="Send Us Email"></div>
-                                <div class="contacts-list-item__desc">
-                                    <div class="contacts-list-item__label">بريدنا الإلكتروني</div>
-                                    <div class="contacts-list-item__content"> <a
-                                            href="mailto:rentals@my-domain.net">spaco@my-domain.net</a></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="custom-style">
-                        <div class="title">صفحات مهمة</div>
-                        <ul class="uk-nav">
-                            <li> <a href="typography.html">من نحن</a></li>
-                            <li> <a href="typography.html">الشروط و الأحكام</a></li>
-                            <li> <a href="typography.html">الأقسام</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="page-footer-bottom" dir="ltr"><span>(c) 2023 spaco</span><a href="#!">الشروط و الاحكام</a><a
-                    href="typography.html">Sitemap</a></div><a class="totop-link" href="#top" data-uk-scroll>
-                <img src="./assets/img/icons/plumbing-ico-totop.png" style="width: 50px;height: 50px;display: block;"
-                    alt="totop">
-                <span>Go to
-                    top</span></a>
-        </div>
-        <div id="offcanvas" data-uk-offcanvas="overlay: true">
-            <div class="uk-offcanvas-bar"><button class="uk-offcanvas-close" type="button" data-uk-close=""></button>
-                <div class="uk-margin">
-                    <div class="logo"><a class="logo__link" href="index.html"><img class="logo__img"
-                                src="./assets/img/logo/IconOnly_Transparent.png" alt="logo"></a></div>
-                </div>
-                <div class="uk-margin">
-                    <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
-                        <li class="uk-active"><a href="index.html">الرئيسية</a></li>
-                        <li><a href="page-equipments-list.html">جميع المنتجات</a></li>
-                        <li class="uk-parent"><a href="page-categories-1.html">الأقسام<i class="fas fa-angle-down"
-                                    style="margin-right: 8px;"></i></a>
-                            <ul class="uk-nav-sub">
-                                <li><a href="">قسم</a></li>
-                                <li><a href="">قسم</a></li>
-                                <li><a href="">قسم</a></li>
+        </main>
+        <footer class="page-footer" dir="rtl">
+            <div class="uk-container uk-container-large">
+                <div class="page-footer-middle">
+                    <div class="uk-grid uk-child-width-1-3@l uk-child-width-1-2@s" data-uk-grid>
+                        <div class="uk-flex-first@l">
+                            <div class="title">من نحن</div>
+                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص
+                                العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد
+                                الحروف التى يولدها التطبيق.</p>
+                            <ul class="social-list" dir="ltr">
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-facebook-f"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-twitter"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-google-plus-g"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-linkedin-in"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-vimeo-v"></i></a></li>
                             </ul>
-                        </li>
-                        <li><a href="typography.html">من نحن</a></li>
-                        <li><a href="page-contacts.html">اتصل بنا</a></li>
-                    </ul>
+                        </div>
+                        <div class="uk-flex-last@l">
+                            <div class="title">ابق على اتصال</div>
+                            <ul class="contacts-list">
+                                <li class="contacts-list-item">
+                                    <div class="contacts-list-item__icon"><img src="./assets/img/icons/ico-phone24.svg"
+                                            data-uk-svg alt="For Rental Support"></div>
+                                    <div class="contacts-list-item__desc">
+                                        <div class="contacts-list-item__label">للدعم الفني</div>
+                                        <div class="contacts-list-item__content"> <a href="tel:12367995500/6600"
+                                                dir="ltr">+1
+                                                (236) 799 5500 / 6600</a></div>
+                                    </div>
+                                </li>
+                                <li class="contacts-list-item">
+                                    <div class="contacts-list-item__icon"><img src="./assets/img/icons/ico-mail.svg"
+                                            data-uk-svg alt="Send Us Email"></div>
+                                    <div class="contacts-list-item__desc">
+                                        <div class="contacts-list-item__label">بريدنا الإلكتروني</div>
+                                        <div class="contacts-list-item__content"> <a
+                                                href="mailto:rentals@my-domain.net">spaco@my-domain.net</a></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="custom-style">
+                            <div class="title">صفحات مهمة</div>
+                            <ul class="uk-nav">
+                                <li> <a href="typography.html">من نحن</a></li>
+                                <li> <a href="typography.html">الشروط و الأحكام</a></li>
+                                <li> <a href="typography.html">الأقسام</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="uk-margin">
-                    <div class="support"> <a class="support__link" href="tel:236-799-5500">
-                            <div class="support__icon"><i class="fas fa-headset"></i></div>
-                            <div class="support__desc">
-                                <div class="support__label">للدعم الفني</div>
-                                <div class="support__phone">236-799-5500</div>
-                            </div>
-                        </a></div>
-                </div>
-                <div class="uk-margin">
-                    <div class="social">
-                        <ul class="social-list" dir="ltr">
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-twitter"></i></a></li>
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-google-plus-g" aria-hidden="true"></i></a></li>
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-youtube" aria-hidden="true"></i></a></li>
-                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
-                                        class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+
+                <div class="page-footer-bottom" dir="ltr"><span>(c) 2023 spaco</span><a href="#!">الشروط و الاحكام</a><a
+                        href="typography.html">Sitemap</a></div><a class="totop-link" href="#top" data-uk-scroll>
+                    <img src="./assets/img/icons/plumbing-ico-totop.png"
+                        style="width: 50px;height: 50px;display: block;" alt="totop">
+                    <span>Go to
+                        top</span></a>
+            </div>
+            <div id="offcanvas" data-uk-offcanvas="overlay: true">
+                <div class="uk-offcanvas-bar"><button class="uk-offcanvas-close" type="button"
+                        data-uk-close=""></button>
+                    <div class="uk-margin">
+                        <div class="logo"><a class="logo__link" href="index.html"><img class="logo__img"
+                                    src="./assets/img/logo/IconOnly_Transparent.png" alt="logo"></a></div>
+                    </div>
+                    <div class="uk-margin">
+                        <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
+                            <li class="uk-active"><a href="index.html">الرئيسية</a></li>
+                            <li><a href="page-equipments-list.html">جميع المنتجات</a></li>
+                            <li class="uk-parent"><a href="page-categories-1.html">الأقسام<i class="fas fa-angle-down"
+                                        style="margin-right: 8px;"></i></a>
+                                <ul class="uk-nav-sub">
+                                    <li><a href="">قسم</a></li>
+                                    <li><a href="">قسم</a></li>
+                                    <li><a href="">قسم</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="typography.html">من نحن</a></li>
+                            <li><a href="page-contacts.html">اتصل بنا</a></li>
                         </ul>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="support"> <a class="support__link" href="tel:236-799-5500">
+                                <div class="support__icon"><i class="fas fa-headset"></i></div>
+                                <div class="support__desc">
+                                    <div class="support__label">للدعم الفني</div>
+                                    <div class="support__phone">236-799-5500</div>
+                                </div>
+                            </a></div>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="social">
+                            <ul class="social-list" dir="ltr">
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-twitter"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-google-plus-g" aria-hidden="true"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="uk-flex-top" id="callback" data-uk-modal="">
-            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"><button class="uk-modal-close-default"
-                    type="button" data-uk-close=""></button>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="uk-flex-top" id="callback" data-uk-modal="">
+                <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"><button
+                        class="uk-modal-close-default" type="button" data-uk-close=""></button>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     </div>
     <script src="assets/js/libs.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/scripts/product-details.js"></script>
 </body>
 
 </html>
