@@ -5917,6 +5917,7 @@ body.page-categories-2 .page-footer:before {
 
 .rental-item__desc .rental-item__price button {
   width: 50%;
+  margin-left: 20px;
 }
 
 .rental-item__desc .rental-item__title {
