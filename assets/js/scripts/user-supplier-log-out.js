@@ -3,7 +3,7 @@ let logOutBtn = document.getElementById('log-out')
 logOutBtn.addEventListener('click', event => {
     event.preventDefault();
 
-    fetch('http://localhost:5000/supplier/logout')
+    fetch('http://linkloop.co:5000/supplier/logout')
         .then(res => {
             if (res.status == 200) {
                 console.log(res);

@@ -2,7 +2,7 @@ let categProductsDiv = document.querySelector('.category-products')
 let pageTitle = document.querySelector('.page-head__title')
 let categProducts = []
 
-let url = 'http://localhost:5000/products/product-by-category'
+let url = 'http://linkloop.co:5000/products/product-by-category'
 
 const selectedCategory = location.search.split("=")[1];
 console.log(selectedCategory)
@@ -30,7 +30,7 @@ fetch(`${url}/${selectedCategory}`)
             }
 
             categProductsDiv.innerHTML += `<div class="rental-item">
-                <div class="rental-item__media"> <img src="${imgs[0].replace('public', 'http://localhost:5000')}" alt="Standard Excavator"></div>
+                <div class="rental-item__media"> <img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" alt="Standard Excavator"></div>
                 <div class="rental-item__desc" dir="rtl">
                     <div class="rental-item__title">${name}</div>
                     <div class="rental-item__price-delivery"> <span>تفاصيل المنتج</span></div>

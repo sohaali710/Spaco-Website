@@ -57,7 +57,7 @@ addProductForm.addEventListener('submit', event => {
     myHeaders.append('Content-Type', 'application/json');
     myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
 
-    fetch('http://localhost:5000/products/add-new', {
+    fetch('http://linkloop.co:5000/products/add-new', {
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify(bodyData)

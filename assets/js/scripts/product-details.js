@@ -1,6 +1,6 @@
 let productContainer = document.querySelector('.uk-container')
 
-let url = 'http://localhost:5000/products/all'
+let url = 'http://linkloop.co:5000/products/all'
 
 fetch(url).then(res => res.json()).then(data => {
     const allProducts = data.data
@@ -15,7 +15,7 @@ fetch(url).then(res => res.json()).then(data => {
         if (selectedProdId === _id) {
             console.log(selectedProdId)
 
-            fetch(`http://localhost:5000/products/product-by-id/${_id}`).then(res => res.json()).then(data2 => {
+            fetch(`http://linkloop.co:5000/products/product-by-id/${_id}`).then(res => res.json()).then(data2 => {
                 console.log(data2);
             });
 
@@ -23,7 +23,7 @@ fetch(url).then(res => res.json()).then(data => {
             let imagesSlider = ''
             let imagesSliderSmall = ''
             imgs.forEach((img, index) => {
-                img = img.replace('public', 'http://localhost:5000')
+                img = img.replace('public', 'http://linkloop.co:5000')
 
                 imagesSlider += `
                                 <li><a href="${img}"><img class="uk-width-1-1" 
