@@ -1,4 +1,3 @@
-import { setCookie } from './cookies.js'
 import { checkUsername, checkEmail, checkPassword, checkConfirmPass, checkMobile, checkAddress, checkTaxes, setFormError, deleteFormError, removeCheckTaxes } from './form-validation.js'
 
 const formElement = document.getElementById('sign-up-form');
@@ -12,7 +11,6 @@ let taxrecordInput = document.getElementById('taxrecord')
 let addressInput = document.getElementById('address')
 
 let data = {};
-let cookieName = 'user_access_token'
 let userType = 'user'
 let radioBtn = document.querySelectorAll('input[type="radio"]')
 
@@ -23,12 +21,10 @@ for (let btn of radioBtn) {
             removeCheckTaxes(taxrecordInput)
             taxrecordInput.style.display = 'none'
             taxrecordInput.parentElement.style.paddingBottom = 0;
-            cookieName = 'user_access_token'
             userType = 'user'
         } else if (event.target.value === 'supplier') {
             taxrecordInput.style.display = 'inline'
             taxrecordInput.parentElement.style.paddingBottom = '24px';
-            cookieName = 'supplier_access_token'
             userType = 'supplier'
         }
     })
@@ -56,7 +52,7 @@ formElement.addEventListener('submit', event => {
     delete data['confirm-password']
     console.log(data)
 
-    fetch(`http://localhost:5000/${userType}/signup`, {
+    fetch(`http://linkloop.co:5000/${userType}/signup`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -75,8 +71,7 @@ formElement.addEventListener('submit', event => {
         .then(data => {
             console.log(data)
             if (data) {
-                setCookie(cookieName, data.token)
-                location.href = 'products-CRUD.html';
+                location.href = 'user-supplier-log-in.html';
             }
         })
         .catch(err => console.log(err))

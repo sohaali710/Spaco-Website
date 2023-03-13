@@ -9,6 +9,7 @@ let passwordInput = document.getElementById('password')
 let data = {};
 let cookieName = 'user_access_token'
 let userType = 'user'
+let redirectTo = 'index.html'
 let radioBtn = document.querySelectorAll('input[type="radio"]')
 
 for (let btn of radioBtn) {
@@ -16,9 +17,11 @@ for (let btn of radioBtn) {
         if (event.target.value === 'user') {
             cookieName = 'user_access_token'
             userType = 'user'
+            redirectTo = 'index.html'
         } else if (event.target.value === 'supplier') {
             cookieName = 'supplier_access_token'
             userType = 'supplier'
+            redirectTo = 'products-CRUD.html'
         }
     })
 }
@@ -35,7 +38,7 @@ if (formElement) {
         const formData = new FormData(formElement);
         data = Object.fromEntries(formData)
 
-        fetch(`http://localhost:5000/${userType}/login`, {
+        fetch(`http://linkloop.co:5000/${userType}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +58,7 @@ if (formElement) {
                 if (data) {
                     console.log(data)
                     setCookie(cookieName, data.token)
-                    location.href = 'products-CRUD.html';
+                    location.href = redirectTo;
                 }
             })
             .catch(err => console.log(err))
