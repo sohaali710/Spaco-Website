@@ -1,4 +1,5 @@
 import { getCookie } from './cookies.js'
+import { checkName, checkCategory, checkDescription, checkDetails, checkImgs } from './form-validation.js'
 import { logInOutNav } from './log-in-out-nav.js'
 
 let addProductForm = document.getElementById('add-product-form')
@@ -6,22 +7,50 @@ let addProductForm = document.getElementById('add-product-form')
 let nameInput = document.getElementById('name')
 let categoryInput = document.getElementById('category')
 let descriptionInput = document.getElementById('description')
-let detailsInput = document.getElementById('details')
 let imgsInput = document.getElementById('imgs')
+
+let prodInputsRow = document.querySelector('.prodInputsRow')
+let detailsPlusBtn = document.getElementById('plus-btn')
+let detailsNameInput = document.getElementById('detailsName')
 
 let images = []
 let bodyData = {}
 
 let cookieName = 'supplier_access_token'
 
+
+let detailsArr = []
+detailsPlusBtn.addEventListener('click', () => {
+    let inputName = detailsNameInput.value;
+
+    detailsArr.push(inputName)
+
+    let detailsInput = `
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="custom-form-control">
+                            <label for="" class="my-1">${inputName}</label>
+                            <input type="text" name="${inputName}" id="${inputName}" class="form-control"
+                                placeholder="${inputName}">
+                            <small></small>
+                        </div>
+                    </div>`
+
+    prodInputsRow.innerHTML += detailsInput;
+})
+
 addProductForm.addEventListener('submit', event => {
     event.preventDefault();
 
-    checkName()
-    checkCategory()
-    checkDescription()
-    checkDetails()
-    checkImgs()
+    checkName(nameInput)
+    checkCategory(categoryInput)
+    checkDescription(descriptionInput)
+    checkImgs(imgsInput)
+
+    if (detailsArr.length) {
+        for (let i of detailsArr) {
+            checkDetails(document.getElementById(`${i}`))
+        }
+    }
 
     let formData = new FormData(addProductForm);
 
@@ -34,7 +63,7 @@ addProductForm.addEventListener('submit', event => {
 
     let data = Object.fromEntries(formData)
 
-    let { name, category, description, imgs, files, ...details } = data;
+    let { name, category, description, imgs, files, detailsName, ...details } = data;
 
     let d = []
     for (let i in details) {
@@ -53,7 +82,7 @@ addProductForm.addEventListener('submit', event => {
     console.log(bodyData)
 
     const myHeaders = new Headers();
-    console.log(`Bearer ${getCookie(cookieName)}`)
+    // console.log(`Bearer ${getCookie(cookieName)}`)
     myHeaders.append('Content-Type', 'application/json');
     myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
 
@@ -75,56 +104,6 @@ addProductForm.addEventListener('submit', event => {
 })
 
 
-let checkName = () => {
-    if (nameInput.value === '') {
-        setErrorFor(nameInput, 'ادخل اسم المنتج .')
-    } else {
-        setSuccessFor(nameInput)
-    }
-}
-let checkCategory = () => {
-    if (categoryInput.value === '') {
-        setErrorFor(categoryInput, 'ادخل القسم الخاص بالمنتج .')
-    } else {
-        setSuccessFor(categoryInput)
-    }
-}
-let checkDescription = () => {
-    if (descriptionInput.value === '') {
-        setErrorFor(descriptionInput, 'ادخل وصف المنتج .')
-    } else {
-        setSuccessFor(descriptionInput)
-    }
-}
-let checkDetails = () => {
-    if (detailsInput.value === '') {
-        setErrorFor(detailsInput, 'ادخل وصف المنتج .')
-    } else {
-        setSuccessFor(detailsInput)
-    }
-}
-let checkImgs = () => {
-    if (imgsInput.value === '') {
-        setErrorFor(imgsInput, 'ادخل صور المنتج .')
-    } else {
-        setSuccessFor(imgsInput)
-    }
-}
-
-
-let setSuccessFor = (input) => {
-    const formControl = input.parentElement
-
-    formControl.className = "custom-form-control success"
-}
-let setErrorFor = (input, msg) => {
-    const formControl = input.parentElement
-    const small = formControl.querySelector('small')
-
-    small.innerText = msg
-
-    formControl.className = "custom-form-control error"
-}
 
 // upload img
 // function selectMultipleFiles(event) {

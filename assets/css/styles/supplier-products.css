@@ -15,6 +15,8 @@ img {
 .btn,
 .modal-content {
     border-radius: 2px !important;
+    border-width: 2px;
+    font-weight: bold;
 }
 
 a {
@@ -55,6 +57,19 @@ a {
 
     border: 2px solid darkgray;
     border-radius: 2px;
+}
+
+@media (max-width: 767px) {
+    .modal .custom-form-control {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .modal .custom-form-control small {
+        position: relative;
+        top: 5px;
+    }
 }
 
 select,
@@ -110,4 +125,12 @@ table tr td {
 
 .request-price-modal input {
     width: 120px !important;
+}
+
+#plus-btn {
+    padding: 3px;
+    margin-right: 10px;
+
+    position: relative;
+    top: 5px;
 }

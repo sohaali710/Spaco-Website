@@ -110,4 +110,45 @@ let deleteFormError = (formElement) => {
 }
 
 
-export { checkUsername, checkEmail, checkPassword, checkConfirmPass, checkMobile, checkAddress, checkTaxes, setFormError, deleteFormError, removeCheckTaxes }
+/**add & update product form*/
+let checkName = (nameInput) => {
+    if (nameInput.value === '') {
+        setErrorFor(nameInput, 'ادخل اسم المنتج .')
+    } else {
+        setSuccessFor(nameInput)
+    }
+}
+let checkCategory = (categoryInput) => {
+    if (categoryInput.value === '') {
+        setErrorFor(categoryInput, 'ادخل القسم الخاص بالمنتج .')
+    } else {
+        setSuccessFor(categoryInput)
+    }
+}
+let checkDescription = (descriptionInput) => {
+    if (descriptionInput.value === '') {
+        setErrorFor(descriptionInput, 'ادخل وصف المنتج .')
+    } else {
+        setSuccessFor(descriptionInput)
+    }
+}
+let checkDetails = (detailsInput) => {
+    if (detailsInput.value === '') {
+        setErrorFor(detailsInput, 'ادخل وصف المنتج .')
+    } else {
+        setSuccessFor(detailsInput)
+    }
+}
+let checkImgs = (imgsInput) => {
+    if (imgsInput.value === '') {
+        setErrorFor(imgsInput, 'ادخل صور المنتج .')
+    } else {
+        setSuccessFor(imgsInput)
+    }
+}
+
+
+export {
+    checkUsername, checkEmail, checkPassword, checkConfirmPass, checkMobile, checkAddress, checkTaxes, setFormError, deleteFormError, removeCheckTaxes,
+    checkName, checkCategory, checkDescription, checkDetails, checkImgs
+}

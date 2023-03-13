@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="assets/css/libs.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/styles/supplier-products.css">
     <link rel="stylesheet" href="assets/css/styles/form-validation.css">
+    <link rel="stylesheet" href="assets/css/styles/supplier-products.css">
 </head>
 
 <body class="page-home">
@@ -150,16 +150,30 @@
 
     <!-- #region Add Product Modal -->
     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-        <div class="modal-dialog h-100 d-flex align-items-center" style="max-width: 65%;">
+        <div class="modal-dialog h-100 d-flex align-items-center m-auto my-5" style="max-width: 65%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <h5 class="modal-title" id="exampleModalLabel1">إضافة منتج جديد</h5>
                 </div>
                 <div class="modal-body">
-                    <form id="add-product-form" method="post" enctype="multipart/form-data">
-                        <div class="row mb-4">
-                            <div class="col-4">
+                    <form method="post" id="add-product-form" enctype="multipart/form-data">
+                        <div class="row">
+
+                            <div class="col-11 col-md-6 d-flex align-items-center">
+                                <div class="custom-form-control">
+                                    <label for="details" class="my-1">إضافة حقل جديد لتفاصيل أكثر</label>
+                                    <input type="text" name="detailsName" id="detailsName" class="form-control"
+                                        placeholder="اسم الحقل الجديد">
+                                </div>
+                                <div class="">
+                                    <button type="button" class="btn btn-secondary" id="plus-btn"><img
+                                            src="assets/img/icons/square-plus-regular.svg" alt="plus-icon"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4 prodInputsRow">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <div class="custom-form-control">
                                     <label for="" class="my-1">اسم المنتج</label>
                                     <input type="text" name="name" id="name" class="form-control"
@@ -167,7 +181,7 @@
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <div class="custom-form-control">
                                     <label for="" class="my-1">القسم</label>
                                     <select class="form-control" name="category" id="category">
@@ -179,7 +193,7 @@
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <div class="custom-form-control">
                                     <label for="" class="my-1">وصف المنتج</label>
                                     <input type="text" name="description" id="description" class="form-control"
@@ -187,34 +201,19 @@
                                     <small></small>
                                 </div>
                             </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="custom-form-control">
+                                    <label for="" class="my-1 d-block">صور المنتج</label>
+                                    <input type="file" name="imgs" id="imgs" class="form-control d-block" multiple>
+                                    <!-- <img class="rounded mt-2 me-2" style="width: 120px;height: 120px;" src="http://linkloop.co:5000/uploads/" alt=""
+                                    id="img"> -->
+                                    <small></small>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="row mb-4">
-                            <div class="col-3">
-                                <div class="custom-form-control">
-                                    <label for="" class="my-1">تفاصيل المنتج</label>
-                                    <input type="text" name="details1" id="details1" class="form-control"
-                                        placeholder="تفاصيل المنتج">
-                                    <small></small>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="custom-form-control">
-                                    <label for="" class="my-1">تفاصيل المنتج</label>
-                                    <input type="text" name="details2" id="details2" class="form-control"
-                                        placeholder="تفاصيل المنتج">
-                                    <small></small>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="custom-form-control">
-                                    <label for="" class="my-1 d-block">Images</label>
-                                    <input type="file" name="imgs" id="imgs" class="form-control d-block w-50" multiple>
-                                    <!-- <img class="rounded mt-2 me-2" style="width: 120px;height: 120px;" src="" alt=""
-                                        id="img"> -->
-                                    <small></small>
-                                </div>
-                            </div>
-                        </div>
+
+
                         <div class="modal-footer mr-auto" dir="ltr">
                             <button type="submit" id="add-new-product" class="btn btn-success mb-2">إضافة
                                 المنتج</button>
@@ -235,7 +234,7 @@
                     <h5 class="modal-title" id="exampleModalLabel2">تعديل منتج</h5>
                 </div>
                 <div class="modal-body">
-                    <form id="update-product-form">
+                    <form method="post" id="update-product-form">
                         <div class="row mb-4">
                             <div class="col-4">
                                 <div class="custom-form-control">
@@ -265,17 +264,6 @@
                                     <small></small>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <div class="col-4">
-                                <div class="custom-form-control">
-                                    <label for="" class="my-1">تفاصيل المنتج</label>
-                                    <input type="text" name="details" id="details" class="form-control"
-                                        placeholder="تفاصيل المنتج">
-                                    <small></small>
-                                </div>
-                            </div>
                             <div class="col-6">
                                 <div class="custom-form-control">
                                     <label for="" class="my-1 d-block">Images</label>
@@ -289,7 +277,7 @@
                         </div>
 
                         <div class="modal-footer mr-auto" dir="ltr">
-                            <button type="submit" class="btn btn-warning mb-2">حفظ التعديلات</button>
+                            <button type="submit" class="btn btn-secondary mb-2">حفظ التعديلات</button>
                         </div>
                     </form>
                 </div>
