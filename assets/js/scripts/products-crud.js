@@ -57,13 +57,13 @@ addProductForm.addEventListener('submit', event => {
 
     if (imgsInput.files.length > 0) {
         for (const file of imgsInput.files) {
-            formData.append('files', file, file.name);
+            formData.append('imgs', file, file.name);
         }
     }
 
     let data = Object.fromEntries(formData)
 
-    let { name, category, description, imgs, files, detailsName, ...details } = data;
+    let { name, category, description, imgs, detailsName, ...details } = data;
 
     let d = []
     for (let i in details) {
@@ -75,7 +75,7 @@ addProductForm.addEventListener('submit', event => {
 
     bodyData = {
         name, category, description,
-        files,
+        imgs,
         details: d
     }
 
