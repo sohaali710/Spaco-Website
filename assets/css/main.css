@@ -5959,11 +5959,23 @@ body.page-categories-2 .page-footer:before {
   color: black;
 }
 
+/* modal style */
+@media (min-width: 960px) {
+  .modal-dialog:not(.delete-modal) {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 960px) {
+  .modal-dialog:not(.delete-modal) {
+    max-width: 85% !important;
+  }
+}
 
 
 :root {
   --dark-pink: #E03E4E;
   --light-pink: #e06975;
-  --dark-cyan: #1C8C84;
+  --dark-cyan: #a7ece7;
   --light-cyan: #2aada4;
 }
