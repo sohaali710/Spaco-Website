@@ -148,7 +148,24 @@ let checkImgs = (imgsInput) => {
 }
 
 
+let checkCategName = (categoryNameInput) => {
+    if (categoryNameInput.value === '') {
+        setErrorFor(categoryNameInput, 'ادخل اسم القسم .')
+    } else {
+        setSuccessFor(categoryNameInput)
+    }
+}
+let checkCategImg = (categImgInput) => {
+    if (categImgInput.value === '') {
+        setErrorFor(categImgInput, 'ادخل صورة للقسم .')
+    } else {
+        setSuccessFor(categImgInput)
+    }
+}
+
+
 export {
     checkUsername, checkEmail, checkPassword, checkConfirmPass, checkMobile, checkAddress, checkTaxes, setFormError, deleteFormError, removeCheckTaxes,
-    checkName, checkCategory, checkDescription, checkDetails, checkImgs
+    checkName, checkCategory, checkDescription, checkDetails, checkImgs,
+    checkCategName, checkCategImg,
 }
