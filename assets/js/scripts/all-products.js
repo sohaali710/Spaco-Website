@@ -40,7 +40,7 @@ fetch(url)
                         <button class="uk-button uk-button-large uk-width-1-1" type="submit"><span>اضف إلى
                             السلة</span><img src="./assets/img/icons/cart-shopping-solid.svg" alt=""
                             style="margin-right: 10px;"></button>
-                        <a href="equipment-detail.html?id=${_id}" class="uk-button uk-button-large uk-button-secondary" type="submit" id="more-details">
+                        <a href="product-details.html?id=${_id}" class="uk-button uk-button-large uk-button-secondary" type="submit" id="more-details">
                             <span>عرض تفاصيل أكثر</span>
                         </a>
                     </div>
