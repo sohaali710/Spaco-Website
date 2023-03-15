@@ -1,6 +1,8 @@
 :root {
-    --dark-pink: #E03E4E;
-    --dark-cyan: #1C8C84;
+    --dark-red: #C20300;
+    --dark-cyan: #1CB3CB;
+    --light-cyan: #36C7DE;
+    --dark-green: #59A52B;
 }
 
 .custom-form-control {
@@ -16,7 +18,7 @@
 
 .custom-form-control.error input,
 .custom-form-control.error select {
-    border: 2px solid var(--dark-pink);
+    border: 2px solid var(--dark-red);
 }
 
 
@@ -37,7 +39,7 @@
 
 .custom-form-control.error svg.fa-exclamation-circle {
     visibility: visible;
-    color: var(--dark-pink);
+    color: var(--dark-red);
 }
 
 
@@ -63,7 +65,7 @@
 .custom-form-control.error small,
 #log-in-form.error .formErrorMsg {
     visibility: visible;
-    color: var(--dark-pink);
+    color: var(--dark-red);
 }
 
 /* add new product form */

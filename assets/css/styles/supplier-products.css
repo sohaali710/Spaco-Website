@@ -1,8 +1,8 @@
 :root {
-    --dark-pink: #E03E4E;
-    --light-pink: #e06975;
-    --dark-cyan: #1C8C84;
-    --light-cyan: #2aada4;
+    --dark-red: #C20300;
+    --dark-cyan: #1CB3CB;
+    --light-cyan: #36C7DE;
+    --dark-green: #59A52B;
 }
 
 .card,
@@ -64,27 +64,27 @@ input {
     width: 204px !important;
 }
 
-.btn-outline-success,
-.btn-outline-success:focus {
+.btn-outline-info,
+.btn-outline-info:focus {
     color: var(--dark-cyan);
     border-color: var(--dark-cyan);
 
     padding-left: 50px;
 }
 
-.btn-outline-success:hover {
+.btn-outline-info:hover {
     background-color: var(--dark-cyan);
     color: #fff;
 }
 
-.btn-success,
+.btn-info,
 .btn-primary,
-.btn-success:focus,
+.btn-info:focus,
 .btn-primary:focus {
     background-color: var(--dark-cyan);
 }
 
-.btn-success:hover,
+.btn-info:hover,
 .btn-primary:hover {
     background-color: var(--light-cyan);
 }
