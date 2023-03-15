@@ -34,46 +34,54 @@ for (let btn of radioBtn) {
 formElement.addEventListener('submit', event => {
     event.preventDefault();
 
-    checkUsername(nameInput)
-    checkEmail(emailInput)
-    checkPassword(passwordInput)
-    checkConfirmPass(passwordInput, confirmPassInput)
-    checkMobile(mobileInput)
-    checkAddress(addressInput)
+    let checkNameReturn = checkUsername(nameInput)
+    let checkEmailReturn = checkEmail(emailInput)
+    let checkPassReturn = checkPassword(passwordInput)
+    let checkConfirmPassReturn = checkConfirmPass(passwordInput, confirmPassInput)
+    let checkMobileReturn = checkMobile(mobileInput)
+    let checkAddressReturn = checkAddress(addressInput)
 
     const formData = new FormData(formElement);
     data = Object.fromEntries(formData)
 
+    let taxesFlag = true
     if (userType === 'user') {
         delete data['taxrecord']
     } else if (userType === 'supplier') {
-        checkTaxes(taxrecordInput)
+        let checkTaxesReturn = checkTaxes(taxrecordInput)
+        if (!checkTaxesReturn) {
+            taxesFlag = false
+        }
     }
     delete data['confirm-password']
     console.log(data)
 
-    fetch(`http://linkloop.co:5000/${userType}/signup`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(res => {
-            console.log(res);
-            if (res.status == 200) {
-                deleteFormError(formElement)
-                return res.json()
-            } else {
-                setFormError(formElement, emailInput, passwordInput, 'هذا البريد الإلكتروني مستخدم مسبقًا. من فضلك قم بتسجيل الدخول.')
-            }
-        })
-        .then(data => {
-            console.log(data)
-            if (data) {
-                location.href = 'user-supplier-log-in.html';
-            }
-        })
-        .catch(err => console.log(err))
+    if (checkNameReturn && checkEmailReturn && checkPassReturn && checkConfirmPassReturn && checkMobileReturn && checkAddressReturn) {
+        if (taxesFlag) {
+            fetch(`http://linkloop.co:5000/${userType}/signup`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => {
+                    console.log(res);
+                    if (res.status == 200) {
+                        deleteFormError(formElement)
+                        return res.json()
+                    } else {
+                        setFormError(formElement, emailInput, passwordInput, 'هذا البريد الإلكتروني مستخدم مسبقًا. من فضلك قم بتسجيل الدخول.')
+                    }
+                })
+                .then(data => {
+                    console.log(data)
+                    if (data) {
+                        location.href = 'user-supplier-log-in.html';
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+    }
 
 })
