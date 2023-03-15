@@ -32,37 +32,38 @@ if (formElement) {
     formElement.addEventListener('submit', event => {
         event.preventDefault();
 
-        checkEmail(emailInput)
-        checkPassword(passwordInput)
+        let checkEmailReturn = checkEmail(emailInput)
+        let checkPassReturn = checkPassword(passwordInput)
 
         const formData = new FormData(formElement);
         data = Object.fromEntries(formData)
 
-        fetch(`http://linkloop.co:5000/${userType}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => {
-                console.log(res);
-                if (res.status == 200) {
-                    deleteFormError(formElement)
-                    return res.json();
-                } else {
-                    setFormError(formElement, emailInput, passwordInput, 'هذا البريد الإلكتروني أو كلمة المرور غير صحيحة. من فضلك ادخل بريد إلكتروني و كلمة مرور صحيحتين أو قم بإنشاء حساب جديد.')
-                }
+        if (checkEmailReturn && checkPassReturn) {
+            fetch(`http://linkloop.co:5000/${userType}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
             })
-            .then(data => {
-                if (data) {
-                    console.log(data)
-                    setCookie(cookieName, data.token)
-                    location.href = redirectTo;
-                }
-            })
-            .catch(err => console.log(err))
-
+                .then(res => {
+                    console.log(res);
+                    if (res.status == 200) {
+                        deleteFormError(formElement)
+                        return res.json();
+                    } else {
+                        setFormError(formElement, emailInput, passwordInput, 'هذا البريد الإلكتروني أو كلمة المرور غير صحيحة. من فضلك ادخل بريد إلكتروني و كلمة مرور صحيحتين أو قم بإنشاء حساب جديد.')
+                    }
+                })
+                .then(data => {
+                    if (data) {
+                        console.log(data)
+                        setCookie(cookieName, data.token)
+                        location.href = redirectTo;
+                    }
+                })
+                .catch(err => console.log(err))
+        }
     })
 }
 
