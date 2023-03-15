@@ -77,7 +77,7 @@ formElement.addEventListener('submit', event => {
                 .then(data => {
                     console.log(data)
                     if (data) {
-                        location.href = 'user-supplier-log-in.html';
+                        location.href = `user-supplier-log-in.html?user-type=${userType}`;
                     }
                 })
                 .catch(err => console.log(err))

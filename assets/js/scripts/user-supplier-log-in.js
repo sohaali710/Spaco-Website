@@ -12,6 +12,20 @@ let userType = 'user'
 let redirectTo = 'index.html'
 let radioBtn = document.querySelectorAll('input[type="radio"]')
 
+// after redirected from sign up page
+if (location.search.split("=")[1]) {
+    userType = location.search.split("=")[1];
+
+    if (userType === 'user') {
+        cookieName = 'user_access_token'
+        redirectTo = 'index.html'
+    } else if (userType === 'supplier') {
+        radioBtn[1].setAttribute('checked', 'checked')
+        cookieName = 'supplier_access_token'
+        redirectTo = 'products-CRUD.html'
+    }
+}
+// choose the type with radio btn
 for (let btn of radioBtn) {
     btn.addEventListener('click', (event) => {
         if (event.target.value === 'user') {
