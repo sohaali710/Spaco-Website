@@ -43,28 +43,20 @@ addCategForm.addEventListener('submit', event => {
 
 
     let formData = new FormData(addCategForm);
-    // formData.append('name', categName);
-
-    // if (categImgInput.files.length > 0) {
-    // formData.append('file', categImgInput.files[0]);
-    //     formData.append('img', categImgInput.files[0]);
-    // }
-
-    let data = Object.fromEntries(formData)
-
-    console.log(data)
-
 
     const myHeaders = new Headers();
-    // console.log(`Bearer ${getCookie(cookieName)}`)
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
 
-    fetch('http://linkloop.co:5000/admin/add-new-category', {
+    const options = {
         method: 'POST',
         headers: myHeaders,
-        body: JSON.stringify(data)
-    })
+        body: formData
+    }
+
+    delete options.headers['Content-Type'];
+    myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
+
+
+    fetch('http://linkloop.co:5000/admin/add-new-category', options)
         .then(res => {
             console.log(res);
             if (res.status == 200) {
