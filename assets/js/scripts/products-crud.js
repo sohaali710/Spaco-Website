@@ -55,42 +55,54 @@ addProductForm.addEventListener('submit', event => {
     let formData = new FormData(addProductForm);
 
 
-    if (imgsInput.files.length > 0) {
-        for (const file of imgsInput.files) {
-            formData.append('imgs', file, file.name);
-        }
-    }
+    // if (imgsInput.files.length > 0) {
+    //     for (const file of imgsInput.files) {
+    //         formData.append('imgs', file, file.name);
+    //     }
+    // }
 
     let data = Object.fromEntries(formData)
+    console.log(data)
 
-    let { name, category, description, imgs, detailsName, ...details } = data;
+    // let { name, category, description, imgs, detailsName, ...details } = data;
 
-    let d = []
-    for (let i in details) {
-        d.push({ title: i, value: details[i] })
-    }
-    data.details = d
+    // let d = []
+    // for (let i in details) {
+    //     d.push({ title: i, value: details[i] })
+    // }
+    // data.details = d
 
-    // console.log(data)
+    // // console.log(data)
 
-    bodyData = {
-        name, category, description,
-        imgs,
-        details: d
-    }
+    // bodyData = {
+    //     name, category, description,imgs,
+    //     details: d
+    // }
 
-    console.log(bodyData)
+    // let bodyData = new FormData();
+
+    // bodyData.append('name',name)
+    // bodyData.append('category',category)
+    // bodyData.append('description',description)
+    // bodyData.append('imgs',imgs)
+    // bodyData.append('details',d)
+
+
+    // console.log(bodyData)
+
 
     const myHeaders = new Headers();
-    // console.log(`Bearer ${getCookie(cookieName)}`)
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
 
-    fetch('http://linkloop.co:5000/products/add-new', {
+    const options = {
         method: 'POST',
         headers: myHeaders,
-        body: JSON.stringify(bodyData)
-    })
+        body: addProductForm
+    }
+
+    delete options.headers['Content-Type'];
+    myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
+
+    fetch('http://linkloop.co:5000/products/add-new', options)
         .then(res => {
             console.log(res);
             return res.json();

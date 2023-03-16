@@ -158,18 +158,18 @@
                     <h5 class="modal-title" id="exampleModalLabel1">إضافة منتج جديد</h5>
                 </div>
                 <div class="modal-body">
-                    <form method="post" id="add-product-form" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-12 col-md-6 col-lg-5 me-2 d-flex align-items-center">
-                                <div class="custom-form-control">
-                                    <label for="details" class="my-1">إضافة حقل جديد لتفاصيل أكثر</label>
-                                    <input type="text" name="detailsName" id="detailsName" class="form-control"
-                                        placeholder="اسم الحقل الجديد">
-                                </div>
-                                <button type="button" class="btn btn-secondary" id="plus-btn"><img
-                                        src="assets/img/icons/square-plus-regular.svg" alt="plus-icon"></button>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-5 me-2 d-flex align-items-center">
+                            <div class="custom-form-control">
+                                <label for="details" class="my-1">إضافة حقل جديد لتفاصيل أكثر</label>
+                                <input type="text" name="detailsName" id="detailsName" class="form-control"
+                                    placeholder="اسم الحقل الجديد">
                             </div>
+                            <button type="button" class="btn btn-secondary" id="plus-btn"><img
+                                    src="assets/img/icons/square-plus-regular.svg" alt="plus-icon"></button>
                         </div>
+                    </div>
+                    <form method="post" id="add-product-form" enctype="multipart/form-data">
                         <div class="row mb-4 prodInputsRow">
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="custom-form-control">
@@ -184,9 +184,9 @@
                                     <label for="" class="my-1">القسم</label>
                                     <select class="form-control" name="category" id="category">
                                         <option value="">اختر القسم</option>
-                                        <option value="categ1">قسم-1</option>
-                                        <option value="categ2">قسم-2</option>
-                                        <option value="categ3">قسم-3</option>
+                                        <option value="القسم الأول">قسم-1</option>
+                                        <option value="القسم الثاني">قسم-2</option>
+                                        <option value="categ0">قسم-3</option>
                                     </select>
                                     <small></small>
                                 </div>
@@ -201,7 +201,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="custom-form-control">
-                                    <label for="" class="my-1 d-block">صور المنتج</label>
+                                    <label for="imgs" class="my-1 d-block">صور المنتج</label>
                                     <input type="file" name="imgs" id="imgs" class="form-control d-block" multiple>
                                     <!-- <img class="rounded mt-2 me-2" style="width: 120px;height: 120px;" src="http://linkloop.co:5000/uploads/" alt=""
                                     id="img"> -->
