@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>عروض الأسعار</title>
+    <meta content="Templines" name="author">
+    <meta content="link loop" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/logo/IconOnly_NoBuffer.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo/IconOnly_NoBuffer.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/logo/IconOnly_NoBuffer.png">
+    <link rel="manifest" href="assets/img/logo/IconOnly_NoBuffer.png">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#222222">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css.map">
+    <link rel="stylesheet" href="assets/css/libs.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/styles/supplier-products.css">
+</head>
+
+<body class="page-home">
+
+    <!-- Loader-->
+    <div id="page-preloader"><span class="spinner border-t_second_b border-t_prim_a"></span></div>
+    <!-- Loader end-->
+
+
+    <div class="page-wrapper">
+        <header class="page-header">
+            <div class="page-header-top">
+                <div class="page-header-top__right">
+                    <div class="social">
+                        <ul class="social-list">
+                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                        class="fab fa-twitter"></i></a></li>
+                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                        class="fab fa-facebook-f"></i></a></li>
+                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                        class="fab fa-google-plus-g"></i></a></li>
+                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                        class="fab fa-youtube"></i></a></li>
+                            <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                        class="fab fa-pinterest-p"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="login-link"><i class="fas fa-sign-in-alt"></i>
+                        <a id="log-out">تسجيل الخروج</a>
+                        <a href="user-supplier-log-in.html" id="log-in">تسجيل الدخول</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="page-header-bottom" data-uk-sticky>
+                <div class="page-header-bottom__left">
+                    <div class="logo"><a class="logo__link" href="index.html"><img class="logo__img"
+                                src="assets/img/logo/IconOnly_NoBuffer.png" alt=""></a></div>
+                    <div class="support"> <a class="support__link" href="tel:236-799-5500">
+                            <div class="support__desc">
+                                <div class="support__label">للدعم الفني</div>
+                                <div class="support__phone">236-799-5500</div>
+                            </div>
+                            <div class="support__icon"><i class="fas fa-headset"></i></div>
+                        </a></div>
+                </div>
+                <div class="page-header-bottom__right">
+                    <nav class="uk-navbar-container uk-navbar-transparent" data-uk-navbar dir="rtl">
+                        <div class="nav-overlay search-btn"><a class="uk-navbar-toggle" data-uk-search-icon
+                                data-uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a></div>
+                        <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
+                            <div class="uk-navbar-item">
+                                <form class="uk-search uk-search-navbar uk-width-1-1" action="#!"><input
+                                        class="uk-search-input" type="search" placeholder="Search..." autofocus></form>
+                            </div><a class="uk-navbar-toggle" data-uk-close
+                                data-uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+                        </div>
+                        <div class="nav-overlay uk-visible@l">
+                            <ul class="uk-navbar-nav">
+                                <li class="uk-active"><a href="products-CRUD.html">متجرك</a></li>
+                                <li><a href="supplier-display-price.html">عروض الأسعار</a></li>
+                                <li><a href="supplier-accepted-offers.html">طلبات الشراء</a></li>
+                                <li><a href="typography.html">من نحن</a></li>
+                                <li><a href="page-contacts.html">اتصل بنا</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                    <a class="uk-navbar-toggle uk-hidden@l" href="#offcanvas" data-uk-toggle><span
+                            data-uk-icon="menu"></span></a>
+                    <a class="uk-navbar-toggle cart-btn" href="user-cart.html">
+                        <div class="cart-btn__icon" id="cart-icon" data-uk-icon="cart">
+
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </header>
+
+        <main class="page-main" dir="rtl">
+            <div class="section-offers-request">
+                <div class="section-title uk-text-center">
+                    <div class="uk-h2">طلبات عروض الأسعار</div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <table class="table table-striped text-center" dir="ltr">
+                            <thead>
+                                <tr>
+                                    <th>عدد المنتجات</th>
+                                    <th>تاريخ الطلب</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2</td>
+                                    <td>2-2-2022</td>
+                                    <td>
+                                        <button class="btn btn-info px-4" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">تفاصيل الطلب</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>3-3-2023</td>
+                                    <td>
+                                        <button class="btn btn-info px-4" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">تفاصيل الطلب</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal fade request-price-modal" id="exampleModal" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog h-100" style="max-width: 900px;" dir="ltr">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">تفاصيل الطلب</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-striped text-center px-2">
+                                    <thead>
+                                        <tr>
+                                            <th>صورة المنتج</th>
+                                            <th>اسم المنتج</th>
+                                            <th>اضف السعر</th>
+                                        </tr>
+                                    </thead>
+                                    <form action=""></form>
+                                    <tbody>
+                                        <tr>
+                                            <td><img src="assets/img/blog-1.jpg" alt="" style="width:125px;">
+                                            </td>
+                                            <td>اسم المنتج</td>
+                                            <td>
+                                                <input type="number" name="price" id="price" class="form-control">
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="assets/img/blog-2.jpg" alt="" style="width:125px;">
+                                            </td>
+                                            <td>اسم المنتج</td>
+                                            <td>
+                                                <input type="number" name="price" id="price" class="form-control">
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th>
+                                                <button class="btn btn-info">ارسال عروض الأسعار</button>
+                                            </th>
+                                            <th>
+
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                    </form>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="page-footer" dir="rtl">
+            <div class="uk-container uk-container-large">
+                <div class="page-footer-middle">
+                    <div class="uk-grid uk-child-width-1-3@l uk-child-width-1-2@s" data-uk-grid>
+                        <div class="uk-flex-first@l">
+                            <div class="title">من نحن</div>
+                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص
+                                العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد
+                                الحروف التى يولدها التطبيق.</p>
+                            <ul class="social-list" dir="ltr">
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-facebook-f"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-twitter"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-google-plus-g"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-linkedin-in"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-vimeo-v"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="uk-flex-last@l" style="width: 320px;">
+                            <div class="title">ابق على اتصال</div>
+                            <ul class="contacts-list">
+                                <li class="contacts-list-item">
+                                    <div class="contacts-list-item__icon"><img src="./assets/img/icons/ico-phone24.svg"
+                                            data-uk-svg alt="For Rental Support"></div>
+                                    <div class="contacts-list-item__desc">
+                                        <div class="contacts-list-item__label">للدعم الفني</div>
+                                        <div class="contacts-list-item__content"> <a href="tel:12367995500/6600"
+                                                dir="ltr">+1
+                                                (236) 799 5500 / 6600</a></div>
+                                    </div>
+                                </li>
+                                <li class="contacts-list-item">
+                                    <div class="contacts-list-item__icon"><img src="./assets/img/icons/ico-mail.svg"
+                                            data-uk-svg alt="Send Us Email"></div>
+                                    <div class="contacts-list-item__desc">
+                                        <div class="contacts-list-item__label">بريدنا الإلكتروني</div>
+                                        <div class="contacts-list-item__content"> <a
+                                                href="mailto:rentals@my-domain.net">linkloop@my-domain.net</a></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="title">صفحات مهمة</div>
+                                    <ul class="uk-nav">
+                                        <li> <a href="typography.html">من نحن</a></li>
+                                        <li> <a href="typography.html">الشروط و الأحكام</a></li>
+                                        <li> <a href="typography.html">الأقسام</a></li>
+                                    </ul>
+
+                                    <a href="https://maroof.sa/businesses/details/92298" target="_blank">
+                                        <div class="maroof-qr">
+                                            <img src="./assets/img/icons/qr linkloop.png" class="qr-code"
+                                                alt="maroof qr code">
+                                            <img src="./assets/img/icons/maroof-logo.svg" class="maroof-logo"
+                                                alt="maroof logo">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-md-6 mt-5 mt-md-0">
+                                    <div class="title">الدفع عن طريق</div>
+                                    <div class="pay-with">
+                                        <a href=""><img src="assets/img/icons/mastercard_icon.png" alt=""></a>
+                                        <a href=""><img src="assets/img/icons/visa_icon.png" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-footer-bottom" dir="ltr"><span>(c) 2023 link loop</span><a href="#!">الشروط و
+                        الاحكام</a><a href="typography.html">Sitemap</a></div><a class="totop-link" href="#top"
+                    data-uk-scroll>
+                    <img src="./assets/img/icons/plumbing-ico-totop.png"
+                        style="width: 50px;height: 50px;display: block;" alt="totop">
+                    <span>Go to
+                        top</span></a>
+            </div>
+            <div id="offcanvas" data-uk-offcanvas="overlay: true">
+                <div class="uk-offcanvas-bar"><button class="uk-offcanvas-close" type="button"
+                        data-uk-close=""></button>
+                    <div class="uk-margin">
+                        <div class="logo"><a class="logo__link" href="index.html"><img class="logo__img"
+                                    src="./assets/img/logo/IconOnly_Transparent_NoBuffer.png" alt="logo"></a></div>
+                    </div>
+                    <div class="uk-margin">
+                        <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
+                            <li class="uk-active"><a href="index.html">الرئيسية</a></li>
+                            <li><a href="page-products-list.html">جميع المنتجات</a></li>
+                            <li class="uk-parent"><a href="page-categories-1.html">الأقسام<i class="fas fa-angle-down"
+                                        style="margin-right: 8px;"></i></a>
+                                <ul class="uk-nav-sub">
+                                    <li><a href="">قسم</a></li>
+                                    <li><a href="">قسم</a></li>
+                                    <li><a href="">قسم</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="typography.html">من نحن</a></li>
+                            <li><a href="page-contacts.html">اتصل بنا</a></li>
+                        </ul>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="support"> <a class="support__link" href="tel:236-799-5500">
+                                <div class="support__icon"><i class="fas fa-headset"></i></div>
+                                <div class="support__desc">
+                                    <div class="support__label">للدعم الفني</div>
+                                    <div class="support__phone">236-799-5500</div>
+                                </div>
+                            </a></div>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="social">
+                            <ul class="social-list" dir="ltr">
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-twitter"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-google-plus-g" aria-hidden="true"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                                <li class="social-list__item"><a class="social-list__link" href="#!"><i
+                                            class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-flex-top" id="callback" data-uk-modal="">
+                <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"><button
+                        class="uk-modal-close-default" type="button" data-uk-close=""></button>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/libs.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/scripts/main-script.js" type="module"></script>
+</body>
+
+</html>
