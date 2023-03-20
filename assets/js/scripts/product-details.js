@@ -1,4 +1,5 @@
-let productContainer = document.querySelector('.uk-container')
+import { addToCart } from './add-to-cart.js'
+let productDetailsContainer = document.querySelector('.product-details')
 
 let url = 'http://linkloop.co:5000/products/all'
 
@@ -6,14 +7,11 @@ fetch(url).then(res => res.json()).then(data => {
     const allProducts = data.data
 
     const selectedProdId = location.search.split("=")[1];
-    console.log(location.search)
-    console.log(selectedProdId)
 
     allProducts.forEach(product => {
         let { name, category, description, details, imgs, _id } = product
 
         if (selectedProdId === _id) {
-            console.log(selectedProdId)
 
             fetch(`http://linkloop.co:5000/products/product-by-id/${_id}`).then(res => res.json()).then(data2 => {
                 console.log(data2);
@@ -47,7 +45,7 @@ fetch(url).then(res => res.json()).then(data => {
             })
 
 
-            productContainer.innerHTML = `
+            productDetailsContainer.innerHTML = `
             <div class="uk-grid" data-uk-grid>
                         <div class="uk-width-2-3@m">
                             <div class="equipment-detail">
@@ -83,9 +81,14 @@ fetch(url).then(res => res.json()).then(data => {
                             <div class="equipment-order-total">
                                 <div class="equipment-detail__title">${name}</div>
                                 <div class="equipment-detail__location">${category}</div>
-                                <button class="uk-button uk-button-large uk-width-1-1" type="submit"><span>اضف إلى
-                                        السلة</span><img src="./assets/img/icons/cart-shopping-solid.svg" alt=""
-                                        style="margin-right: 10px;"></button>
+
+                                <button class="uk-button uk-button-large uk-width-1-1" type="button" id="addToCart">
+                                    اضف إلى السلة<img src="./assets/img/icons/cart-shopping-solid.svg" alt="cart-icon">
+                                </button>
+                                <div class="add-product-quantity">
+                                    <button class="uk-button uk-button-large uk-width-1-1" type="submit" id="addQuantity" product-id="${_id}">اضف</button>
+                                    <input type="number" class="quantity-input" min="1" value="1">
+                                </div>
 
                                 <div class="equipment-detail__btns">
                                     <a href="#!"><i class="fas fa-star"></i>اضف إلى المفضلة</a>
@@ -117,3 +120,9 @@ fetch(url).then(res => res.json()).then(data => {
         }
     });
 });
+
+
+/** add-to-cart input + cart-icon-count */
+let cartIconCount = document.querySelector('.cart-btn__icon')
+
+productDetailsContainer.addEventListener('click', addToCart(cartIconCount))

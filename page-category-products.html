@@ -81,9 +81,10 @@
                       style="margin-right: 8px;"></i></a>
                   <div class="uk-navbar-dropdown">
                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                      <li><a href="./page-category-products.html?category=categ1">قسم 1</a></li>
-                      <li><a href="./page-category-products.html?category=categ2">قسم 2</a></li>
-                      <li><a href="./page-category-products.html?category=categ3">قسم 3</a></li>
+                      <li><a href="./page-category-products.html?category=categ0">قسم 1</a></li>
+                      <li><a href="./page-category-products.html?category=categ10">قسم 2</a></li>
+                      <li><a href="./page-category-products.html?category=القسم الأول">قسم 3</a></li>
+                      <li><a href="./page-category-products.html?category=القسم الثاني">قسم 4</a></li>
                     </ul>
                   </div>
                 </li>
@@ -93,10 +94,13 @@
             </div>
           </nav>
 
-          <a class="uk-navbar-toggle uk-hidden@l" href="#offcanvas" data-uk-toggle><span
-              data-uk-icon="menu"></span></a><a class="uk-navbar-toggle cart-btn" href="#">
-            <div class="cart-btn__icon" data-uk-icon="cart"><span class="cart-btn__count">2</span></div>
+          <a class="uk-navbar-toggle uk-hidden@l" href="#offcanvas" data-uk-toggle><span data-uk-icon="menu"></span></a>
+          <a class="uk-navbar-toggle cart-btn" href="user-cart.html">
+            <div class="cart-btn__icon" id="cart-icon" data-uk-icon="cart">
+
+            </div>
           </a>
+
         </div>
       </div>
     </header>
@@ -201,7 +205,7 @@
                 </li>
               </ul>
             </div>
-            <div class="uk-flex-last@l" style="width: 350px;">
+            <div class="uk-flex-last@l" style="width: 320px;">
               <div class="title">ابق على اتصال</div>
               <ul class="contacts-list">
                 <li class="contacts-list-item">
@@ -224,20 +228,29 @@
                 </li>
               </ul>
             </div>
-            <div class="custom-style">
-              <div class="part-1">
-                <div class="title">صفحات مهمة</div>
-                <ul class="uk-nav">
-                  <li> <a href="typography.html">من نحن</a></li>
-                  <li> <a href="typography.html">الشروط و الأحكام</a></li>
-                  <li> <a href="typography.html">الأقسام</a></li>
-                </ul>
-              </div>
-              <div class="part-2">
-                <div class="title">الدفع عن طريق</div>
-                <div class="pay-with">
-                  <a href=""><img src="assets/img/icons/mastercard_icon.png" alt=""></a>
-                  <a href=""><img src="assets/img/icons/visa_icon.png" alt=""></a>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="title">صفحات مهمة</div>
+                  <ul class="uk-nav">
+                    <li> <a href="typography.html">من نحن</a></li>
+                    <li> <a href="typography.html">الشروط و الأحكام</a></li>
+                    <li> <a href="typography.html">الأقسام</a></li>
+                  </ul>
+
+                  <a href="https://maroof.sa/businesses/details/92298" target="_blank">
+                    <div class="maroof-qr">
+                      <img src="./assets/img/icons/qr linkloop.png" class="qr-code" alt="maroof qr code">
+                      <img src="./assets/img/icons/maroof-logo.svg" class="maroof-logo" alt="maroof logo">
+                    </div>
+                  </a>
+                </div>
+                <div class="col-12 col-md-6 mt-5 mt-md-0">
+                  <div class="title">الدفع عن طريق</div>
+                  <div class="pay-with">
+                    <a href=""><img src="assets/img/icons/mastercard_icon.png" alt=""></a>
+                    <a href=""><img src="assets/img/icons/visa_icon.png" alt=""></a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -314,7 +327,8 @@
   </div>
   <script src="assets/js/libs.js"></script>
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/scripts/category-products.js"></script>
+  <script src="assets/js/scripts/category-products.js" type="module"></script>
+  <script src="assets/js/scripts/main-script.js" type="module"></script>
 </body>
 
 </html>

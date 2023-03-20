@@ -1,3 +1,5 @@
+import { addToCart } from './add-to-cart.js'
+
 let categProductsDiv = document.querySelector('.category-products')
 let pageTitle = document.querySelector('.page-head__title')
 let categProducts = []
@@ -7,7 +9,9 @@ let url = 'http://linkloop.co:5000/products/product-by-category'
 const selectedCategory = location.search.split("=")[1];
 console.log(selectedCategory)
 
-pageTitle.innerHTML = selectedCategory
+pageTitle.innerHTML = decodeURI(selectedCategory)
+// console.log(decodeURI(selectedCategory))
+
 
 fetch(`${url}/${selectedCategory}`)
     .then(res => {
@@ -41,10 +45,15 @@ fetch(`${url}/${selectedCategory}`)
                     </div>
         
                     <div class="rental-item__price" dir="rtl">
-                        <button class="uk-button uk-button-large uk-width-1-1" type="submit"><span>اضف إلى
-                            السلة</span><img src="./assets/img/icons/cart-shopping-solid.svg" alt=""
-                            style="margin-right: 10px;"></button>
-                        <a href="equipment-detail.html?id=${_id}" class="uk-button uk-button-large uk-button-secondary" type="submit" id="more-details">
+                        <button class="uk-button uk-button-large uk-width-1-1" type="button" id="addToCart">
+                            اضف إلى السلة<img src="./assets/img/icons/cart-shopping-solid.svg" alt="cart-icon">
+                        </button>
+                        <div class="add-product-quantity">
+                            <button class="uk-button uk-button-large uk-width-1-1" type="submit" id="addQuantity" product-id="${_id}">اضف</button>
+                            <input type="number" class="quantity-input" min="1" value="1">
+                        </div>
+
+                        <a href="product-details.html?id=${_id}" class="uk-button uk-button-large uk-button-secondary" type="submit" id="more-details">
                             <span>عرض تفاصيل أكثر</span>
                         </a>
                     </div>
@@ -54,3 +63,10 @@ fetch(`${url}/${selectedCategory}`)
         })
     })
     .catch(err => console.log(err))
+
+
+
+/** add-to-cart input + cart-icon-count */
+let cartIconCount = document.querySelector('.cart-btn__icon')
+
+categProductsDiv.addEventListener('click', addToCart(cartIconCount))
