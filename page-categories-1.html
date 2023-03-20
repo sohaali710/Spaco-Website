@@ -94,10 +94,13 @@
             </div>
           </nav>
 
-          <a class="uk-navbar-toggle uk-hidden@l" href="#offcanvas" data-uk-toggle><span
-              data-uk-icon="menu"></span></a><a class="uk-navbar-toggle cart-btn" href="#">
-            <div class="cart-btn__icon" data-uk-icon="cart"><span class="cart-btn__count">2</span></div>
+          <a class="uk-navbar-toggle uk-hidden@l" href="#offcanvas" data-uk-toggle><span data-uk-icon="menu"></span></a>
+          <a class="uk-navbar-toggle cart-btn" href="user-cart.html">
+            <div class="cart-btn__icon" id="cart-icon" data-uk-icon="cart">
+
+            </div>
           </a>
+
         </div>
       </div>
     </header>
@@ -268,6 +271,7 @@
         </div>
       </div>
     </main>
+
     <footer class="page-footer" dir="rtl">
       <div class="uk-container uk-container-large">
         <div class="page-footer-middle">
@@ -290,7 +294,7 @@
                 </li>
               </ul>
             </div>
-            <div class="uk-flex-last@l" style="width: 350px;">
+            <div class="uk-flex-last@l" style="width: 320px;">
               <div class="title">ابق على اتصال</div>
               <ul class="contacts-list">
                 <li class="contacts-list-item">
@@ -313,20 +317,29 @@
                 </li>
               </ul>
             </div>
-            <div class="custom-style">
-              <div class="part-1">
-                <div class="title">صفحات مهمة</div>
-                <ul class="uk-nav">
-                  <li> <a href="typography.html">من نحن</a></li>
-                  <li> <a href="typography.html">الشروط و الأحكام</a></li>
-                  <li> <a href="typography.html">الأقسام</a></li>
-                </ul>
-              </div>
-              <div class="part-2">
-                <div class="title">الدفع عن طريق</div>
-                <div class="pay-with">
-                  <a href=""><img src="assets/img/icons/mastercard_icon.png" alt=""></a>
-                  <a href=""><img src="assets/img/icons/visa_icon.png" alt=""></a>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="title">صفحات مهمة</div>
+                  <ul class="uk-nav">
+                    <li> <a href="typography.html">من نحن</a></li>
+                    <li> <a href="typography.html">الشروط و الأحكام</a></li>
+                    <li> <a href="typography.html">الأقسام</a></li>
+                  </ul>
+
+                  <a href="https://maroof.sa/businesses/details/92298" target="_blank">
+                    <div class="maroof-qr">
+                      <img src="./assets/img/icons/qr linkloop.png" class="qr-code" alt="maroof qr code">
+                      <img src="./assets/img/icons/maroof-logo.svg" class="maroof-logo" alt="maroof logo">
+                    </div>
+                  </a>
+                </div>
+                <div class="col-12 col-md-6 mt-5 mt-md-0">
+                  <div class="title">الدفع عن طريق</div>
+                  <div class="pay-with">
+                    <a href=""><img src="assets/img/icons/mastercard_icon.png" alt=""></a>
+                    <a href=""><img src="assets/img/icons/visa_icon.png" alt=""></a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -365,45 +378,45 @@
           <div class="uk-margin">
             <div class="support"> <a class="support__link" href="tel:236-799-5500">
                 <div class="support__icon"><i class="fas fa-headset"></i></div>
-                <div class="support__footer
-                              <div class=" support__label">للدعم الفني</div>
-                <div class="support__phone">236-799-5500</div>
-            </div>
-            </a>
+                <div class="support__desc">
+                  <div class="support__label">للدعم الفني</div>
+                  <div class="support__phone">236-799-5500</div>
+                </div>
+              </a></div>
           </div>
-        </div>
-        <div class="uk-margin">
-          <div class="social">
-            <ul class="social-list" dir="ltr">
-              <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-twitter"></i></a>
-              </li>
-              <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-facebook-f"
-                    aria-hidden="true"></i></a></li>
-              <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-google-plus-g"
-                    aria-hidden="true"></i></a></li>
-              <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-youtube"
-                    aria-hidden="true"></i></a></li>
-              <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-pinterest-p"
-                    aria-hidden="true"></i></a></li>
-            </ul>
+          <div class="uk-margin">
+            <div class="social">
+              <ul class="social-list" dir="ltr">
+                <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-facebook-f"
+                      aria-hidden="true"></i></a></li>
+                <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-google-plus-g"
+                      aria-hidden="true"></i></a></li>
+                <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-youtube"
+                      aria-hidden="true"></i></a></li>
+                <li class="social-list__item"><a class="social-list__link" href="#!"><i class="fab fa-pinterest-p"
+                      aria-hidden="true"></i></a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-  </div>
-  <div class="uk-flex-top" id="callback" data-uk-modal="">
-    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"><button class="uk-modal-close-default"
-        type="button" data-uk-close=""></button>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
-  </div>
-  </footer>
+      <div class="uk-flex-top" id="callback" data-uk-modal="">
+        <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"><button class="uk-modal-close-default"
+            type="button" data-uk-close=""></button>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+    </footer>
   </div>
   <script src="assets/js/libs.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/scripts/main-script.js" type="module"></script>
 </body>
 
 </html>

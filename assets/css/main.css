@@ -5751,15 +5751,9 @@ body.page-categories-2 .page-footer:before {
   list-style-type: disc !important;
 }
 
-.page-footer-middle .custom-style {
-  width: 500px;
 
-  display: flex;
-  justify-content: space-around;
-}
-
-.page-footer-middle .custom-style .pay-with img {
-  width: 64px;
+.page-footer-middle .pay-with img {
+  width: 64px !important;
 
   margin-left: 10px;
 }
@@ -5767,6 +5761,32 @@ body.page-categories-2 .page-footer:before {
 .page-footer .social-list {
   width: 200px;
   margin-left: auto;
+}
+
+
+.page-footer .maroof-qr {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.page-footer .maroof-qr .qr-code {
+  width: 90px;
+}
+
+.page-footer .maroof-qr .maroof-logo {
+  width: 90px;
+  margin-right: 14px;
+}
+
+@media (min-width: 767px) {
+  .page-footer .maroof-qr {
+    position: relative;
+  }
+
+  .page-footer .maroof-qr .maroof-logo {
+    position: absolute;
+    top: 25px;
+  }
 }
 
 /* nav side-list */
@@ -5986,6 +6006,45 @@ body.page-categories-2 .page-footer:before {
   .modal-dialog:not(.delete-modal) {
     max-width: 85% !important;
   }
+}
+
+/* rental-item add-to-cart */
+.add-product-quantity {
+  /* display: flex; */
+  justify-content: center;
+
+  margin-left: 10px;
+  display: none;
+}
+
+.add-product-quantity button {
+  margin-left: 5px !important;
+}
+
+.add-product-quantity .quantity-input {
+  direction: ltr;
+
+  width: 80px;
+  padding: 0 10px 0 25px;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  opacity: 1;
+}
+
+.add-product-quantity input[type=number]::-webkit-inner-spin-button,
+.add-product-quantity input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+
+.product-details .add-product-quantity {
+  margin-top: 20px;
+}
+
+.product-details .add-product-quantity button {
+  margin-top: 0;
 }
 
 
