@@ -5986,6 +5986,29 @@ body.page-categories-2 .page-footer:before {
   color: #ffffff;
 }
 
+/* cart page */
+
+.user-cart table tbody tr img {
+  width: 150px;
+}
+
+.user-cart table tr {
+  direction: rtl;
+  text-align: center;
+}
+
+.user-cart table tbody tr {
+  line-height: 100px;
+
+  font-size: 20px;
+  font-weight: 450;
+}
+
+.user-cart table thead tr {
+  font-size: 20px;
+  font-weight: 500;
+}
+
 /* li bullet color */
 .rental-item__specifications ul li {
   color: var(--dark-cyan);

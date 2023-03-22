@@ -13,9 +13,9 @@ fetch(url).then(res => res.json()).then(data => {
 
         if (selectedProdId === _id) {
 
-            fetch(`http://linkloop.co:5000/products/product-by-id/${_id}`).then(res => res.json()).then(data2 => {
-                console.log(data2);
-            });
+            // fetch(`http://linkloop.co:5000/products/product-by-id/${_id}`).then(res => res.json()).then(data2 => {
+            //     console.log(data2);
+            // });
 
 
             let imagesSlider = ''
