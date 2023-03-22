@@ -27,7 +27,7 @@ if (getCookie('user_access_token')) {
 cartIcon.addEventListener('click', () => {
     if (getCookie('user_access_token')) {
         if (getCookie('user-cart')) {
-            this.parentElement.setAttribute('href', 'user-cart.html')
+            location.href = 'user-cart.html'
         } else {
             alert('cart is empty')
         }
