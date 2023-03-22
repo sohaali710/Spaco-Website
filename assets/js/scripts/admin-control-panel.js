@@ -29,45 +29,49 @@ let categImgInput = document.getElementById('img')
 let counter = 0
 let detailsArr = []
 
-addCategForm.addEventListener('submit', event => {
-    event.preventDefault();
+if (getCookie(cookieName)) {
+    addCategForm.addEventListener('submit', event => {
+        event.preventDefault();
 
-    counter++;
-    let categName = categoryNameInput.value;
+        counter++;
+        let categName = categoryNameInput.value;
 
-    detailsArr.push(categName)
-
-
-    checkCategName(categoryNameInput)
-    checkCategImg(categImgInput)
+        detailsArr.push(categName)
 
 
-    let formData = new FormData(addCategForm);
-
-    const myHeaders = new Headers();
-
-    const options = {
-        method: 'POST',
-        headers: myHeaders,
-        body: formData
-    }
-
-    delete options.headers['Content-Type'];
-    myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
+        checkCategName(categoryNameInput)
+        checkCategImg(categImgInput)
 
 
-    fetch('http://linkloop.co:5000/admin/add-new-category', options)
-        .then(res => {
-            console.log(res);
-            if (res.status == 200) {
-                return res.json();
-                // location.href = 'products-CRUD.html';
-            }
-        })
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
+        let formData = new FormData(addCategForm);
 
-})
+        const myHeaders = new Headers();
+
+        const options = {
+            method: 'POST',
+            headers: myHeaders,
+            body: formData
+        }
+
+        delete options.headers['Content-Type'];
+        myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
+
+
+        fetch('http://linkloop.co:5000/admin/add-new-category', options)
+            .then(res => {
+                console.log(res);
+                if (res.status == 200) {
+                    return res.json();
+                    // location.href = 'products-CRUD.html';
+                }
+            })
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+
+    })
+} else {
+    location.href = 'admin-log-in.html'
+}
 
 
 logInOutNav(cookieName)
