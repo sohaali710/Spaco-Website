@@ -32,6 +32,6 @@ cartIcon.addEventListener('click', () => {
             alert('cart is empty')
         }
     } else {
-        location.href = 'user-supplier-log-in.html'
+        location.href = 'user-supplier-log-in.html?user-type=user'
     }
 })
