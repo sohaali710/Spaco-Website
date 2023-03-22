@@ -6076,6 +6076,6 @@ body.page-categories-2 .page-footer:before {
 :root {
   --dark-red: #C20300;
   --dark-cyan: #1CB3CB;
-  --light-cyan: #36C7DE;
+  --light-cyan: rgb(30, 134, 150);
   --dark-green: #59A52B;
 }
