@@ -121,3 +121,13 @@ table tr td {
     position: relative;
     top: 3px;
 }
+
+.newDetailsInputs #detailsNameAr {
+    margin-right: -10px;
+}
+
+
+/* admin control panel */
+.section-category .section-title {
+    margin-bottom: 0px !important;
+}
