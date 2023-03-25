@@ -1,3 +1,4 @@
+// in add & update product form
 function getCategories(categContainer, selectedCateg = '') {
     let options = ''
 
