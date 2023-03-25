@@ -12,13 +12,6 @@ img {
     border-radius: 1px !important;
 }
 
-.btn,
-.modal-content {
-    border-radius: 2px !important;
-    border-width: 2px;
-    font-weight: bold;
-}
-
 a {
     text-decoration: none;
 }
@@ -33,9 +26,28 @@ a {
     height: 280px;
 }
 
-
+/* modal style */
 .modal {
     direction: rtl;
+}
+
+.btn,
+.modal-content {
+    border-radius: 2px !important;
+    border-width: 2px;
+    font-weight: bold;
+}
+
+@media (min-width: 960px) {
+    .modal-dialog:not(.delete-modal) {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 960px) {
+    .modal-dialog:not(.delete-modal) {
+        max-width: 85% !important;
+    }
 }
 
 .modal .modal-header {
@@ -45,6 +57,7 @@ a {
 .modal .modal-header .modal-title {
     width: 100%;
     text-align: center;
+    margin-top: 10px;
 }
 
 .modal .modal-header .btn-close {
@@ -114,15 +127,17 @@ table tr td {
     width: 120px !important;
 }
 
-
-#plus-btn {
+#addProd-plus-btn,
+#updateProd-plus-btn,
+#addCateg-plus-btn {
     margin-right: 10px;
 
     position: relative;
     top: 3px;
 }
 
-.newDetailsInputs #detailsNameAr {
+.newDetailsInputs #detailsName-addProd,
+.newDetailsInputs #detailsName-updateProd {
     margin-right: -10px;
 }
 
@@ -130,4 +145,14 @@ table tr td {
 /* admin control panel */
 .section-category .section-title {
     margin-bottom: 0px !important;
+}
+
+.allProdRow .card {
+    width: 20rem;
+}
+
+@media (max-width: 767px) {
+    .allProdRow .card {
+        width: 24rem;
+    }
 }

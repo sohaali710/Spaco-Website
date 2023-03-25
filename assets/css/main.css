@@ -6018,19 +6018,6 @@ body.page-categories-2 .page-footer:before {
   color: black;
 }
 
-/* modal style */
-@media (min-width: 960px) {
-  .modal-dialog:not(.delete-modal) {
-    max-width: 70%;
-  }
-}
-
-@media (max-width: 960px) {
-  .modal-dialog:not(.delete-modal) {
-    max-width: 85% !important;
-  }
-}
-
 /* rental-item add-to-cart */
 .add-product-quantity {
   /* display: flex; */

@@ -102,18 +102,13 @@
                 <div class="container">
                     <div class="row mb-3">
                         <div class="col-12 col-md-4 mt-5">
-                            <button type="submit" class="btn btn-outline-info btn-lg" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal1"><img src="assets/img/icons/square-plus-regular.svg"
-                                    alt="plus-icon" class="ms-2">إضافة منتج جديد</button>
+                            <button type="submit" class="btn btn-outline-info btn-lg" id="addProdBtn"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal1"><img
+                                    src="assets/img/icons/square-plus-regular.svg" alt="plus-icon" class="ms-2">إضافة
+                                منتج جديد</button>
                         </div>
-                        <div class="col-12 col-md-3 m-auto mt-4">
-                            <label for="select" class="fw-bold mb-1">تصنيف على حسب القسم</label>
-                            <select class="form-control" id="select">
-                                <option value="all" selected>جميع المنتجات</option>
-                                <option value="category-1">قسم</option>
-                                <option value="category-2">قسم</option>
-                                <option value="category-3">قسم</option>
-                            </select>
+                        <div class="col-12 col-md-3 m-auto mt-4" id="filterByCategCol">
+
                         </div>
                         <div class="col-12 col-md-4 mt-5">
                             <button type="submit" class="btn btn-outline-info btn-lg" data-bs-toggle="modal"
@@ -122,29 +117,9 @@
                         </div>
                     </div>
 
-                    <div class="row w-100 d-flex justify-content-between">
-                        <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-md-0">
-                            <div class="card text-center p-2 pb-4" style="width: 20rem;">
-                                <img src="assets/img/category-1.jpg" class="card-img-top rounded-0" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">اسم المنتج</h5>
-                                    <p class="card-text fw-bold e-0">وصف المنتج</p>
-                                    <p class="card-text">
-                                        هذاالنص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد
-                                        النص العربى
-                                    </p>
+                    <div class="row allProdRow w-100 d-flex justify-content-between">
 
-                                    <div class="mt-4 d-flex justify-content-around w-100">
-                                        <button type="submit" class="btn btn-outline-dark mb-2" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal2">تعديل
-                                            المنتج</button>
-                                        <button type="submit" class="btn btn-outline-danger mb-2 ms-3"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal3">حذف
-                                            المنتج</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -158,27 +133,27 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h5 class="modal-title" id="exampleModalLabel1">إضافة منتج جديد</h5>
+                    <h4 class="modal-title" id="exampleModalLabel1">إضافة منتج جديد</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" id="add-product-form" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-12 me-2 d-flex align-items-center">
-                                <div class="custom-form-control">
-                                    <label for="details" class="my-1">إضافة حقل جديد لتفاصيل أكثر</label>
-                                    <div class="newDetailsInputs">
-                                        <!-- <input type="text" name="detailsNameEn" id="detailsNameEn" class="form-control"
-                                            placeholder="اسم الحقل بالإنجليزية"> -->
-                                        <input type="text" name="detailsNameAr" id="detailsNameAr" class="form-control"
-                                            placeholder="اسم الحقل بالعربية">
-                                    </div>
+                    <div class="row">
+                        <div class="col-12 me-2 d-flex align-items-center">
+                            <div class="custom-form-control">
+                                <label for="details" class="my-1">إضافة حقل جديد لتفاصيل أكثر</label>
+                                <div class="newDetailsInputs">
+                                    <!-- <input type="text" name="detailsNameEn" id="detailsNameEn" class="form-control"
+                                        placeholder="اسم الحقل بالإنجليزية"> -->
+                                    <input type="text" name="detailsName-addProd" id="detailsName-addProd"
+                                        class="form-control" placeholder="اسم الحقل بالعربية">
                                 </div>
-                                <button type="button" class="btn btn-secondary" id="plus-btn"><img
-                                        src="assets/img/icons/square-plus-regular.svg" alt="plus-icon"></button>
                             </div>
+                            <button type="button" class="btn btn-secondary" id="addProd-plus-btn"><img
+                                    src="assets/img/icons/square-plus-regular.svg" alt="plus-icon"></button>
                         </div>
-                        <div class="row mb-4 prodInputsRow">
-                            <div class="col-12 col-sm-6 col-lg-4">
+                    </div>
+                    <form method="post" id="add-product-form" enctype="multipart/form-data">
+                        <div class="row mb-4 addProdInputsRow">
+                            <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="custom-form-control">
                                     <label for="name" class="my-1">اسم المنتج</label>
                                     <input type="text" name="name" id="name" class="form-control"
@@ -186,19 +161,7 @@
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="custom-form-control">
-                                    <label for="category" class="my-1">القسم</label>
-                                    <select class="form-control" name="category" id="category">
-                                        <option value="">اختر القسم</option>
-                                        <option value="القسم الأول">قسم-1</option>
-                                        <option value="القسم الثاني">قسم-2</option>
-                                        <option value="categ0">قسم-3</option>
-                                    </select>
-                                    <small></small>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="custom-form-control">
                                     <label for="description" class="my-1">وصف المنتج</label>
                                     <input type="text" name="description" id="description" class="form-control"
@@ -206,7 +169,7 @@
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="custom-form-control">
                                     <label for="imgs" class="my-1 d-block">صور المنتج</label>
                                     <input type="file" name="imgs" id="imgs" class="form-control d-block" multiple>
@@ -214,6 +177,10 @@
                                     id="img"> -->
                                     <small></small>
                                 </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-lg-3 categColAddProd">
+
                             </div>
 
                         </div>
@@ -233,53 +200,63 @@
 
     <!-- #region Update Product Modal -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-        <div class="modal-dialog h-100 d-flex align-items-center">
+        <div class="modal-dialog modal-dialog-scrollable h-100 d-flex align-items-center">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h5 class="modal-title" id="exampleModalLabel2">تعديل منتج</h5>
+                    <h4 class="modal-title" id="exampleModalLabel2">تعديل المنتج</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 me-2 d-flex align-items-center">
+                            <div class="custom-form-control">
+                                <label for="details" class="my-1">إضافة حقل جديد لتفاصيل أكثر</label>
+                                <div class="newDetailsInputs">
+                                    <!-- <input type="text" name="detailsNameEn" id="detailsNameEn" class="form-control"
+                                        placeholder="اسم الحقل بالإنجليزية"> -->
+                                    <input type="text" name="detailsName-updateProd" id="detailsName-updateProd"
+                                        class="form-control" placeholder="اسم الحقل بالعربية">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary" id="updateProd-plus-btn"><img
+                                    src="assets/img/icons/square-plus-regular.svg" alt="plus-icon"></button>
+                        </div>
+                    </div>
                     <form method="post" id="update-product-form">
                         <div class="row mb-4">
-                            <div class="col-4">
+                            <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="custom-form-control">
-                                    <label for="" class="my-1">اسم المنتج</label>
+                                    <label for="name" class="my-1">اسم المنتج</label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         placeholder="اسم المنتج">
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="custom-form-control">
-                                    <label for="" class="my-1">القسم</label>
-                                    <select class="form-control" name="category" id="category">
-                                        <option value="">اختر القسم</option>
-                                        <option value="category-1">قسم-1</option>
-                                        <option value="category-2">قسم-2</option>
-                                        <option value="category-3">قسم-3</option>
-                                    </select>
-                                    <small></small>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="custom-form-control">
-                                    <label for="" class="my-1">وصف المنتج</label>
+                                    <label for="description" class="my-1">وصف المنتج</label>
                                     <input type="text" name="description" id="description" class="form-control"
                                         placeholder="وصف المنتج">
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="custom-form-control">
-                                    <label for="" class="my-1 d-block">Images</label>
-                                    <input type="file" name="imgs" id="imgs" class="form-control d-block w-50" multiple
-                                        onchange="selectMultipleFiles(event)">
-                                    <!-- <img class="rounded mt-2 me-2" style="width: 120px;height: 120px;" src="" alt=""
-                                        id="img"> -->
+                                    <label for="imgs" class="my-1 d-block">صور المنتج</label>
+                                    <input type="file" name="imgs" id="imgs" class="form-control d-block" multiple>
+                                    <!-- <img class="rounded mt-2 me-2" style="width: 120px;height: 120px;" src="http://linkloop.co:5000/uploads/" alt=""
+                                    id="img"> -->
                                     <small></small>
                                 </div>
                             </div>
+                            <div class="col-12 col-sm-6 col-lg-3 categ-col">
+
+                            </div>
+                        </div>
+
+                        <div class="row details-row">
+
+
                         </div>
 
                         <div class="modal-footer mr-auto" dir="ltr">
@@ -299,7 +276,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h5 class="modal-title" id="exampleModalLabel3">حذف المنتج</h5>
+                    <h4 class="modal-title" id="exampleModalLabel3">حذف المنتج</h4>
                 </div>
                 <div class="modal-body">
                     <p class="fs-6 text-center">هل أنت متأكد أنك تريد حذف هذا المنتح ؟</p>
@@ -316,30 +293,31 @@
 
     <!-- #region Add Category Modal -->
     <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-        <div class="modal-dialog h-100 d-flex align-items-center m-auto my-5">
+        <div class="modal-dialog modal-dialog-scrollable h-100 d-flex align-items-center m-auto my-5"
+            style="max-width: 70%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h5 class="modal-title" id="exampleModalLabel1">إضافة قسم جديد</h5>
+                    <h4 class="modal-title" id="exampleModalLabel1">إضافة قسم جديد</h4>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="add-category-form" enctype="multipart/form-data">
                         <div class="row py-3">
-                            <div class="col-12 col-md-6 col-lg-3">
+                            <div class="col-12 col-md-4">
                                 <div class="custom-form-control">
                                     <label for="name" class="my-1">إضافة قسم جديد</label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         placeholder="اسم القسم باللغة العربية">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 col-lg-5 d-flex align-items-center">
+                            <div class="col-12 col-md-8 d-flex align-items-center">
                                 <div class="custom-form-control">
                                     <label for="img" class="my-1 d-block">صورة للقسم</label>
                                     <input type="file" name="img" id="img" class="form-control d-block">
                                     <!-- <img class="rounded mt-2 me-2" style="width: 120px;height: 120px;" src="http://linkloop.co:5000/uploads/" alt="" id="img"> -->
                                     <small></small>
                                 </div>
-                                <button type="submit" class="btn btn-secondary px-2" id="plus-btn"><img
+                                <button type="submit" class="btn btn-secondary" id="addCateg-plus-btn"><img
                                         src="assets/img/icons/square-plus-regular.svg" alt="plus-icon"
                                         class="ms-2">إضافة
                                     القسم</button>
