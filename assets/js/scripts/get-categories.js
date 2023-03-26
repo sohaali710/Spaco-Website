@@ -9,7 +9,6 @@ function getCategories(categContainer, selectedCateg = '') {
             } else {
                 options += `<option value="${categ.name}">${categ.name}</option>`
             }
-            console.log(options)
         }))
 
         let categoriesDiv = `
