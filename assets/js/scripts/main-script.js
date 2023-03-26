@@ -21,20 +21,20 @@ if (getCookie('user_access_token')) {
         count.textContent = '0'
         cartIconCount.append(count);
     }
-}
 
 
-cartIcon.addEventListener('click', () => {
-    if (getCookie('user_access_token')) {
-        if (getCookie('user-cart')) {
-            location.href = 'user-cart.html'
+    cartIcon.addEventListener('click', () => {
+        if (getCookie('user_access_token')) {
+            if (getCookie('user-cart')) {
+                location.href = 'user-cart.html'
+            } else {
+                alert('cart is empty')
+            }
         } else {
-            alert('cart is empty')
+            location.href = 'user-supplier-log-in.html?user-type=user'
         }
-    } else {
-        location.href = 'user-supplier-log-in.html?user-type=user'
-    }
-})
+    })
+}
 
 
 //#region get categories in nav & side nav (in small screens)
@@ -45,7 +45,6 @@ let lis = ''
 fetch('http://linkloop.co:5000/products/categs').then(res => res.json()).then(data => {
     data.data.forEach((categ => {
         lis += `<li><a href="./page-category-products.html?category=${categ.name}">${categ.name}</a></li>`
-        console.log(lis)
     }))
 
     categoriesUl.forEach((ul) => {
