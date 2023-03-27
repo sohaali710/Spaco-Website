@@ -1,4 +1,4 @@
-import { setCookie } from './cookies.js'
+import { getCookie, setCookie } from './cookies.js'
 import { checkEmail, checkPassword, setFormError, deleteFormError } from './form-validation.js'
 
 const formElement = document.getElementById('log-in-form');
@@ -41,8 +41,11 @@ for (let btn of radioBtn) {
 }
 
 
-
-if (formElement) {
+if (getCookie('user-access-token')) {
+    location.href = 'index.html'
+} else if (getCookie('supplier-access-token')) {
+    location.href = 'supplier-products.html'
+} else {
     formElement.addEventListener('submit', event => {
         event.preventDefault();
 
