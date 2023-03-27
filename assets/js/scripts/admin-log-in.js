@@ -7,11 +7,13 @@ let emailInput = document.getElementById('email')
 let passwordInput = document.getElementById('password')
 
 let data = {};
-let cookieName = 'admin_access_token'
+let adminToken = 'admin_access_token'
 let redirectTo = 'admin-control-panel.html'
 
 
-if (formElement) {
+if (getCookie(adminToken)) {
+    location.href = redirectTo
+} else {
     formElement.addEventListener('submit', event => {
         event.preventDefault();
 
@@ -43,7 +45,7 @@ if (formElement) {
                 .then(data => {
                     if (data) {
                         console.log(data)
-                        setCookie(cookieName, data.token)
+                        setCookie(adminToken, data.token)
                         location.href = redirectTo;
                     }
                 })
