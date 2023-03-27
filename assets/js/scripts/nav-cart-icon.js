@@ -9,26 +9,29 @@ let cartProducts = []
 let count = document.createElement('span')
 count.classList.add('cart-btn__count')
 
-if (getCookie('user-cart')) {
-    cartProducts = JSON.parse(getCookie('user-cart'))
+if (cartIcon) {
 
-    count.textContent = cartProducts.length
-    cartIconCount.append(count);
-} else {
-    count.textContent = '0'
-    cartIconCount.append(count);
-}
+    if (getCookie('user-cart')) {
+        cartProducts = JSON.parse(getCookie('user-cart'))
 
-
-cartIcon.addEventListener('click', () => {
-    if (getCookie('user_access_token')) {
-        if (getCookie('user-cart')) {
-            location.href = 'user-cart.html'
-        } else {
-            alert('cart is empty')
-        }
+        count.textContent = cartProducts.length
+        cartIconCount.append(count);
     } else {
-        location.href = 'user-supplier-log-in.html?user-type=user'
+        count.textContent = '0'
+        cartIconCount.append(count);
     }
-})
 
+
+    cartIcon.addEventListener('click', () => {
+        if (getCookie('user_access_token')) {
+            if (getCookie('user-cart')) {
+                location.href = 'user-cart.html'
+            } else {
+                alert('cart is empty')
+            }
+        } else {
+            location.href = 'user-supplier-log-in.html?user-type=user'
+        }
+    })
+
+}
