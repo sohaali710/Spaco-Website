@@ -53,17 +53,19 @@
     font-weight: 500;
 }
 
-#log-in-form .formErrorMsg {
+#log-in-form .formErrorMsg,
+#sign-up-form .formErrorMsg {
     visibility: hidden;
 
     position: relative;
-    top: -20px;
+    top: -16px;
 
     font-weight: 500;
 }
 
 .custom-form-control.error small,
-#log-in-form.error .formErrorMsg {
+#log-in-form.error .formErrorMsg,
+#sign-up-form.error .formErrorMsg {
     visibility: visible;
     color: var(--dark-red);
 }
@@ -75,7 +77,7 @@
 
 /* choose user type radio buttons */
 
-.custom-radio {
+.chooseUserType .custom-radio {
     margin-bottom: 10px;
 
     position: relative;
@@ -96,11 +98,11 @@
 .chooseUserType label::before {
     position: absolute;
     right: -36px;
-    top: 0;
+    top: 4px;
     content: '';
 
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
 
     border: 4px solid var(--dark-cyan);
     border-radius: 50%;
@@ -108,8 +110,8 @@
 
 
 .chooseUserType input[type='radio']:checked+label::before {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
 
     background: url(../../img/icons/circle-dot-solid.svg);
 }
