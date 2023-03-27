@@ -41,9 +41,9 @@ for (let btn of radioBtn) {
 }
 
 
-if (getCookie('user-access-token')) {
+if (getCookie('user_access_token')) {
     location.href = 'index.html'
-} else if (getCookie('supplier-access-token')) {
+} else if (getCookie('supplier_access_token')) {
     location.href = 'supplier-products.html'
 } else {
     formElement.addEventListener('submit', event => {
