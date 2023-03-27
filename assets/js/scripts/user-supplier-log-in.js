@@ -22,7 +22,7 @@ if (location.search.split("=")[1]) {
     } else if (userType === 'supplier') {
         radioBtn[1].setAttribute('checked', 'checked')
         cookieName = 'supplier_access_token'
-        redirectTo = 'products-CRUD.html'
+        redirectTo = 'supplier-products.html'
     }
 }
 // choose the type with radio btn
@@ -35,7 +35,7 @@ for (let btn of radioBtn) {
         } else if (event.target.value === 'supplier') {
             cookieName = 'supplier_access_token'
             userType = 'supplier'
-            redirectTo = 'products-CRUD.html'
+            redirectTo = 'supplier-products.html'
         }
     })
 }
