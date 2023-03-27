@@ -3,13 +3,13 @@ import { getCategories } from './get-categories.js'
 import { logInOutNav } from './log-in-out-nav.js'
 import { checkName, checkCategory, checkDescription, checkDetails, checkImgs, checkCategName, checkCategImg } from './form-validation.js'
 
-let cookieName = 'admin_access_token'
+let adminToken = 'admin_access_token'
 
-logInOutNav(cookieName)
+logInOutNav(adminToken)
 
 // #region filter by categ
 let filterByCategCol = document.getElementById('filterByCategCol')
-if (getCookie(cookieName)) {
+if (getCookie(adminToken)) {
     getCategories(filterByCategCol)
 } else {
     location.href = 'admin-log-in.html'
@@ -19,7 +19,7 @@ let allProdRow = document.querySelector('.allProdRow')
 let allProdURL = 'http://linkloop.co:5000/products/all'
 let allProducts = []
 
-if (getCookie(cookieName)) {
+if (getCookie(adminToken)) {
     fetch(allProdURL)
         .then(res => {
             if (res.status == 200) {
@@ -83,25 +83,25 @@ let detailsRow = document.querySelector('.details-row')
 
 let updatedProductId = ''
 
-if (getCookie(cookieName)) {
-    allProdRow.addEventListener('click', (e) => {
-        if (e.target.matches('#updateProdBtn')) {
-            updatedProductId = e.target.getAttribute('product-id')
+
+allProdRow.addEventListener('click', (e) => {
+    if (e.target.matches('#updateProdBtn')) {
+        updatedProductId = e.target.getAttribute('product-id')
 
 
-            fetch(`http://linkloop.co:5000/products/product-by-id/${updatedProductId}`).then(res => res.json()).then(data => {
-                let { name, category, description, details } = data.data
+        fetch(`http://linkloop.co:5000/products/product-by-id/${updatedProductId}`).then(res => res.json()).then(data => {
+            let { name, category, description, details } = data.data
 
-                updateForm.querySelector('#name').value = name
-                updateForm.querySelector('#description').value = description
+            updateForm.querySelector('#name').value = name
+            updateForm.querySelector('#description').value = description
 
-                getCategories(categCol, category)
+            getCategories(categCol, category)
 
-                detailsRow.innerHTML = ''
+            detailsRow.innerHTML = ''
 
-                if (details.length) {
-                    details.forEach((d) => {
-                        let dInput = `
+            if (details.length) {
+                details.forEach((d) => {
+                    let dInput = `
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <div class="custom-form-control">
                                         <label for="${d.title}" class="my-1">${d.title}</label>
@@ -111,19 +111,16 @@ if (getCookie(cookieName)) {
                                     </div>
                                 </div>`
 
-                        // let detailsInpCol = createDetailsInp(d.title, d.value = '')
-                        // console.log(d)
-                        // categAndDetailsRow.appendChild(detailsInpCol)
-                        detailsRow.innerHTML += dInput
-                    })
-                }
+                    // let detailsInpCol = createDetailsInp(d.title, d.value = '')
+                    // console.log(d)
+                    // categAndDetailsRow.appendChild(detailsInpCol)
+                    detailsRow.innerHTML += dInput
+                })
+            }
 
-            });
-        }
-    })
-} else {
-    location.href = 'admin-log-in.html'
-}
+        });
+    }
+})
 // #endregion
 
 
@@ -133,45 +130,41 @@ let detailsNameUpdate = document.getElementById('detailsName-updateProd')
 
 detailsBtnUpdatePod.addEventListener('click', addNewDetails(detailsRow, detailsNameUpdate))
 
-if (getCookie(cookieName)) {
-    /**on submit the update modal form .... */
-    updateForm.addEventListener('submit', () => {
-        event.preventDefault();
 
-        let formData = new FormData(updateForm);
+updateForm.addEventListener('submit', () => {
+    event.preventDefault();
 
-        let data = Object.fromEntries(formData)
-        console.log(data)
+    let formData = new FormData(updateForm);
+
+    let data = Object.fromEntries(formData)
+    console.log(data)
 
 
-        const myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
-        myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
 
-        const options = {
-            method: 'POST',
-            headers: myHeaders,
-            body: data
-        }
+    const options = {
+        method: 'POST',
+        headers: myHeaders,
+        body: data
+    }
 
-        // delete options.headers['Content-Type'];
+    // delete options.headers['Content-Type'];
 
-        fetch(`http://linkloop.co:5000/products/edit-prod/${updatedProductId}`, options)
-            .then(res => {
-                console.log(res);
-                return res.json();
-                // if (res.status == 200) {
-                // location.href = 'products-CRUD.html';
-                // }
-            })
-            .then(data => {
-                console.log(data)
-            })
-            .catch(err => console.log(err))
-    })
-} else {
-    location.href = 'admin-log-in.html'
-}
+    fetch(`http://linkloop.co:5000/products/edit-prod/${updatedProductId}`, options)
+        .then(res => {
+            console.log(res);
+            return res.json();
+            // if (res.status == 200) {
+            // location.href = 'products-CRUD.html';
+            // }
+        })
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => console.log(err))
+})
 // #endregion update product
 
 
@@ -196,10 +189,8 @@ let bodyData = {}
 
 let detailsArr = []
 
-if (getCookie(cookieName)) {
-
+if (getCookie(adminToken)) {
     addProdBtn.addEventListener('click', () => {
-        console.log(categColAddProd)
         getCategories(categColAddProd)
     })
 
@@ -257,7 +248,7 @@ if (getCookie(cookieName)) {
         }
 
         delete options.headers['Content-Type'];
-        myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
+        myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
 
         fetch('http://linkloop.co:5000/products/add-new', options)
             .then(res => {
@@ -284,7 +275,7 @@ let addCategForm = document.getElementById('add-category-form')
 let categoryNameInput = document.getElementById('name')
 let categImgInput = document.getElementById('img')
 
-if (getCookie(cookieName)) {
+if (getCookie(adminToken)) {
     addCategForm.addEventListener('submit', event => {
         event.preventDefault();
 
@@ -305,7 +296,7 @@ if (getCookie(cookieName)) {
         }
 
         delete options.headers['Content-Type'];
-        myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
+        myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
 
 
         fetch('http://linkloop.co:5000/admin/add-new-category', options)
