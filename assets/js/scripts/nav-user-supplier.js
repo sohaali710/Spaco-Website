@@ -1,3 +1,4 @@
+/**change nav in case user is logged in or supplier [in contacts, typography, all products pages] */
 import { getCookie } from "./cookies.js";
 
 let navUl = document.querySelector('.uk-navbar-nav')
