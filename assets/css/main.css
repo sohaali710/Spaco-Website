@@ -6020,7 +6020,6 @@ body.page-categories-2 .page-footer:before {
 
 /* rental-item add-to-cart */
 .add-product-quantity {
-  /* display: flex; */
   justify-content: center;
 
   margin-left: 10px;
@@ -6057,6 +6056,27 @@ body.page-categories-2 .page-footer:before {
   margin-top: 0;
 }
 
+/* add to your store [suppler] */
+.rental-item #removeProd {
+  display: none;
+
+  background-color: var(--dark-red);
+}
+
+/* product img */
+.rental-item__media {
+  width: 305px;
+}
+
+.rental-item__media .no-img,
+.uk-slideshow-items .no-img {
+  position: relative;
+  top: 50%;
+
+  text-align: center;
+
+  transform: translateY(-50%);
+}
 
 :root {
   --dark-red: #C20300;
