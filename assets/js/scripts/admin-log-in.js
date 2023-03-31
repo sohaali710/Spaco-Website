@@ -1,4 +1,4 @@
-import { setCookie } from './cookies.js'
+import { getCookie, setCookie } from './cookies.js'
 import { checkEmail, checkPassword, setFormError, deleteFormError } from './form-validation.js'
 
 const formElement = document.getElementById('log-in-form');
