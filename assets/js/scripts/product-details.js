@@ -1,51 +1,45 @@
 import { addToCart } from './add-to-cart.js'
 let productDetailsContainer = document.querySelector('.product-details')
 
-let url = 'http://linkloop.co:5000/products/all'
+const selectedProdId = location.search.split("=")[1];
 
-fetch(url).then(res => res.json()).then(data => {
-    const allProducts = data.data
-
-    const selectedProdId = location.search.split("=")[1];
-
-    allProducts.forEach(product => {
-        let { name, category, description, details, imgs, _id } = product
-
-        if (selectedProdId === _id) {
-
-            // fetch(`http://linkloop.co:5000/products/product-by-id/${_id}`).then(res => res.json()).then(data2 => {
-            //     console.log(data2);
-            // });
+fetch(`http://linkloop.co:5000/products/product-by-id/${selectedProdId}`).then(res => res.json()).then(data => {
+    console.log(data);
+    let { name, category, description, details, imgs, _id } = data.data
 
 
-            let imagesSlider = ''
-            let imagesSliderSmall = ''
-            imgs.forEach((img, index) => {
-                img = img.replace('public', 'http://linkloop.co:5000')
+    let imagesSlider = '';
+    let imagesSliderSmall = ''
+    if (!imgs.length) { imagesSlider = `<li><div class="no-img">لم يتم إضافة صورة لهذا المنتج</div></li>`; }
 
-                imagesSlider += `
-                                <li><a href="${img}"><img class="uk-width-1-1" 
-                                src="${img}" alt="img-gallery" data-uk-cover></a></li>
-                                `
+    imgs.forEach((img, index) => {
+        img = img.replace('public', 'http://linkloop.co:5000')
 
-                imagesSliderSmall += `
-                                    <li data-uk-slideshow-item="${index}"><a href="#"><img
-                                    src="${img}" alt="img-gallery"></a></li>
+        imagesSlider += `
+                        <li><a href="${img}">
+                        <img class="uk-width-1-1" src="${img}" alt="img-gallery" data-uk-cover>
+                        </a></li>
+                        `
+
+        imagesSliderSmall += `
+                                    <li data-uk-slideshow-item="${index}"><a href="#">
+                                    <img src="${img}" alt="img-gallery">
+                                    </a></li>
                                     `
-            })
+    })
 
-            let detailsRow = ''
-            details.forEach((d) => {
-                detailsRow += `
+    let detailsRow = ''
+    details.forEach((d) => {
+        detailsRow += `
                 <tr>
                     <td>${d.title}</td>
                     <td>${d.value}</td>
                 </tr>
                 `
-            })
+    })
 
 
-            productDetailsContainer.innerHTML = `
+    productDetailsContainer.innerHTML = `
             <div class="uk-grid" data-uk-grid>
                         <div class="uk-width-2-3@m">
                             <div class="equipment-detail">
@@ -54,11 +48,11 @@ fetch(url).then(res => res.json()).then(data => {
                                         <div class="uk-position-relative">
                                             <ul class="uk-slideshow-items uk-child-width-1-1"
                                                 data-uk-lightbox="animation: scale">`
-                +
-                imagesSlider
-                +
+        +
+        imagesSlider
+        +
 
-                `</ul><a class="uk-position-center-left uk-position-small uk-hidden-hover"
+        `</ul><a class="uk-position-center-left uk-position-small uk-hidden-hover"
                                                 href="#" data-uk-slidenav-previous
                                                 data-uk-slideshow-item="previous"></a><a
                                                 class="uk-position-center-right uk-position-small uk-hidden-hover"
@@ -68,10 +62,10 @@ fetch(url).then(res => res.json()).then(data => {
                                             <ul
                                                 class="uk-thumbnav uk-slider-items uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l">
                                                 `
-                +
-                imagesSliderSmall
-                +
-                `</ul>
+        +
+        imagesSliderSmall
+        +
+        `</ul>
                                         </div>
                                     </div>
                                 </div>
@@ -108,17 +102,15 @@ fetch(url).then(res => res.json()).then(data => {
                                 </div>
                                 <table class="uk-table uk-table-striped">
                                     <div class="tbody">`
-                +
-                detailsRow
-                +
-                `</div>
+        +
+        detailsRow
+        +
+        `</div>
                                 </table>
                             </div>
                         </div>
                     </div>
             `
-        }
-    });
 });
 
 

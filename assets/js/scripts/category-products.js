@@ -6,11 +6,10 @@ let categProducts = []
 
 let url = 'http://linkloop.co:5000/products/product-by-category'
 
-const selectedCategory = location.search.split("=")[1];
+const selectedCategory = decodeURI(location.search.split("=")[1]);
 console.log(selectedCategory)
 
-pageTitle.innerHTML = decodeURI(selectedCategory)
-// console.log(decodeURI(selectedCategory))
+pageTitle.innerHTML = selectedCategory
 
 
 fetch(`${url}/${selectedCategory}`)
@@ -33,8 +32,14 @@ fetch(`${url}/${selectedCategory}`)
                 lis += `<li><span>${i.title} : ${i.value}</span></li>`
             }
 
+            let img = (imgs.length !== 0) ?
+                `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
+                : `<div class="no-img">لم يتم إضافة صورة لهذا المنتج</div>`;
+
             categProductsDiv.innerHTML += `<div class="rental-item">
-                <div class="rental-item__media"> <img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" alt="Standard Excavator"></div>
+                <div class="rental-item__media">`
+                + img +
+                `</div>
                 <div class="rental-item__desc" dir="rtl">
                     <div class="rental-item__title">${name}</div>
                     <div class="rental-item__price-delivery"> <span>تفاصيل المنتج</span></div>
