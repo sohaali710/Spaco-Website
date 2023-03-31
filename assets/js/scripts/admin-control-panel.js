@@ -14,66 +14,108 @@ if (getCookie(adminToken)) {
 } else {
     location.href = 'admin-log-in.html'
 }
+// #endregion filter by categ
+
+
 // #region all products
 let allProdRow = document.querySelector('.allProdRow')
 let allProdURL = 'http://linkloop.co:5000/products/all'
 let allProducts = []
 
 if (getCookie(adminToken)) {
-    fetch(allProdURL)
-        .then(res => {
-            if (res.status == 200) {
-                // console.log(res);
-                return res.json();
-            }
-        })
-        .then(data => {
-            // console.log(data)
-            allProducts = data.data
-
-
-            allProducts.map((product) => {
-                let { _id, name, category, description, details, imgs } = product
-
-                let productDiv = ''
-
-                // let lis=''
-                // for (let i of details) {
-                //     lis += `<li><span>${i.title} : ${i.value}</span></li>`
-                // }
-
-                productDiv = `
-                        <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-x-md-0 mt-5">
-                            <div class="card text-center p-2 pb-4">
-                                <img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">${name}</h5>
-                                    <small>${category}</small>
-                                    <p class="card-text fw-bold">وصف المنتج</p>
-                                    <p class="card-text">${description}</p>
-
-                                    <div class="mt-4 d-flex justify-content-around w-100">
-                                        <button type="submit" class="btn btn-outline-dark mb-2" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal2" id="updateProdBtn" product-id="${_id}">تعديل
-                                            المنتج</button>
-                                        <button type="submit" class="btn btn-outline-danger mb-2 ms-3"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal3">حذف
-                                            المنتج</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`
-
-                allProdRow.innerHTML += productDiv
-
-
-            })
-        })
-        .catch(err => console.log(err))
+    getAllProducts()
 } else {
     location.href = 'admin-log-in.html'
 }
 // #endregion all products
+
+
+// #region add new product
+let addProductForm = document.getElementById('add-product-form')
+
+let nameInput = document.getElementById('name')
+let descriptionInput = document.getElementById('description')
+
+let addProdInputsRow = document.querySelector('.addProdInputsRow')
+let detailsBtnAddPod = document.getElementById('addProd-plus-btn')
+let detailsNameAdd = document.getElementById('detailsName-addProd')
+
+let addProdBtn = document.getElementById('addProdBtn')
+let categColAddProd = document.querySelector('.categColAddProd')
+
+let detailsArr = []
+
+if (getCookie(adminToken)) {
+    addProdBtn.addEventListener('click', () => getCategories(categColAddProd))
+
+    detailsBtnAddPod.addEventListener('click', addNewDetails(addProdInputsRow, detailsNameAdd))
+
+
+    addProductForm.addEventListener('submit', event => {
+        event.preventDefault();
+
+        checkName(nameInput)
+        checkDescription(descriptionInput)
+
+        let categoryInput = document.querySelector('.categColAddProd #category')
+        checkCategory(categoryInput)
+        // checkImgs(imgsInput)
+
+        let formData = new FormData(addProductForm);
+
+        let data = Object.fromEntries(formData)
+        // console.log(data)
+        let { name, category, description, ...d } = data
+
+
+        let details = []
+        if (Object.keys(d)) {
+            let newDetailsInput = ''
+
+            for (let i in d) {
+                newDetailsInput = document.getElementById(`${i}`)
+                checkDetails(newDetailsInput)
+
+                let obj = { title: i, value: d[i] }
+                details.push(obj)
+            }
+        }
+
+
+        let bodyData = { name, category, description }
+        if (details.length) { bodyData['details'] = details }
+
+        console.log(bodyData)
+
+        const myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
+
+        const options = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(bodyData)
+        }
+
+
+        fetch('http://linkloop.co:5000/products/add-new', options)
+            .then(res => {
+                console.log(res);
+                if (res.status == 200) {
+                    getAllProducts()
+                    return res.json();
+                }
+            })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => console.log(err))
+
+    })
+} else {
+    location.href = 'admin-log-in.html'
+}
+// #endregion add new product
 
 
 // #region save input values in update
@@ -82,7 +124,6 @@ let categCol = document.querySelector('.categ-col')
 let detailsRow = document.querySelector('.details-row')
 
 let updatedProductId = ''
-
 
 allProdRow.addEventListener('click', (e) => {
     if (e.target.matches('#updateProdBtn')) {
@@ -102,7 +143,7 @@ allProdRow.addEventListener('click', (e) => {
             if (details.length) {
                 details.forEach((d) => {
                     let dInput = `
-                                <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="col-12 col-sm-6 col-lg-4">
                                     <div class="custom-form-control">
                                         <label for="${d.title}" class="my-1">${d.title}</label>
                                         <input type="text" name="${d.title}" id="${d.title}" value="${d.value}" class="form-control"
@@ -111,9 +152,6 @@ allProdRow.addEventListener('click', (e) => {
                                     </div>
                                 </div>`
 
-                    // let detailsInpCol = createDetailsInp(d.title, d.value = '')
-                    // console.log(d)
-                    // categAndDetailsRow.appendChild(detailsInpCol)
                     detailsRow.innerHTML += dInput
                 })
             }
@@ -138,6 +176,40 @@ updateForm.addEventListener('submit', () => {
 
     let data = Object.fromEntries(formData)
     console.log(data)
+    let { name, category, description, ...d } = data
+
+
+    // let details = []
+    // if (detailsArr.length) {
+    //     let newDetailsInput = ''
+
+    //     for (let i in detailsArr) {
+    //         newDetailsInput = document.getElementById(`${detailsArr[i]}`)
+    //         checkDetails(newDetailsInput)
+
+    //         let obj = { title: detailsArr[i], value: newDetailsInput.value }
+    //         details.push(obj)
+    //     }
+    // }
+
+    let details = []
+    if (Object.keys(d)) {
+        let newDetailsInput = ''
+
+        for (let i in d) {
+            newDetailsInput = document.getElementById(`${i}`)
+            checkDetails(newDetailsInput)
+
+            let obj = { title: i, value: d[i] }
+            details.push(obj)
+        }
+    }
+
+
+    let bodyData = { name, category, description }
+    if (details.length) { bodyData['details'] = details }
+
+    console.log(bodyData)
 
 
     const myHeaders = new Headers();
@@ -147,7 +219,7 @@ updateForm.addEventListener('submit', () => {
     const options = {
         method: 'POST',
         headers: myHeaders,
-        body: data
+        body: JSON.stringify(bodyData)
     }
 
     // delete options.headers['Content-Type'];
@@ -155,10 +227,10 @@ updateForm.addEventListener('submit', () => {
     fetch(`http://linkloop.co:5000/products/edit-prod/${updatedProductId}`, options)
         .then(res => {
             console.log(res);
-            return res.json();
-            // if (res.status == 200) {
-            // location.href = 'products-CRUD.html';
-            // }
+            if (res.status == 200) {
+                getAllProducts()
+                return res.json();
+            }
         })
         .then(data => {
             console.log(data)
@@ -168,76 +240,29 @@ updateForm.addEventListener('submit', () => {
 // #endregion update product
 
 
-// #region add new product
-let addProductForm = document.getElementById('add-product-form')
-
-let nameInput = document.getElementById('name')
-let categoryInput = document.getElementById('category')
-let descriptionInput = document.getElementById('description')
+// #region upload imgs
+let prodImgForm = document.getElementById('product-img-form')
 let imgsInput = document.getElementById('imgs')
-
-let addProdInputsRow = document.querySelector('.addProdInputsRow')
-let detailsBtnAddPod = document.getElementById('addProd-plus-btn')
-// let detailsNameEnInput = document.getElementById('detailsNameEn')
-let detailsNameAdd = document.getElementById('detailsName-addProd')
-
-let addProdBtn = document.getElementById('addProdBtn')
-let categColAddProd = document.querySelector('.categColAddProd')
-
-let images = []
-let bodyData = {}
-
-let detailsArr = []
+let productImgs = document.querySelector('.productImgs')
+let removeImgBtn = document.querySelector('.btn-close')
 
 if (getCookie(adminToken)) {
-    addProdBtn.addEventListener('click', () => {
-        getCategories(categColAddProd)
+    let productId = ''
+
+    allProdRow.addEventListener('click', (e) => {
+        console.log(e.target.matches('.product-img') || e.target.matches('.add-img-text') || e.target.matches('.no-img'))
+        if (e.target.matches('.product-img') || e.target.matches('.add-img-text') || e.target.matches('.no-img')) {
+            productId = e.target.parentElement.getAttribute('product-id')
+            console.log(productId)
+
+            getProductImgs(productId)
+        }
     })
 
-    detailsBtnAddPod.addEventListener('click', addNewDetails(addProdInputsRow, detailsNameAdd))
-
-    addProductForm.addEventListener('submit', event => {
-        event.preventDefault();
-
-        checkName(nameInput)
-        checkCategory(categoryInput)
-        checkDescription(descriptionInput)
-        checkImgs(imgsInput)
-
-        let formData = new FormData();
-
-        formData.append('name', nameInput.value)
-        formData.append('category', categoryInput.value)
-        formData.append('description', descriptionInput.value)
-
-        if (imgsInput.files[0]) {
-            for (let file of imgsInput.files) {
-                console.log(file)
-                formData.append('imgs', file);
-            }
-        }
-
-        if (detailsArr.length) {
-            let newDetailsInput = ''
-            for (let i in detailsArr) {
-                newDetailsInput = document.getElementById(`${detailsArr[i]}`)
-
-                checkDetails(newDetailsInput)
-
-                // let obj = { title: detailsArr[i], value: newDetailsInput.value }
-
-                formData.append(`details${i}["title"]`, detailsArr[i])
-                formData.append(`details${i}["value"]`, newDetailsInput.value)
-                // formData.append(`details${i}`, JSON.stringify(obj))
-                // formData.append(`title${i}`, newDetailsInput.name)
-                // formData.append(`value${i}`, newDetailsInput.value)
-            }
-        }
-
+    imgsInput.addEventListener('change', event => {
+        let formData = new FormData(prodImgForm);
 
         let data = Object.fromEntries(formData)
-        console.log(data)
-
 
         const myHeaders = new Headers();
 
@@ -250,13 +275,15 @@ if (getCookie(adminToken)) {
         delete options.headers['Content-Type'];
         myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
 
-        fetch('http://linkloop.co:5000/products/add-new', options)
+        fetch(`http://linkloop.co:5000/products/add-img/${productId}`, options)
             .then(res => {
                 console.log(res);
-                return res.json();
-                // if (res.status == 200) {
-                // location.href = 'products-CRUD.html';
-                // }
+                if (res.status === 200) {
+                    getProductImgs(productId)
+                    getAllProducts()
+
+                    return res.json();
+                }
             })
             .then(data => {
                 console.log(data)
@@ -267,7 +294,54 @@ if (getCookie(adminToken)) {
 } else {
     location.href = 'admin-log-in.html'
 }
-// #endregion add new product
+// #endregion upload imgs
+
+//#region remove img
+if (getCookie(adminToken)) {
+    let productId = ''
+    let img = ''
+
+    productImgs.addEventListener('click', (e) => {
+        if (e.target.matches('.btn-close')) {
+            productId = e.target.getAttribute('product-id')
+
+            let imgSrc = e.target.parentElement.children[0].getAttribute('src');
+            img = imgSrc.replace('http://linkloop.co:5000', 'public')
+            console.log(img)
+        }
+
+        const myHeaders = new Headers();
+
+        const options = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify({ img })
+        }
+
+        // delete options.headers['Content-Type'];
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
+
+        fetch(`http://linkloop.co:5000/products/remove-img/${productId}`, options)
+            .then(res => {
+                console.log(res);
+                if (res.status === 200) {
+                    getProductImgs(productId)
+                    getAllProducts()
+
+                    return res.json();
+                }
+            })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => console.log(err))
+    })
+
+} else {
+    location.href = 'admin-log-in.html'
+}
+//#endregion remove img
 
 
 // #region new category
@@ -279,7 +353,7 @@ if (getCookie(adminToken)) {
     addCategForm.addEventListener('submit', event => {
         event.preventDefault();
 
-        let categName = categoryNameInput.value;
+        let categName = categoryNameInput.value.trim();
 
         checkCategName(categoryNameInput)
         checkCategImg(categImgInput)
@@ -303,8 +377,8 @@ if (getCookie(adminToken)) {
             .then(res => {
                 console.log(res);
                 if (res.status == 200) {
+                    getCategories(filterByCategCol)
                     return res.json();
-                    // location.href = 'products-CRUD.html';
                 }
             })
             .then(data => console.log(data))
@@ -317,10 +391,11 @@ if (getCookie(adminToken)) {
 // #endregion new category
 
 
+
 /**create details input */
 let createDetailsInp = (nameAr, val) => {
     const col = document.createElement('div')
-    col.classList.add("col-12", "col-md-6", "col-lg-3")
+    col.classList.add("col-12", "col-md-6", "col-lg-4")
 
     const formControl = document.createElement('div')
     formControl.classList.add("custom-form-control")
@@ -346,28 +421,100 @@ let createDetailsInp = (nameAr, val) => {
     return col
 }
 
-
 /**add new details input [in add-product & update-product]*/
 function addNewDetails(modalForm, detailsNameInput) {
     return () => {
-        // let detailsNameEn = detailsNameEnInput.value;
         let nameAr = detailsNameInput.value;
 
-        // detailsArr[detailsNameEn] = detailsNameAr
         detailsArr.push(nameAr)
 
-        // let detailsInput = `
-        //                 <div class="col-12 col-md-6 col-lg-4">
-        //                     <div class="custom-form-control">
-        //                         <label for="${nameAr}" class="my-1">${nameAr}</label>
-        //                         <input type="text" name="${nameAr}" id="${nameAr}" class="form-control"
-        //                             placeholder="${nameAr}">
-        //                         <small></small>
-        //                     </div>
-        //                 </div>`
-
         let detailsInpCol = createDetailsInp(nameAr, '')
-
         modalForm.appendChild(detailsInpCol);
     }
+}
+
+/** rendering all product */
+function getAllProducts() {
+    allProdRow.innerHTML = ''
+
+    fetch(allProdURL)
+        .then(res => {
+            if (res.status == 200) {
+                // console.log(res);
+                return res.json();
+            }
+        })
+        .then(data => {
+            // console.log(data)
+            allProducts = data.data.reverse()
+
+            allProducts.map((product) => {
+                let { _id, name, category, description, details, imgs } = product
+
+                let productDiv = ''
+
+                // let lis=''
+                // for (let i of details) {
+                //     lis += `<li><span>${i.title} : ${i.value}</span></li>`
+                // }
+
+                let img = (imgs.length !== 0) ?
+                    `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
+                    : `<div class="no-img">إضافة صورة للمنتج</div>`;
+
+                // <img src="${img}" class="card-img-top rounded-0 product-img" alt="...">
+                productDiv = `
+                        <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-x-md-0 mt-5">
+                            <div class="card text-center p-2 pb-4">
+                                <div class="add-product-img" data-bs-toggle="modal" data-bs-target="#exampleModal5" id="updateProdBtn" product-id="${_id}">`
+                    + img +
+                    `<div class="add-img-text">إضافة | حذف صورة</div>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">${name}</h4>
+                                    <small style="position:relative;top:-10px;">${category}</small>
+                                    <p class="card-text fw-bold">وصف المنتج</p>
+                                    <p class="card-text">${description}</p>
+
+                                    <div class="mt-4 d-flex justify-content-around w-100">
+                                        <button type="submit" class="btn btn-outline-dark mb-2" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal2" id="updateProdBtn" product-id="${_id}">تعديل
+                                            المنتج</button>
+                                        <button type="submit" class="btn btn-outline-danger mb-2 ms-3"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal3">حذف
+                                            المنتج</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+
+                allProdRow.innerHTML += productDiv
+            })
+        })
+        .catch(err => console.log(err))
+}
+
+/** rendering product imgs */
+function getProductImgs(productId) {
+    fetch(`http://linkloop.co:5000/products/product-by-id/${productId}`).then(res => res.json()).then(data => {
+        let { imgs } = data.data
+
+        productImgs.innerHTML = ''
+        if (imgs.length) {
+            imgs.forEach((img) => {
+                img = img.replace('public', 'http://linkloop.co:5000')
+
+                let imgDiv = `
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                    <div class="custom-form-control">
+                                        <img src="${img}" alt="product image">
+                                        <button type="button" class="btn-close mt-2 me-2" product-id="${productId}" aria-label="Close"></button>
+                                    </div>
+                                </div>`
+
+                productImgs.innerHTML += imgDiv
+            })
+        }
+
+    });
 }

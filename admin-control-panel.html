@@ -152,9 +152,9 @@
                                     src="assets/img/icons/square-plus-regular.svg" alt="plus-icon"></button>
                         </div>
                     </div>
-                    <form method="post" id="add-product-form" enctype="multipart/form-data">
+                    <form method="post" id="add-product-form">
                         <div class="row mb-4 addProdInputsRow">
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="custom-form-control">
                                     <label for="name" class="my-1">اسم المنتج</label>
                                     <input type="text" name="name" id="name" class="form-control"
@@ -162,7 +162,7 @@
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="custom-form-control">
                                     <label for="description" class="my-1">وصف المنتج</label>
                                     <input type="text" name="description" id="description" class="form-control"
@@ -170,17 +170,8 @@
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="custom-form-control">
-                                    <label for="imgs" class="my-1 d-block">صور المنتج</label>
-                                    <input type="file" name="imgs" id="imgs" class="form-control d-block" multiple>
-                                    <!-- <img class="rounded mt-2 me-2" style="width: 120px;height: 120px;" src="http://linkloop.co:5000/uploads/" alt=""
-                                    id="img"> -->
-                                    <small></small>
-                                </div>
-                            </div>
 
-                            <div class="col-12 col-sm-6 col-lg-3 categColAddProd">
+                            <div class="col-12 col-sm-6 col-lg-4 categColAddProd">
 
                             </div>
 
@@ -225,7 +216,7 @@
                     </div>
                     <form method="post" id="update-product-form">
                         <div class="row mb-4">
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="custom-form-control">
                                     <label for="name" class="my-1">اسم المنتج</label>
                                     <input type="text" name="name" id="name" class="form-control"
@@ -233,7 +224,7 @@
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="custom-form-control">
                                     <label for="description" class="my-1">وصف المنتج</label>
                                     <input type="text" name="description" id="description" class="form-control"
@@ -241,16 +232,7 @@
                                     <small></small>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="custom-form-control">
-                                    <label for="imgs" class="my-1 d-block">صور المنتج</label>
-                                    <input type="file" name="imgs" id="imgs" class="form-control d-block" multiple>
-                                    <!-- <img class="rounded mt-2 me-2" style="width: 120px;height: 120px;" src="http://linkloop.co:5000/uploads/" alt=""
-                                    id="img"> -->
-                                    <small></small>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3 categ-col">
+                            <div class="col-12 col-sm-6 col-lg-4 categ-col">
 
                             </div>
                         </div>
@@ -308,7 +290,7 @@
                                 <div class="custom-form-control">
                                     <label for="name" class="my-1">إضافة قسم جديد</label>
                                     <input type="text" name="name" id="name" class="form-control"
-                                        placeholder="اسم القسم باللغة العربية">
+                                        placeholder="اسم القسم">
                                 </div>
                             </div>
                             <div class="col-12 col-md-8 d-flex align-items-center">
@@ -341,6 +323,44 @@
         </div>
     </div>
     <!-- #endregion Add Category Modal -->
+
+    <!-- #region Add Product Modal -->
+    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable h-100 d-flex align-items-center m-auto my-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title" id="exampleModalLabel1">إضافة صور للمنتج</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="product-img-form" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="custom-form-control">
+                                    <label for="imgs" class="my-1 d-block">إضافة صورة للمنتج</label>
+                                    <input type="file" name="imgs" id="imgs" class="form-control d-block" multiple>
+                                    <small></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row productImgs">
+
+
+                        </div>
+
+                        <!-- <div class="modal-footer mr-auto" dir="ltr">
+                            <button type="submit" id="add-product-img" class="btn btn-info mb-2">حفظ التعديلات</button>
+                        </div> -->
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #endregion Add Product Modal -->
+
 
     </main>
 
