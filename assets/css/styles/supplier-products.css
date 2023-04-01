@@ -40,7 +40,7 @@ a {
 
 @media (min-width: 960px) {
     .modal-dialog:not(.delete-modal) {
-        max-width: 90%;
+        max-width: 75%;
     }
 }
 
@@ -155,4 +155,60 @@ table tr td {
     .allProdRow .card {
         width: 24rem;
     }
+}
+
+/* add product img */
+.add-product-img {
+    position: relative;
+
+    cursor: pointer;
+}
+
+.add-product-img .add-img-text {
+    display: none;
+
+    position: absolute;
+    top: 50%;
+    right: 25%;
+
+    transform: translateY(-50%);
+    color: #fff;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.add-product-img:hover .add-img-text {
+    display: block;
+}
+
+.add-product-img .no-img {
+    width: 316px;
+    height: 280px;
+
+    background-color: #ccc;
+    color: #fff;
+
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 260px;
+}
+
+.add-product-img:has(.no-img):hover .add-img-text {
+    display: none;
+}
+
+/* product images in modal5 */
+.productImgs {
+    position: relative;
+}
+
+.productImgs img {
+    height: 300px;
+}
+
+.productImgs .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
