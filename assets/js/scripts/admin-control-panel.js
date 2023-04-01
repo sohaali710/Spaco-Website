@@ -1,20 +1,12 @@
 import { getCookie } from './cookies.js'
 import { getCategories } from './get-categories.js'
+import { getProductsByCateg } from './products-by-category.js'
 import { logInOutNav } from './log-in-out-nav.js'
 import { checkName, checkCategory, checkDescription, checkDetails, checkImgs, checkCategName, checkCategImg } from './form-validation.js'
 
 let adminToken = 'admin_access_token'
 
 logInOutNav(adminToken)
-
-// #region filter by categ
-let filterByCategCol = document.getElementById('filterByCategCol')
-if (getCookie(adminToken)) {
-    getCategories(filterByCategCol)
-} else {
-    location.href = 'admin-log-in.html'
-}
-// #endregion filter by categ
 
 
 // #region all products
@@ -28,6 +20,25 @@ if (getCookie(adminToken)) {
     location.href = 'admin-log-in.html'
 }
 // #endregion all products
+
+
+// #region filter by categ
+let filterByCategCol = document.getElementById('filterByCategCol')
+if (getCookie(adminToken)) {
+    getCategories(filterByCategCol)
+
+    filterByCategCol.addEventListener('click', (e) => {
+        if (e.target.matches('select') && e.target.value) {
+            let selectedCateg = e.target.value
+
+            getProductsByCateg(allProdRow, selectedCateg)
+        }
+
+    })
+} else {
+    location.href = 'admin-log-in.html'
+}
+// #endregion filter by categ
 
 
 // #region add new product
@@ -178,20 +189,6 @@ updateForm.addEventListener('submit', () => {
     console.log(data)
     let { name, category, description, ...d } = data
 
-
-    // let details = []
-    // if (detailsArr.length) {
-    //     let newDetailsInput = ''
-
-    //     for (let i in detailsArr) {
-    //         newDetailsInput = document.getElementById(`${detailsArr[i]}`)
-    //         checkDetails(newDetailsInput)
-
-    //         let obj = { title: detailsArr[i], value: newDetailsInput.value }
-    //         details.push(obj)
-    //     }
-    // }
-
     let details = []
     if (Object.keys(d)) {
         let newDetailsInput = ''
@@ -204,7 +201,6 @@ updateForm.addEventListener('submit', () => {
             details.push(obj)
         }
     }
-
 
     let bodyData = { name, category, description }
     if (details.length) { bodyData['details'] = details }
@@ -222,7 +218,6 @@ updateForm.addEventListener('submit', () => {
         body: JSON.stringify(bodyData)
     }
 
-    // delete options.headers['Content-Type'];
 
     fetch(`http://linkloop.co:5000/products/edit-prod/${updatedProductId}`, options)
         .then(res => {
@@ -311,6 +306,8 @@ if (getCookie(adminToken)) {
         }
 
         const myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
 
         const options = {
             method: 'POST',
@@ -318,9 +315,6 @@ if (getCookie(adminToken)) {
             body: JSON.stringify({ img })
         }
 
-        // delete options.headers['Content-Type'];
-        myHeaders.append('Content-Type', 'application/json');
-        myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
 
         fetch(`http://linkloop.co:5000/products/remove-img/${productId}`, options)
             .then(res => {
@@ -493,6 +487,7 @@ function getAllProducts() {
         })
         .catch(err => console.log(err))
 }
+
 
 /** rendering product imgs */
 function getProductImgs(productId) {
