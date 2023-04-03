@@ -5752,8 +5752,12 @@ body.page-categories-2 .page-footer:before {
 }
 
 
+.page-footer-middle .contacts-list-item__desc {
+  padding-left: 0 !important;
+}
+
 .page-footer-middle .pay-with img {
-  width: 64px !important;
+  width: 60px !important;
 
   margin-left: 10px;
 }
@@ -5764,28 +5768,36 @@ body.page-categories-2 .page-footer:before {
 }
 
 
-.page-footer .maroof-qr {
+.page-footer .saudi-center-qr {
   width: 100%;
   margin-top: 30px;
 }
 
-.page-footer .maroof-qr .qr-code {
+.page-footer .saudi-center-qr .qr-code {
   width: 90px;
 }
 
-.page-footer .maroof-qr .maroof-logo {
+.page-footer .saudi-center-qr .saudi-center-logo {
   width: 90px;
   margin-right: 14px;
 }
 
 @media (min-width: 767px) {
-  .page-footer .maroof-qr {
+  .page-footer .saudi-center-qr {
     position: relative;
+
+    width: 100%;
   }
 
-  .page-footer .maroof-qr .maroof-logo {
-    position: absolute;
-    top: 25px;
+  .page-footer .pay-with {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .page-footer .container-fluid {
+    width: 100% !important;
   }
 }
 
@@ -6076,6 +6088,15 @@ body.page-categories-2 .page-footer:before {
   text-align: center;
 
   transform: translateY(-50%);
+}
+
+/* search */
+.rental-item {
+  /* display: none !important; */
+}
+
+.hide {
+  display: none !important;
 }
 
 :root {
