@@ -1,16 +1,19 @@
 import { getCookie, deleteCookie } from "./cookies.js";
+import { logInOutNav } from './log-in-out-nav.js'
 
 let logOutBtn = document.getElementById('log-out')
 
-let cookieName = 'admin_access_token'
+let adminToken = 'admin_access_token'
 let redirectTo = 'admin-log-in.html'
+
+logInOutNav(adminToken)
 
 logOutBtn.addEventListener('click', event => {
     event.preventDefault();
 
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('authorization', `Bearer ${getCookie(cookieName)}`);
+    myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
 
     fetch('http://linkloop.co:5000/admin/logout', {
         method: 'GET',
@@ -19,7 +22,7 @@ logOutBtn.addEventListener('click', event => {
         .then(res => {
             console.log(res);
             if (res.status == 200) {
-                deleteCookie(cookieName)
+                deleteCookie(adminToken)
                 location.href = redirectTo;
                 return res.json();
             }

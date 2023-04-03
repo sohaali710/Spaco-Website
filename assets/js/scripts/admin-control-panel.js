@@ -1,13 +1,9 @@
 import { getCookie } from './cookies.js'
 import { getCategories } from './get-categories.js'
 import { getProductsByCateg } from './products-by-category.js'
-import { logInOutNav } from './log-in-out-nav.js'
 import { checkName, checkCategory, checkDescription, checkDetails, checkImgs, checkCategName, checkCategImg } from './form-validation.js'
 
 let adminToken = 'admin_access_token'
-
-logInOutNav(adminToken)
-
 
 // #region all products
 let allProdRow = document.querySelector('.allProdRow')

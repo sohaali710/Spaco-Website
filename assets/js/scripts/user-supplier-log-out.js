@@ -1,17 +1,24 @@
+import { getCookie, deleteCookie } from "./cookies.js";
+import { logInOutNav } from "./log-in-out-nav.js";
+
 let logOutBtn = document.getElementById('log-out')
 
+let userToken = 'user_access_token'
+let supplierToken = 'supplier_access_token'
+
+let redirectTo = 'user-supplier-log-in.html'
+
+if (getCookie(userToken)) {
+    logInOutNav(userToken)
+} else if (getCookie(supplierToken)) {
+    logInOutNav(supplierToken)
+}
+
 logOutBtn.addEventListener('click', event => {
-    event.preventDefault();
-
-    fetch('http://linkloop.co:5000/supplier/logout')
-        .then(res => {
-            if (res.status == 200) {
-                console.log(res);
-                location.href = 'index.html';
-                return res.json();
-            }
-        })
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
-
+    if (getCookie(userToken)) {
+        deleteCookie(userToken)
+    } else if (getCookie(supplierToken)) {
+        deleteCookie(supplierToken)
+    }
+    location.href = redirectTo
 })
