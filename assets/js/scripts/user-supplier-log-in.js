@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from './cookies.js'
+import { getCookie, setCookie, deleteCookie } from './cookies.js'
 import { checkEmail, checkPassword, setFormError, deleteFormError } from './form-validation.js'
 
 const formElement = document.getElementById('log-in-form');
@@ -75,6 +75,9 @@ if (getCookie('user_access_token')) {
                 .then(data => {
                     if (data) {
                         console.log(data)
+                        if (getCookie('admin_access_token')) {
+                            deleteCookie('admin_access_token', data.token)
+                        }
                         setCookie(cookieName, data.token)
                         location.href = redirectTo;
                     }
