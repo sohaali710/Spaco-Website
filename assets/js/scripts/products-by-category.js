@@ -30,7 +30,7 @@ function getProductsByCateg(productsContainer, selectedCateg) {
                     }
 
 
-                    if (getCookie('admin_access_token') && !getCookie('user_access_token') && !getCookie('supplier_access_token')) {
+                    if (getCookie('admin_access_token')) {
                         img = (imgs.length !== 0) ?
                             `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                             : `<div class="no-img">إضافة صورة للمنتج</div>`;
