@@ -1,4 +1,7 @@
 import { addToCart } from './add-to-cart.js'
+import { search } from "./search.js"
+import { getCategories } from './get-categories.js'
+import { getProductsByCateg } from './products-by-category.js'
 
 let categProductsDiv = document.querySelector('.category-products')
 let pageTitle = document.querySelector('.page-head__title')
@@ -21,12 +24,12 @@ fetch(`${url}/${selectedCategory}`)
     })
     .then(data => {
         console.log(data)
-        categProducts = data.data
+        categProducts = data.data.reverse()
 
         categProducts.map((product) => {
             let { _id, name, category, description, details, imgs } = product
 
-            let lis = ''
+            let lis, categProduct = ''
 
             for (let i of details) {
                 lis += `<li><span>${i.title} : ${i.value}</span></li>`
@@ -36,7 +39,8 @@ fetch(`${url}/${selectedCategory}`)
                 `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                 : `<div class="no-img">لم يتم إضافة صورة لهذا المنتج</div>`;
 
-            categProductsDiv.innerHTML += `<div class="rental-item">
+
+            categProduct = `<div class="rental-item">
                 <div class="rental-item__media">`
                 + img +
                 `</div>
@@ -65,11 +69,17 @@ fetch(`${url}/${selectedCategory}`)
                 </div>
             </div>`
 
+            categProductsDiv.innerHTML += categProduct
+
+            /** search */
+            let searchInp = document.querySelector('.searchInp')
+            searchInp.addEventListener('input', search(categProducts, categProductsDiv))
         })
     })
     .catch(err => console.log(err))
 
 
+categContainer.addEventListener('input', getProductsByCateg(categProductsDiv))
 
 /** add-to-cart input + cart-icon-count */
 let cartIconCount = document.querySelector('.cart-btn__icon')

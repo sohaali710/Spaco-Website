@@ -23,14 +23,7 @@ let filterByCategCol = document.getElementById('filterByCategCol')
 if (getCookie(adminToken)) {
     getCategories(filterByCategCol)
 
-    filterByCategCol.addEventListener('click', (e) => {
-        if (e.target.matches('select') && e.target.value) {
-            let selectedCateg = e.target.value
-
-            getProductsByCateg(allProdRow, selectedCateg)
-        }
-
-    })
+    filterByCategCol.addEventListener('input', getProductsByCateg(allProdRow))
 } else {
     location.href = 'admin-log-in.html'
 }

@@ -1,4 +1,6 @@
-// in add & update product form
+// in select [admin (add,update product forms) or user search]
+import { getCookie } from "./cookies.js"
+
 function getCategories(categContainer, selectedCateg = '') {
     let options = ''
 
@@ -11,18 +13,24 @@ function getCategories(categContainer, selectedCateg = '') {
             }
         }))
 
-        let categoriesDiv = `
-                    <div class="custom-form-control">
-                        <label for="category" class="my-1">القسم</label>
-                        <select class="form-control" name="category" value="${selectedCateg}" id="category">
-                            <option value="">اختر القسم</option>
-                            `
-            +
-            options
-            +
-            `</select>
-                        <small></small>
-                    </div>`
+        let categoriesDiv = ''
+
+        if (getCookie('admin_access_token')) {
+            categoriesDiv = `
+                        <div class="custom-form-control">
+                            <label for="category" class="my-1">القسم</label>
+                            <select class="form-control" name="category" value="${selectedCateg}" id="category">
+                                <option value="all-products">كل المنتجات</option>
+                                `
+                +
+                options
+                +
+                `</select>
+                            <small></small>
+                        </div>`
+        } else if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
+            categoriesDiv = `<option value="all-products">كل المنتجات</option>` + options
+        }
 
         categContainer.innerHTML = categoriesDiv
     })
