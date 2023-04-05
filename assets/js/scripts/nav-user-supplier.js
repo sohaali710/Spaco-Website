@@ -44,6 +44,12 @@ let supplierNav = `
                 <li><a href="page-contacts.html">اتصل بنا</a></li>`
 
 
+let adminNav = `
+                <li class="uk-active"><a href="admin-control-panel.html">لوحة التحكم</a></li>
+                <li><a href="typography.html">من نحن</a></li>
+                <li><a href="page-contacts.html">اتصل بنا</a></li>`
+
+
 let cartIcon = `
                 <a class="uk-navbar-toggle cart-btn">
                     <div class="cart-btn__icon" id="cart-icon" data-uk-icon="cart">
@@ -59,5 +65,6 @@ if (getCookie('user_access_token')) {
     navCartContainer.innerHTML += cartIcon
 } else if (getCookie('supplier_access_token')) {
     navUl.innerHTML = sideNavUl.innerHTML = supplierNav
+} else if (getCookie('admin_access_token')) {
+    navUl.innerHTML = sideNavUl.innerHTML = adminNav
 }
-
