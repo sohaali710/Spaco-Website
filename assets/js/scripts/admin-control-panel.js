@@ -23,7 +23,13 @@ let filterByCategCol = document.getElementById('filterByCategCol')
 if (getCookie(adminToken)) {
     getCategories(filterByCategCol)
 
-    filterByCategCol.addEventListener('input', getProductsByCateg(allProdRow))
+    // filterByCategCol.addEventListener('input', getProductsByCateg(allProdRow))
+    filterByCategCol.addEventListener('input', (e) => {
+        if (e.target.matches('select') && e.target.value) {
+            let selectedCateg = e.target.value
+            getProductsByCateg(allProdRow, selectedCateg)
+        }
+    })
 } else {
     location.href = 'admin-log-in.html'
 }
@@ -224,6 +230,54 @@ updateForm.addEventListener('submit', () => {
 // #endregion update product
 
 
+// #region delete product
+const confirmDelete = document.getElementById('confirmDelete')
+
+if (getCookie(adminToken)) {
+    let productId = ''
+
+    allProdRow.addEventListener('click', (e) => {
+        if (e.target.matches('#deleteProdBtn')) {
+            productId = e.target.getAttribute('product-id')
+            console.log(productId)
+
+            confirmDelete.addEventListener('click', () => {
+                const myHeaders = new Headers();
+                myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
+
+                const options = {
+                    method: 'GET',
+                    headers: myHeaders
+                }
+
+
+                fetch(`http://linkloop.co:5000/products/remove-prod/${productId}`, options)
+                    .then(res => {
+                        console.log(res);
+                        if (res.status === 200) {
+                            const selectedCateg = document.getElementById('category').value
+                            console.log(selectedCateg)
+                            getProductsByCateg(allProdRow, selectedCateg)
+
+                            return res.json();
+                        }
+                    })
+                    .then(data => {
+                        console.log(data)
+                    })
+                    .catch(err => console.log(err))
+
+            })
+        }
+
+    })
+
+} else {
+    location.href = 'admin-log-in.html'
+}
+// #endregion delete product
+
+
 // #region upload imgs
 let prodImgForm = document.getElementById('product-img-form')
 let imgsInput = document.getElementById('imgs')
@@ -234,7 +288,6 @@ if (getCookie(adminToken)) {
     let productId = ''
 
     allProdRow.addEventListener('click', (e) => {
-        console.log(e.target.matches('.product-img') || e.target.matches('.add-img-text') || e.target.matches('.no-img'))
         if (e.target.matches('.product-img') || e.target.matches('.add-img-text') || e.target.matches('.no-img')) {
             productId = e.target.parentElement.getAttribute('product-id')
             console.log(productId)
@@ -464,7 +517,7 @@ function getAllProducts() {
                                             data-bs-target="#exampleModal2" id="updateProdBtn" product-id="${_id}">تعديل
                                             المنتج</button>
                                         <button type="submit" class="btn btn-outline-danger mb-2 ms-3"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal3">حذف
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal3" id="deleteProdBtn" product-id="${_id}">حذف
                                             المنتج</button>
                                     </div>
                                 </div>
