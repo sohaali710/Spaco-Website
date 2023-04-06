@@ -1,7 +1,8 @@
 import { getCookie } from './cookies.js'
+import { checkName, checkCategory, checkDescription, checkDetails, checkImgs, checkCategName, checkCategImg, deleteFormInputsError } from './form-validation.js'
 import { getCategories } from './get-categories.js'
 import { getProductsByCateg } from './products-by-category.js'
-import { checkName, checkCategory, checkDescription, checkDetails, checkImgs, checkCategName, checkCategImg, deleteFormInputsError } from './form-validation.js'
+import { search } from './search.js'
 
 let adminToken = 'admin_access_token'
 
@@ -16,24 +17,6 @@ if (getCookie(adminToken)) {
     location.href = 'admin-log-in.html'
 }
 // #endregion all products
-
-
-// #region filter by categ
-let filterByCategCol = document.getElementById('filterByCategCol')
-if (getCookie(adminToken)) {
-    getCategories(filterByCategCol)
-
-    // filterByCategCol.addEventListener('input', getProductsByCateg(allProdRow))
-    filterByCategCol.addEventListener('input', (e) => {
-        if (e.target.matches('select') && e.target.value) {
-            let selectedCateg = e.target.value
-            getProductsByCateg(allProdRow, selectedCateg)
-        }
-    })
-} else {
-    location.href = 'admin-log-in.html'
-}
-// #endregion filter by categ
 
 
 // #region add new product
@@ -517,7 +500,7 @@ function getAllProducts() {
 
                 // <img src="${img}" class="card-img-top rounded-0 product-img" alt="...">
                 productDiv = `
-                        <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-x-md-0 mt-5">
+                        <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-x-md-0 mt-5 product-item">
                             <div class="card text-center p-2 pb-4">
                                 <div class="add-product-img" data-bs-toggle="modal" data-bs-target="#exampleModal5" id="updateProdBtn" product-id="${_id}">`
                     + img +
@@ -542,11 +525,25 @@ function getAllProducts() {
                         </div>`
 
                 allProdRow.innerHTML += productDiv
+
+                /** search */
+                let searchInp = document.querySelector('.searchInp')
+                searchInp.addEventListener('input', search(allProducts, allProdRow))
             })
         })
         .catch(err => console.log(err))
 }
 
+/** get categories names in search section */
+const categContainer = document.getElementById('category')
+getCategories(categContainer)
+/** and render categ products */
+categContainer.addEventListener('input', (e) => {
+    if (e.target.matches('select') && e.target.value) {
+        let selectedCateg = e.target.value
+        getProductsByCateg(allProdRow, selectedCateg)
+    }
+})
 
 /** rendering product imgs */
 function getProductImgs(productId) {
