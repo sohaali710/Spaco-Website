@@ -72,8 +72,8 @@ a {
     border-radius: 2px;
 }
 
-select,
-input {
+select:not(#category),
+input:not(.searchInp) {
     width: 204px !important;
 }
 

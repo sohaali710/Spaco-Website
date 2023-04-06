@@ -1,5 +1,7 @@
 import { getCookie } from './cookies.js'
 import { getCategories } from './get-categories.js'
+import { getProductsByCateg } from './products-by-category.js'
+import { search } from './search.js'
 
 const supplierToken = 'supplier_access_token'
 const url = 'http://linkloop.co:5000/supplier/all-products'
@@ -88,12 +90,26 @@ function getAllProducts() {
             </div>`
 
                     allProductsDiv.innerHTML += productDiv
+
+                    /** search */
+                    let searchInp = document.querySelector('.searchInp')
+                    searchInp.addEventListener('input', search(allProducts, allProductsDiv))
                 })
             }
         })
         .catch(err => console.log(err))
 }
 
+/** get categories names in search section */
+const categContainer = document.getElementById('category')
+getCategories(categContainer)
+/** and render categ products */
+categContainer.addEventListener('input', (e) => {
+    if (e.target.matches('select') && e.target.value) {
+        let selectedCateg = e.target.value
+        getProductsByCateg(allProductsDiv, selectedCateg)
+    }
+})
 
 /** from supplier store page */
 allProductsDiv.addEventListener('click', (e) => {
