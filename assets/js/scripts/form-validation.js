@@ -132,6 +132,17 @@ let deleteFormError = (formElement) => {
     formElement.querySelector('.formErrorMsg').innerHTML = ''
 }
 
+let deleteFormInputsError = (formElement) => {
+    formElement.querySelectorAll('input').forEach((input) => {
+        const formControl = input.parentElement
+        const small = formControl.querySelector('small')
+
+        small.innerText = ''
+
+        formControl.className = "custom-form-control"
+    })
+}
+
 
 /**add & update product form*/
 let checkName = (nameInput) => {
@@ -212,4 +223,5 @@ export {
     checkUsername, checkEmail, checkPassword, checkConfirmPass, checkMobile, checkAddress, checkTaxes, setFormError, deleteFormError, removeCheckTaxes,
     checkName, checkCategory, checkDescription, checkDetails, checkImgs,
     checkCategName, checkCategImg,
+    deleteFormInputsError
 }
