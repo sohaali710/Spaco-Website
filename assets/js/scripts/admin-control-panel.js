@@ -1,7 +1,7 @@
 import { getCookie } from './cookies.js'
 import { getCategories } from './get-categories.js'
 import { getProductsByCateg } from './products-by-category.js'
-import { checkName, checkCategory, checkDescription, checkDetails, checkImgs, checkCategName, checkCategImg } from './form-validation.js'
+import { checkName, checkCategory, checkDescription, checkDetails, checkImgs, checkCategName, checkCategImg, deleteFormInputsError } from './form-validation.js'
 
 let adminToken = 'admin_access_token'
 
@@ -49,12 +49,25 @@ let detailsNameAdd = document.getElementById('detailsName-addProd')
 let addProdBtn = document.getElementById('addProdBtn')
 let categColAddProd = document.querySelector('.categColAddProd')
 
-let detailsArr = []
 
 if (getCookie(adminToken)) {
     addProdBtn.addEventListener('click', () => getCategories(categColAddProd))
 
-    detailsBtnAddPod.addEventListener('click', addNewDetails(addProdInputsRow, detailsNameAdd))
+    let c
+    detailsBtnAddPod.addEventListener('click', c = addNewDetails(addProdInputsRow, detailsNameAdd))
+
+    addProdBtn.addEventListener('click', () => {
+        addProductForm.reset()
+        deleteFormInputsError(addProductForm)
+
+        detailsNameAdd.value = ''
+
+        let detailsInp = addProductForm.querySelector('.detailsInp')
+        if (detailsInp) {
+            detailsInp.parentNode.removeChild(detailsInp)
+        }
+    })
+
 
 
     addProductForm.addEventListener('submit', event => {
@@ -228,6 +241,7 @@ updateForm.addEventListener('submit', () => {
         .catch(err => console.log(err))
 })
 // #endregion update product
+
 
 
 // #region delete product
@@ -431,7 +445,7 @@ if (getCookie(adminToken)) {
 /**create details input */
 let createDetailsInp = (nameAr, val) => {
     const col = document.createElement('div')
-    col.classList.add("col-12", "col-md-6", "col-lg-4")
+    col.classList.add("col-12", "col-md-6", "col-lg-4", "detailsInp")
 
     const formControl = document.createElement('div')
     formControl.classList.add("custom-form-control")
@@ -462,10 +476,13 @@ function addNewDetails(modalForm, detailsNameInput) {
     return () => {
         let nameAr = detailsNameInput.value;
 
-        detailsArr.push(nameAr)
-
         let detailsInpCol = createDetailsInp(nameAr, '')
+
         modalForm.appendChild(detailsInpCol);
+
+        detailsNameInput.value = ''
+
+        return detailsInpCol
     }
 }
 
