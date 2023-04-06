@@ -90,6 +90,21 @@ input:not(.searchInp) {
     color: #fff;
 }
 
+
+.btn-outline-success,
+.btn-outline-success:focus {
+    color: var(--dark-green);
+    border-color: var(--dark-green);
+
+    padding-left: 50px;
+}
+
+.btn-outline-success:hover {
+    background-color: var(--dark-green);
+    color: #fff;
+}
+
+
 .btn-info,
 .btn-primary,
 .btn-info:focus,
