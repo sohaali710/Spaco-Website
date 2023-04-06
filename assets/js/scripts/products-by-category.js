@@ -111,8 +111,10 @@ function getProductsByCateg(productsContainer, selectedCateg) {
                     productsContainer.innerHTML += productDiv
 
                     /** search */
-                    let searchInp = document.querySelector('.searchInp')
-                    searchInp.addEventListener('input', search(allProducts, productsContainer))
+                    if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
+                        let searchInp = document.querySelector('.searchInp')
+                        searchInp.addEventListener('input', search(allProducts, productsContainer))
+                    }
                 })
             })
             .catch(err => console.log(err))
