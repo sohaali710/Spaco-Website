@@ -5729,6 +5729,15 @@ body.page-categories-2 .page-footer:before {
   max-width: 75px !important;
 }
 
+
+.page-header-bottom__right {
+  max-width: 70%;
+}
+
+.page-header-bottom__right .uk-navbar {
+  justify-content: center;
+}
+
 .page-header-bottom__right .uk-navbar-nav {
   margin-right: 40px;
 }
