@@ -6108,6 +6108,42 @@ body.page-categories-2 .page-footer:before {
   display: none !important;
 }
 
+/* supplier add product */
+#added {
+  display: none;
+}
+
+#added img {
+  width: 100% !important;
+  height: 28px !important;
+}
+
+#addToStore img {
+  display: inline;
+}
+
+/* supplier products */
+/* .supplier-all-products:has(.no-products) {
+  position: relative;
+} */
+
+.no-products {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  margin-top: 50px;
+
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.no-products a {
+  color: var(--dark-cyan) !important;
+}
+
+
 :root {
   --dark-red: #C20300;
   --dark-cyan: #1CB3CB;

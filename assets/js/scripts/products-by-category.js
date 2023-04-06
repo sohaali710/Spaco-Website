@@ -3,7 +3,7 @@ import { search } from "./search.js"
 
 let categProducts, allProducts = []
 
-function getProductsByCateg(productsContainer, selectedCateg) {
+function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
     productsContainer.innerHTML = ''
 
     console.log(selectedCateg)

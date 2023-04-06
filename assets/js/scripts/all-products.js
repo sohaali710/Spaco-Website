@@ -1,5 +1,5 @@
 import { addToCart } from './add-to-cart.js'
-import { addToStore } from './supplier-add-remove-product.js'
+import { addToStore } from './supplier-add-product.js'
 import { getCookie } from './cookies.js'
 import { getCategories } from './get-categories.js'
 import { getProductsByCateg } from './products-by-category.js'
@@ -11,9 +11,15 @@ let allProducts = []
 let moreDetailsBtn = document.getElementById('more-details')
 let url = 'http://linkloop.co:5000/products/all'
 
-getAllProd()
+
+if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
+    getAllProd()
+} else if (getCookie('admin_access_token')) {
+    location.href = 'admin-control-panel.html'
+}
 
 function getAllProd() {
+    // allProductsDiv.innerHTML = ''
     fetch(url)
         .then(res => {
             if (res.status == 200) {
@@ -40,6 +46,9 @@ function getAllProd() {
                     userSupplierBtn = `
                                     <button class="uk-button uk-button-large uk-width-1-1" type="button" id="addToStore" product-id="${_id}">
                                         اضف إلى متجرك<img src="./assets/img/icons/shop-solid.svg" class="me-2" alt="shop-icon">
+                                    </button>
+                                    <button class="uk-button uk-button-large uk-width-1-1" type="button" id="added">
+                                        <img src="./assets/img/icons/circle-check-regular.svg" class="me-2" alt="shop-icon">
                                     </button>`
                 } else {
                     userSupplierBtn = `
@@ -94,10 +103,34 @@ function getAllProd() {
 /** get categories names in search section */
 const categContainer = document.getElementById('category')
 getCategories(categContainer)
-
-categContainer.addEventListener('input', getProductsByCateg(allProductsDiv))
+/** and render categ products */
+categContainer.addEventListener('input', (e) => {
+    if (e.target.matches('select') && e.target.value) {
+        let selectedCateg = e.target.value
+        getProductsByCateg(allProductsDiv, selectedCateg)
+    }
+})
 
 
 /** add-to-cart input + cart-icon-count [user] */
 let cartIconCount = document.querySelector('.cart-btn__icon')
 allProductsDiv.addEventListener('click', addToCart(cartIconCount))
+
+/** add-to-your-store input [supplier] */
+allProductsDiv.addEventListener('click', (e) => {
+    if (e.target.matches("#addToStore")) {
+        let productId = e.target.getAttribute('product-id')
+
+        let addToStoreBtn = e.target
+        let addedBtn = e.target.parentElement.children[1]
+
+        addToStore(productId)
+
+        addedBtn.style.display = 'inline'
+        addToStoreBtn.style.display = 'none'
+        setTimeout(() => {
+            addedBtn.style.display = 'none'
+            addToStoreBtn.style.display = 'inline'
+        }, 1000);
+    }
+})
