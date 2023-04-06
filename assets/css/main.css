@@ -6114,8 +6114,9 @@ body.page-categories-2 .page-footer:before {
 }
 
 #added img {
-  width: 100% !important;
   height: 28px !important;
+
+  display: inline;
 }
 
 #addToStore img {
@@ -6123,9 +6124,6 @@ body.page-categories-2 .page-footer:before {
 }
 
 /* supplier products */
-/* .supplier-all-products:has(.no-products) {
-  position: relative;
-} */
 
 .no-products {
   position: absolute;

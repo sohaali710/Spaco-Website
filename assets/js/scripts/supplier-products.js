@@ -1,4 +1,3 @@
-import { addToStore } from './supplier-add-product.js'
 import { getCookie } from './cookies.js'
 import { getCategories } from './get-categories.js'
 
