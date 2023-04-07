@@ -77,6 +77,10 @@ input:not(.searchInp) {
     width: 204px !important;
 }
 
+.modal select {
+    width: 204px !important;
+}
+
 .btn-outline-info,
 .btn-outline-info:focus {
     color: var(--dark-cyan);
