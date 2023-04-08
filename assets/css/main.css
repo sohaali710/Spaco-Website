@@ -6100,10 +6100,6 @@ body.page-categories-2 .page-footer:before {
 }
 
 /* search */
-.rental-item {
-  /* display: none !important; */
-}
-
 .hide {
   display: none !important;
 }
@@ -6141,6 +6137,31 @@ body.page-categories-2 .page-footer:before {
   color: var(--dark-cyan) !important;
 }
 
+/* loading until fetch data */
+.fetchDataLoader:has(#page-preloader) {
+  position: relative;
+  top: 0;
+}
+
+.all-products-parent #page-preloader,
+.fetchDataLoader #page-preloader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  width: 180px !important;
+  height: 180px !important;
+
+  margin: 50px 0;
+
+  background-color: transparent;
+}
+
+.fetchDataLoader #page-preloader {
+  z-index: 1000000;
+}
 
 :root {
   --dark-red: #C20300;

@@ -147,9 +147,15 @@
                         </div>
                     </div>
 
-                    <div class="row allProdRow w-100 d-flex justify-content-between">
+                    <div class="all-products-parent fetchDataLoader">
+                        <div class="row allProdRow w-100 d-flex justify-content-between">
 
 
+                        </div>
+
+                        <div id="page-preloader" class="hide">
+                            <span class="spinner border-t_second_b border-t_prim_a"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -206,7 +212,8 @@
 
 
                         <div class="modal-footer mr-auto" dir="ltr">
-                            <button type="submit" id="add-new-product" class="btn btn-info mb-2">إضافة
+                            <button type="submit" id="add-new-product" class="btn btn-info mb-2"
+                                data-bs-dismiss="modal">إضافة
                                 المنتج</button>
                         </div>
                     </form>
@@ -268,7 +275,8 @@
                         </div>
 
                         <div class="modal-footer mr-auto" dir="ltr">
-                            <button type="submit" class="btn btn-secondary mb-2">حفظ التعديلات</button>
+                            <button type="submit" class="btn btn-secondary mb-2" data-bs-dismiss="modal">حفظ
+                                التعديلات</button>
                         </div>
                     </form>
                 </div>
@@ -346,12 +354,16 @@
     <!-- #region Add Product Modal -->
     <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable h-100 d-flex align-items-center m-auto my-5">
+
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <h4 class="modal-title" id="exampleModalLabel1">إضافة صور للمنتج</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body fetchDataLoader">
+                    <div id="page-preloader" class="hide">
+                        <span class="spinner border-t_second_b border-t_prim_a"></span>
+                    </div>
                     <form method="post" id="product-img-form" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-12 col-sm-6 col-lg-4">

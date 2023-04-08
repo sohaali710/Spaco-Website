@@ -3,13 +3,19 @@ import { search } from "./search.js"
 
 let categProducts, allProducts = []
 
-function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
+function getProductsByCateg(productsContainer, selectedCateg = 'all-products', loading) {
     productsContainer.innerHTML = ''
+
+    const preloader = document.querySelector('.all-products-parent #page-preloader')
+    preloader.classList.toggle('hide')
 
     console.log(selectedCateg)
     if (selectedCateg === 'all-products') {
         fetch(`http://linkloop.co:5000/products/all`)
             .then(res => {
+                preloader.classList.toggle('hide')
+
+                console.log(preloader.classList)
                 if (res.status == 200) {
                     // console.log(res);
                     return res.json();
@@ -121,6 +127,8 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
     } else {
         fetch(`http://linkloop.co:5000/products/product-by-category/${selectedCateg}`)
             .then(res => {
+                preloader.classList.toggle('hide')
+                console.log(preloader)
                 if (res.status == 200) {
                     // console.log(res);
                     return res.json();

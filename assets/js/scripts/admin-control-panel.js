@@ -6,6 +6,8 @@ import { search } from './search.js'
 
 let adminToken = 'admin_access_token'
 
+let loading = false
+
 // #region all products
 let allProdRow = document.querySelector('.allProdRow')
 let allProdURL = 'http://linkloop.co:5000/products/all'
@@ -36,8 +38,7 @@ let categColAddProd = document.querySelector('.categColAddProd')
 if (getCookie(adminToken)) {
     addProdBtn.addEventListener('click', () => getCategories(categColAddProd))
 
-    let c
-    detailsBtnAddPod.addEventListener('click', c = addNewDetails(addProdInputsRow, detailsNameAdd))
+    detailsBtnAddPod.addEventListener('click', addNewDetails(addProdInputsRow, detailsNameAdd))
 
     addProdBtn.addEventListener('click', () => {
         addProductForm.reset()
@@ -55,6 +56,9 @@ if (getCookie(adminToken)) {
 
     addProductForm.addEventListener('submit', event => {
         event.preventDefault();
+
+        const preloader = document.querySelector('.all-products-parent #page-preloader')
+        preloader.classList.toggle('hide')
 
         checkName(nameInput)
         checkDescription(descriptionInput)
@@ -103,6 +107,8 @@ if (getCookie(adminToken)) {
         fetch('http://linkloop.co:5000/products/add-new', options)
             .then(res => {
                 console.log(res);
+                preloader.classList.toggle('hide')
+
                 if (res.status == 200) {
                     getAllProducts()
                     return res.json();
@@ -131,20 +137,23 @@ allProdRow.addEventListener('click', (e) => {
     if (e.target.matches('#updateProdBtn')) {
         updatedProductId = e.target.getAttribute('product-id')
 
+        fetch(`http://linkloop.co:5000/products/product-by-id/${updatedProductId}`)
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                let { name, category, description, details } = data.data
 
-        fetch(`http://linkloop.co:5000/products/product-by-id/${updatedProductId}`).then(res => res.json()).then(data => {
-            let { name, category, description, details } = data.data
+                updateForm.querySelector('#name').value = name
+                updateForm.querySelector('#description').value = description
 
-            updateForm.querySelector('#name').value = name
-            updateForm.querySelector('#description').value = description
+                getCategories(categCol, category)
 
-            getCategories(categCol, category)
+                detailsRow.innerHTML = ''
 
-            detailsRow.innerHTML = ''
-
-            if (details.length) {
-                details.forEach((d) => {
-                    let dInput = `
+                if (details.length) {
+                    details.forEach((d) => {
+                        let dInput = `
                                 <div class="col-12 col-sm-6 col-lg-4">
                                     <div class="custom-form-control">
                                         <label for="${d.title}" class="my-1">${d.title}</label>
@@ -154,11 +163,11 @@ allProdRow.addEventListener('click', (e) => {
                                     </div>
                                 </div>`
 
-                    detailsRow.innerHTML += dInput
-                })
-            }
+                        detailsRow.innerHTML += dInput
+                    })
+                }
 
-        });
+            });
     }
 })
 // #endregion
@@ -173,6 +182,9 @@ detailsBtnUpdatePod.addEventListener('click', addNewDetails(detailsRow, detailsN
 
 updateForm.addEventListener('submit', () => {
     event.preventDefault();
+
+    const preloader = document.querySelector('.all-products-parent #page-preloader')
+    preloader.classList.toggle('hide')
 
     let formData = new FormData(updateForm);
 
@@ -213,6 +225,8 @@ updateForm.addEventListener('submit', () => {
     fetch(`http://linkloop.co:5000/products/edit-prod/${updatedProductId}`, options)
         .then(res => {
             console.log(res);
+            preloader.classList.toggle('hide')
+
             if (res.status == 200) {
                 getAllProducts()
                 return res.json();
@@ -236,9 +250,11 @@ if (getCookie(adminToken)) {
     allProdRow.addEventListener('click', (e) => {
         if (e.target.matches('#deleteProdBtn')) {
             productId = e.target.getAttribute('product-id')
-            console.log(productId)
 
             confirmDelete.addEventListener('click', () => {
+                const preloader = document.querySelector('.all-products-parent #page-preloader')
+                preloader.classList.toggle('hide')
+
                 const myHeaders = new Headers();
                 myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
 
@@ -251,6 +267,8 @@ if (getCookie(adminToken)) {
                 fetch(`http://linkloop.co:5000/products/remove-prod/${productId}`, options)
                     .then(res => {
                         console.log(res);
+                        preloader.classList.toggle('hide')
+
                         if (res.status === 200) {
                             const selectedCateg = document.getElementById('category').value
                             console.log(selectedCateg)
@@ -287,13 +305,15 @@ if (getCookie(adminToken)) {
     allProdRow.addEventListener('click', (e) => {
         if (e.target.matches('.product-img') || e.target.matches('.add-img-text') || e.target.matches('.no-img')) {
             productId = e.target.parentElement.getAttribute('product-id')
-            console.log(productId)
 
             getProductImgs(productId)
         }
     })
 
     imgsInput.addEventListener('change', event => {
+        const preloader = document.querySelector('.fetchDataLoader #page-preloader')
+        preloader.classList.toggle('hide')
+
         let formData = new FormData(prodImgForm);
 
         let data = Object.fromEntries(formData)
@@ -312,6 +332,8 @@ if (getCookie(adminToken)) {
         fetch(`http://linkloop.co:5000/products/add-img/${productId}`, options)
             .then(res => {
                 console.log(res);
+                preloader.classList.toggle('hide')
+
                 if (res.status === 200) {
                     getProductImgs(productId)
                     getAllProducts()
@@ -339,36 +361,42 @@ if (getCookie(adminToken)) {
         if (e.target.matches('.btn-close')) {
             productId = e.target.getAttribute('product-id')
 
+            const preloader = document.querySelector('.fetchDataLoader #page-preloader')
+            preloader.classList.toggle('hide')
+
             let imgSrc = e.target.parentElement.children[0].getAttribute('src');
             img = imgSrc.replace('http://linkloop.co:5000', 'public')
             console.log(img)
+
+            const myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/json');
+            myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
+
+            const options = {
+                method: 'POST',
+                headers: myHeaders,
+                body: JSON.stringify({ img })
+            }
+
+
+            fetch(`http://linkloop.co:5000/products/remove-img/${productId}`, options)
+                .then(res => {
+                    console.log(res);
+                    preloader.classList.toggle('hide')
+
+                    if (res.status === 200) {
+                        getProductImgs(productId)
+                        getAllProducts()
+
+                        return res.json();
+                    }
+                })
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(err => console.log(err))
         }
 
-        const myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
-        myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
-
-        const options = {
-            method: 'POST',
-            headers: myHeaders,
-            body: JSON.stringify({ img })
-        }
-
-
-        fetch(`http://linkloop.co:5000/products/remove-img/${productId}`, options)
-            .then(res => {
-                console.log(res);
-                if (res.status === 200) {
-                    getProductImgs(productId)
-                    getAllProducts()
-
-                    return res.json();
-                }
-            })
-            .then(data => {
-                console.log(data)
-            })
-            .catch(err => console.log(err))
     })
 
 } else {
@@ -469,12 +497,18 @@ function addNewDetails(modalForm, detailsNameInput) {
     }
 }
 
+
+
 /** rendering all product */
 function getAllProducts() {
     allProdRow.innerHTML = ''
 
+    const preloader = document.querySelector('.all-products-parent #page-preloader')
+    preloader.classList.toggle('hide')
+
     fetch(allProdURL)
         .then(res => {
+            preloader.classList.toggle('hide')
             if (res.status == 200) {
                 // console.log(res);
                 return res.json();
@@ -541,7 +575,7 @@ getCategories(categContainer)
 categContainer.addEventListener('input', (e) => {
     if (e.target.matches('select') && e.target.value) {
         let selectedCateg = e.target.value
-        getProductsByCateg(allProdRow, selectedCateg)
+        getProductsByCateg(allProdRow, selectedCateg, loading)
     }
 })
 
