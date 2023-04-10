@@ -14,15 +14,25 @@ let cartProducts = []
 if (getCookie('user-cart')) {
     cartProducts = JSON.parse(getCookie('user-cart'))
 
+
     cartProducts.forEach((prod) => {
         const { product: productId, quantity } = prod
 
-        fetch(`http://linkloop.co:5000/products/product-by-id/${productId}`).then(res => res.json()).then(data => {
-            console.log(data.data)
-            const { name, imgs } = data.data
-            const img = imgs[0].replace('public', 'http://linkloop.co:5000')
+        const preloader = document.querySelector('.fetchDataLoader #page-preloader')
+        preloader.classList.toggle('hide')
 
-            let row = `
+        fetch(`http://linkloop.co:5000/products/product-by-id/${productId}`)
+            .then(res => {
+                preloader.classList.toggle('hide')
+
+                return res.json()
+            })
+            .then(data => {
+                console.log(data.data)
+                const { name, imgs } = data.data
+                const img = imgs[0].replace('public', 'http://linkloop.co:5000')
+
+                let row = `
                     <tr>
                         <td class="ps-4 w-auto">
                             <img src="${img}" alt="">
@@ -35,9 +45,9 @@ if (getCookie('user-cart')) {
                         </td>
                     </tr>`
 
-            productsTbody.innerHTML += row
-            cartProdAmount.innerHTML = `${cartProducts.length} منتج في سلة المشتريات`
-        })
+                productsTbody.innerHTML += row
+                cartProdAmount.innerHTML = `${cartProducts.length} منتج في سلة المشتريات`
+            })
     })
 } else {
     productsTable.style.display = 'none'
