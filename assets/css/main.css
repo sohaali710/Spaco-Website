@@ -6169,6 +6169,14 @@ body.page-categories-2 .page-footer:before {
   margin-top: 50px;
 }
 
+/** page categories in index & page-categories-1 */
+.categories-container img {
+  width: 350px;
+  height: 360px;
+}
+
+
+
 :root {
   --dark-red: #C20300;
   --dark-cyan: #1CB3CB;
