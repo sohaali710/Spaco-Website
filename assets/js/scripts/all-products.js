@@ -22,8 +22,13 @@ if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
 
 function getAllProd() {
     // allProductsDiv.innerHTML = ''
+    const preloader = document.querySelector('.all-products-parent #page-preloader')
+    preloader.classList.toggle('hide')
+
     fetch(url)
         .then(res => {
+            preloader.classList.toggle('hide')
+
             if (res.status == 200) {
                 // console.log(res);
                 return res.json();
@@ -37,11 +42,16 @@ function getAllProd() {
             allProducts.forEach((product) => {
                 let { _id, name, category, description, details, imgs } = product
 
-                let lis, productDiv = ''
+                let productDiv = ''
+                // let lis = ''
 
-                for (let i of details) {
-                    lis += `<li><span>${i.title} : ${i.value}</span></li>`
-                }
+                // for (let i of details) {
+                //     lis += `<li><span>${i.title} : ${i.value}</span></li>`
+                // }
+
+                //     <ul class="uk-column-1-1@s uk-column-1-2@s">
+                // + lis +
+                // </ul>
 
                 let userSupplierBtn = ''
                 if (getCookie('supplier_access_token')) {
@@ -54,7 +64,7 @@ function getAllProd() {
                                     </button>`
                 } else {
                     userSupplierBtn = `
-                                    <button class="uk-button uk-button-large uk-width-1-1" type="button" id="addToCart">
+                                    <button class="uk-button uk-button-large uk-width-1-1" type="button" id="addToCart" product-id="${_id}">
                                         اضف إلى السلة<img src="./assets/img/icons/cart-shopping-solid.svg" alt="cart-icon">
                                     </button>
                                     <div class="add-product-quantity">
@@ -74,11 +84,10 @@ function getAllProd() {
                     `</div>
                 <div class="rental-item__desc" dir="rtl">
                     <div class="rental-item__title">${name}</div>
-                    <div class="rental-item__price-delivery"> <span>تفاصيل المنتج</span></div>
+                    <small class="text-center" style="position:relative;top:-16px;">${category}</small>
+                    <div class="rental-item__price-delivery"> <span>وصف المنتج</span></div>
                     <div class="rental-item__specifications">
-                        <ul class="uk-column-1-1@s uk-column-1-2@s">`
-                    + lis +
-                    `</ul>
+                        ${description}
                     </div>
 
                     <div class="rental-item__price" dir="rtl">`
@@ -114,100 +123,8 @@ categContainer.addEventListener('input', (e) => {
 })
 
 
-/** add-to-cart input + cart-icon-count [user] */
-let cartIconCount = document.querySelector('.cart-btn__icon')
-allProductsDiv.addEventListener('click', addToCart(cartIconCount))
+/** add-to-cart button + cart-icon-count [user] */
+allProductsDiv.addEventListener('click', addToCart())
 
-/** add-to-your-store input [supplier] */
-allProductsDiv.addEventListener('click', (e) => {
-    if (e.target.matches("#addToStore")) {
-        let productId = e.target.getAttribute('product-id')
-
-        const myHeaders = new Headers();
-        myHeaders.append('authorization', `Bearer ${getCookie(supplierToken)}`);
-
-        const options = {
-            method: 'GET',
-            headers: myHeaders
-        }
-
-        fetch('http://linkloop.co:5000/supplier/all-products', options)
-            .then(res => { if (res.status == 200) return res.json() })
-            .then(data => {
-                if (data) {
-                    const supplierProducts = data.products
-
-                    if (supplierProducts.length !== 0) {
-                        console.log(supplierProducts)
-                        supplierProducts.forEach((product) => {
-                            if (product._id === productId) {
-                                alert('لقد أضفت هذا المنتج إلى متجرك من قبل.')
-                            } else {
-                                addToStore(productId)
-
-                                let addToStoreBtn = e.target
-                                let addedBtn = e.target.parentElement.children[1]
-
-                                addedBtn.style.display = 'inline'
-                                addToStoreBtn.style.display = 'none'
-                                setTimeout(() => {
-                                    addedBtn.style.display = 'none'
-                                    addToStoreBtn.style.display = 'inline'
-                                }, 1500);
-                            }
-                        })
-                    } else {
-                        addToStore(productId)
-
-                        let addToStoreBtn = e.target
-                        let addedBtn = e.target.parentElement.children[1]
-
-                        addedBtn.style.display = 'inline'
-                        addToStoreBtn.style.display = 'none'
-                        setTimeout(() => {
-                            addedBtn.style.display = 'none'
-                            addToStoreBtn.style.display = 'inline'
-                        }, 1500);
-                    }
-                }
-            })
-
-    }
-    if (e.target.matches("#added")) {
-        alert('لقد أضفت هذا المنتج إلى متجرك من قبل.')
-    }
-})
-
-/** added to store or not */
-// isAddedToStore()
-// function isAddedToStore() {
-//     let addToStoreBtn = document.querySelectorAll('#addToStore')
-//     let addedBtn = document.querySelectorAll('#added')
-
-//     console.log(addToStoreBtn)
-
-//     const myHeaders = new Headers();
-//     myHeaders.append('authorization', `Bearer ${getCookie(supplierToken)}`);
-
-//     const options = {
-//         method: 'GET',
-//         headers: myHeaders
-//     }
-
-//     fetch('http://linkloop.co:5000/supplier/all-products', options)
-//         .then(res => { if (res.status == 200) return res.json() })
-//         .then(data => {
-//             if (data) {
-//                 const supplierProducts = data.products
-
-//                 console.log(supplierProducts)
-//                 if (supplierProducts.length !== 0) {
-//                     console.log(supplierProducts)
-//                     supplierProducts.forEach((product) => {
-//                         addedBtn.style.display = 'inline'
-//                         addToStoreBtn.style.display = 'none'
-//                     })
-//                 }
-//             }
-//         })
-// }
+/** add-to-your-store [supplier] */
+allProductsDiv.addEventListener('click', addToStore())
