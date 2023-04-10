@@ -19,6 +19,8 @@ if (getCookie(supplierToken)) {
 
 
 /** supplier all products */
+const searchSection = document.querySelector('.page-head__form')
+
 function getAllProducts() {
     allProductsDiv.innerHTML = ''
 
@@ -42,6 +44,7 @@ function getAllProducts() {
                 allProducts = data.products
 
                 if (allProducts.length == 0) {
+                    searchSection.style.display = 'none'
                     allProductsDiv.innerHTML = `<div class="no-products"><span>لا يوجد منتجات في متجرك. انتقل إلى  </span><a href="page-products-list.html">صفحة المنتحات </a><span>لإضافة المنتجات إلى متجرك</span></div>`
                 }
 
@@ -100,22 +103,14 @@ function getAllProducts() {
         .catch(err => console.log(err))
 }
 
-/** get categories names in search section */
-const categContainer = document.getElementById('category')
-getCategories(categContainer)
-/** and render categ products */
-categContainer.addEventListener('input', (e) => {
-    if (e.target.matches('select') && e.target.value) {
-        let selectedCateg = e.target.value
-        getProductsByCateg(allProductsDiv, selectedCateg)
-    }
-})
-
 /** from supplier store page */
 allProductsDiv.addEventListener('click', (e) => {
     console.log(e.target)
     if (e.target.matches("#removeFromStore")) {
         let productId = e.target.getAttribute('product-id')
+
+        const preloader = document.querySelector('.all-products-parent #page-preloader')
+        preloader.classList.toggle('hide')
 
         const myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
@@ -130,6 +125,8 @@ allProductsDiv.addEventListener('click', (e) => {
         fetch('http://linkloop.co:5000/supplier/remove-prod', options)
             .then(res => {
                 console.log(res);
+                preloader.classList.toggle('hide')
+
                 if (res.status == 200) {
                     getAllProducts()
                     return res.json();
