@@ -3,11 +3,13 @@ import { search } from "./search.js"
 
 let categProducts, allProducts = []
 
-function getProductsByCateg(productsContainer, selectedCateg = 'all-products', loading) {
+function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
     productsContainer.innerHTML = ''
 
     const preloader = document.querySelector('.all-products-parent #page-preloader')
     preloader.classList.toggle('hide')
+
+    let noProductsDiv = document.querySelector('.categ-no-products')
 
     console.log(selectedCateg)
     if (selectedCateg === 'all-products') {
@@ -95,6 +97,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products', l
                             `</div>
                             <div class="rental-item__desc" dir="rtl">
                                 <div class="rental-item__title">${name}</div>
+                                <small class="text-center" style="position:relative;top:-16px;">${category}</small>
                                 <div class="rental-item__price-delivery"> <span>تفاصيل المنتج</span></div>
                                 <div class="rental-item__specifications">
                                     <ul class="uk-column-1-1@s uk-column-1-2@s">`
@@ -137,6 +140,12 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products', l
             .then(data => {
                 console.log(data)
                 categProducts = data.data.reverse()
+
+                if (!categProducts.length) {
+                    noProductsDiv.classList.remove('hide')
+                } else {
+                    noProductsDiv.classList.add('hide')
+                }
 
                 categProducts.map((product) => {
                     let { _id, name, category, description, details, imgs } = product
@@ -208,6 +217,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products', l
                             `</div>
                                 <div class="rental-item__desc" dir="rtl">
                                     <div class="rental-item__title">${name}</div>
+                                    <small class="text-center" style="position:relative;top:-16px;">${category}</small>
                                     <div class="rental-item__price-delivery"> <span>تفاصيل المنتج</span></div>
                                     <div class="rental-item__specifications">
                                         <ul class="uk-column-1-1@s uk-column-1-2@s">`
