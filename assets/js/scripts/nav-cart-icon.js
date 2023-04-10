@@ -10,7 +10,6 @@ let count = document.createElement('span')
 count.classList.add('cart-btn__count')
 
 if (cartIcon) {
-
     if (getCookie('user-cart')) {
         cartProducts = JSON.parse(getCookie('user-cart'))
 
@@ -27,7 +26,7 @@ if (cartIcon) {
             if (getCookie('user-cart')) {
                 location.href = 'user-cart.html'
             } else {
-                alert('cart is empty')
+                alert('لا يوجد منتجات بالسلة')
             }
         } else {
             location.href = 'user-supplier-log-in.html?user-type=user'
