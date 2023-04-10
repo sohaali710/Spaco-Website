@@ -70,29 +70,13 @@
           <nav class="uk-navbar-container uk-navbar-transparent" data-uk-navbar dir="rtl">
             <div class="nav-overlay uk-visible@l">
               <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="index.html">الرئيسية</a></li>
-                <li><a href="page-products-list.html">جميع المنتجات</a></li>
-                <li><a href="page-categories-1.html">الأقسام<i class="fas fa-angle-down"
-                      style="margin-right: 8px;"></i></a>
-                  <div class="uk-navbar-dropdown">
-                    <ul class="uk-nav uk-navbar-dropdown-nav nav-categories">
 
 
-                    </ul>
-                  </div>
-                </li>
-                <li><a href="typography.html">من نحن</a></li>
-                <li><a href="page-contacts.html">اتصل بنا</a></li>
               </ul>
             </div>
           </nav>
 
           <a class="uk-navbar-toggle uk-hidden@l" href="#offcanvas" data-uk-toggle><span data-uk-icon="menu"></span></a>
-          <a class="uk-navbar-toggle cart-btn">
-            <div class="cart-btn__icon" id="cart-icon" data-uk-icon="cart">
-
-            </div>
-          </a>
 
         </div>
       </div>
@@ -153,13 +137,15 @@
 
               </div>
 
-              <ul class="uk-pagination uk-margin-large-top">
+              <div class="categ-no-products hide">لا يوجد منتجات بعد في هذا القسم</div>
+
+              <!-- <ul class="uk-pagination uk-margin-large-top">
                 <li class="uk-active"><span>1</span></li>
                 <li><a href="#">2</a></li>
                 <li><a href="#">3</a></li>
                 <li><a class="uk-pagination-next" href="#"><img src="./assets/img/icons/arrow.svg" alt=""
                       data-uk-svg></a></li>
-              </ul>
+              </ul> -->
             </div>
           </div>
         </div>
@@ -258,17 +244,8 @@
           </div>
           <div class="uk-margin">
             <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
-              <li class="uk-active"><a href="index.html">الرئيسية</a></li>
-              <li><a href="page-products-list.html">جميع المنتجات</a></li>
-              <li class="uk-parent"><a href="page-categories-1.html">الأقسام<i class="fas fa-angle-down"
-                    style="margin-right: 8px;"></i></a>
-                <ul class="uk-nav-sub nav-categories">
 
 
-                </ul>
-              </li>
-              <li><a href="typography.html">من نحن</a></li>
-              <li><a href="page-contacts.html">اتصل بنا</a></li>
             </ul>
           </div>
           <div class="uk-margin">
@@ -314,6 +291,7 @@
   <script src="assets/js/libs.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/scripts/page-category-products.js" type="module"></script>
+  <script src="assets/js/scripts/nav-user-supplier.js" type="module"></script>
   <script src="assets/js/scripts/nav-get-categories.js" type="module"></script>
   <script src="assets/js/scripts/nav-cart-icon.js" type="module"></script>
   <script src="assets/js/scripts/log-out.js" type="module"></script>
