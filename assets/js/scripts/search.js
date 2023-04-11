@@ -7,7 +7,7 @@ function search(allProducts, allProductsDiv) {
 
         let noProductsDiv = document.querySelector('.search-no-products')
 
-        let allInvisible = allProducts.every((product, index) => {
+        let elementVisibility = allProducts.map((product, index) => {
             if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
                 element = allProductsDiv.querySelectorAll('.rental-item')[index]
             } else if (getCookie('admin_access_token')) {
@@ -17,8 +17,10 @@ function search(allProducts, allProductsDiv) {
             const isVisible = product.name.includes(val)
             element.classList.toggle('hide', !isVisible)
 
-            return !isVisible;
+            return isVisible;
         })
+
+        let allInvisible = elementVisibility.every(ele => !ele)
 
         if (allInvisible) {
             noProductsDiv.classList.remove('hide')
