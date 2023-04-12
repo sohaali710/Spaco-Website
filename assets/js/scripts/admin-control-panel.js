@@ -39,6 +39,7 @@ if (getCookie(adminToken)) {
     addProdBtn.addEventListener('click', () => getCategories(categColAddProd))
 
     detailsBtnAddPod.addEventListener('click', addNewDetails(addProdInputsRow, detailsNameAdd))
+    addProdInputsRow.addEventListener('click', removeDetails())
 
     addProdBtn.addEventListener('click', () => {
         addProductForm.reset()
@@ -48,7 +49,7 @@ if (getCookie(adminToken)) {
 
         let detailsInp = addProductForm.querySelector('.detailsInp')
         if (detailsInp) {
-            detailsInp.parentNode.removeChild(detailsInp)
+            detailsInp.remove()
         }
     })
 
@@ -154,9 +155,10 @@ allProdRow.addEventListener('click', (e) => {
                 if (details.length) {
                     details.forEach((d) => {
                         let dInput = `
-                                <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="col-12 col-sm-6 col-lg-4 detailsInp">
                                     <div class="custom-form-control">
                                         <label for="${d.title}" class="my-1">${d.title}</label>
+                                        <button type="button" id="removeDetailsBtn" class="btn-close" aria-label="Close"></button>
                                         <input type="text" name="${d.title}" id="${d.title}" value="${d.value}" class="form-control"
                                             placeholder="${d.title}">
                                         <small></small>
@@ -178,7 +180,7 @@ let detailsBtnUpdatePod = document.getElementById('updateProd-plus-btn')
 let detailsNameUpdate = document.getElementById('detailsName-updateProd')
 
 detailsBtnUpdatePod.addEventListener('click', addNewDetails(detailsRow, detailsNameUpdate))
-
+detailsRow.addEventListener('click', removeDetails())
 
 updateForm.addEventListener('submit', () => {
     event.preventDefault();
@@ -465,6 +467,12 @@ let createDetailsInp = (nameAr, val) => {
     label.classList.add("my-1")
     label.textContent = nameAr
 
+    const button = document.createElement('button')
+    button.classList.add("btn-close")
+    button.setAttribute("type", "button")
+    button.setAttribute("id", "removeDetailsBtn")
+    button.setAttribute("aria-label", "Close")
+
     const input = document.createElement('input')
     input.classList.add("form-control")
     input.setAttribute("name", nameAr)
@@ -475,6 +483,7 @@ let createDetailsInp = (nameAr, val) => {
     const small = document.createElement('small')
 
     formControl.appendChild(label)
+    formControl.appendChild(button)
     formControl.appendChild(input)
     formControl.appendChild(small)
     col.appendChild(formControl)
@@ -489,11 +498,24 @@ function addNewDetails(modalForm, detailsNameInput) {
 
         let detailsInpCol = createDetailsInp(nameAr, '')
 
+        if (!detailsInpCol.querySelector('label').innerHTML) {
+            detailsInpCol.querySelector('label').innerHTML = '&ThinSpace;'
+        }
+
         modalForm.appendChild(detailsInpCol);
 
         detailsNameInput.value = ''
+    }
+}
 
-        return detailsInpCol
+function removeDetails() {
+    return (e) => {
+        if (e.target.matches('#removeDetailsBtn')) {
+            const detailsInpToRemove = e.target.parentElement.parentElement
+            console.log(detailsInpToRemove)
+
+            detailsInpToRemove.remove()
+        }
     }
 }
 
@@ -536,7 +558,7 @@ function getAllProducts() {
                 productDiv = `
                         <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-x-md-0 mt-5 product-item">
                             <div class="card text-center p-2 pb-4">
-                                <div class="add-product-img" data-bs-toggle="modal" data-bs-target="#exampleModal5" id="updateProdBtn" product-id="${_id}">`
+                                <div class="add-product-img" data-bs-toggle="modal" data-bs-target="#exampleModal5" product-id="${_id}">`
                     + img +
                     `<div class="add-img-text">إضافة | حذف صورة</div>
                                 </div>

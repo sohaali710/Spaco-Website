@@ -231,3 +231,24 @@ table tr td {
     top: 0;
     right: 0;
 }
+
+/* details close btn (remove details input) */
+.detailsInp .custom-form-control {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    width: 205px;
+}
+
+#exampleModal1 .detailsInp .btn-close,
+#exampleModal2 .detailsInp .btn-close {
+    align-self: end !important;
+
+    width: 5px !important;
+    height: 5px !important;
+
+    position: absolute;
+    top: 14px;
+}
