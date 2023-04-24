@@ -15,7 +15,7 @@ function search(allProducts, allProductsDiv) {
             }
 
             const isVisible = product.name.includes(val)
-            element.classList.toggle('hide', !isVisible)
+            if (element) element.classList.toggle('hide', !isVisible);
 
             return isVisible;
         })
