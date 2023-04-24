@@ -1,10 +1,14 @@
+// render products by category in filter by category (in search section)
 import { getCookie } from "./cookies.js"
 import { search } from "./search.js"
 
 let categProducts, allProducts = []
+let searchInp = document.querySelector('.searchInp')
 
 function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
     productsContainer.innerHTML = ''
+
+    searchInp.value = ''
 
     const preloader = document.querySelector('.all-products-parent #page-preloader')
     preloader.classList.toggle('hide')
@@ -27,6 +31,12 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
                 // console.log(data)
                 allProducts = data.data.reverse()
 
+                if (!allProducts.length) {
+                    noProductsDiv.classList.remove('hide')
+                } else {
+                    noProductsDiv.classList.add('hide')
+                }
+
                 allProducts.map((product) => {
                     let { _id, name, category, description, details, imgs } = product
 
@@ -45,7 +55,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
 
 
                         productDiv = `
-                                <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-x-md-0 mt-5">
+                                <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-x-md-0 mt-5 product-item">
                                     <div class="card text-center p-2 pb-4">
                                         <div class="add-product-img" data-bs-toggle="modal" data-bs-target="#exampleModal5" id="updateProdBtn" product-id="${_id}">`
                             + img +
@@ -68,7 +78,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
                                         </div>
                                     </div>
                                 </div>`
-                    } else if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
+                    } else {
                         img = (imgs.length !== 0) ?
                             `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                             : `<div class="no-img">لم يتم إضافة صورة لهذا المنتج</div>`;
@@ -120,10 +130,8 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
                     productsContainer.innerHTML += productDiv
 
                     /** search */
-                    if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
-                        let searchInp = document.querySelector('.searchInp')
-                        searchInp.addEventListener('input', search(allProducts, productsContainer))
-                    }
+                    let searchInp = document.querySelector('.searchInp')
+                    searchInp.addEventListener('input', search(allProducts, productsContainer))
                 })
             })
             .catch(err => console.log(err))
@@ -158,14 +166,14 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
                     }
 
 
-                    if (getCookie('admin_access_token') && !getCookie('user_access_token') && !getCookie('supplier_access_token')) {
+                    if (getCookie('admin_access_token')) {
                         img = (imgs.length !== 0) ?
                             `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                             : `<div class="no-img">إضافة صورة للمنتج</div>`;
 
 
                         productDiv = `
-                                    <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-x-md-0 mt-5">
+                                    <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-x-md-0 mt-5 product-item">
                                         <div class="card text-center p-2 pb-4">
                                             <div class="add-product-img" data-bs-toggle="modal" data-bs-target="#exampleModal5" id="updateProdBtn" product-id="${_id}">`
                             + img +
@@ -188,7 +196,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
                                             </div>
                                         </div>
                                     </div>`
-                    } else if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
+                    } else {
                         img = (imgs.length !== 0) ?
                             `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                             : `<div class="no-img">لم يتم إضافة صورة لهذا المنتج</div>`;
@@ -240,10 +248,8 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
                     productsContainer.innerHTML += productDiv
 
                     /** search */
-                    if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
-                        let searchInp = document.querySelector('.searchInp')
-                        searchInp.addEventListener('input', search(categProducts, productsContainer))
-                    }
+                    let searchInp = document.querySelector('.searchInp')
+                    searchInp.addEventListener('input', search(categProducts, productsContainer))
                 })
             })
             .catch(err => console.log(err))
