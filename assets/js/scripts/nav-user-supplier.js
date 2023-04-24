@@ -61,12 +61,12 @@ let cartIcon = `
 
 
 navUl.innerHTML = userNav
-if (getCookie('user_access_token')) {
-    navUl.innerHTML = userNav
-    sideNavUl.innerHTML = userSideNav
-    navCartContainer.innerHTML += cartIcon
-} else if (getCookie('supplier_access_token')) {
+if (getCookie('supplier_access_token')) {
     navUl.innerHTML = sideNavUl.innerHTML = supplierNav
 } else if (getCookie('admin_access_token')) {
     navUl.innerHTML = sideNavUl.innerHTML = adminNav
+} else {
+    navUl.innerHTML = userNav
+    sideNavUl.innerHTML = userSideNav
+    navCartContainer.innerHTML += cartIcon
 }

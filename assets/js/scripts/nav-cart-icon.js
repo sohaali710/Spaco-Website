@@ -10,14 +10,16 @@ let count = document.createElement('span')
 count.classList.add('cart-btn__count')
 
 if (cartIcon) {
-    if (getCookie('user-cart')) {
-        cartProducts = JSON.parse(getCookie('user-cart'))
+    if (getCookie('user_access_token')) {
+        if (getCookie('user-cart')) {
+            cartProducts = JSON.parse(getCookie('user-cart'))
 
-        count.textContent = cartProducts.length
-        cartIconCount.append(count);
-    } else {
-        count.textContent = '0'
-        cartIconCount.append(count);
+            count.textContent = cartProducts.length
+            cartIconCount.append(count);
+        } else {
+            count.textContent = '0'
+            cartIconCount.append(count);
+        }
     }
 
 
