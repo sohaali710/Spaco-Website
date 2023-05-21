@@ -14,10 +14,10 @@ let url = 'http://linkloop.co:5000/products/all'
 const userToken = 'user_access_token'
 const supplierToken = 'supplier_access_token'
 
-if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
-    getAllProd()
-} else if (getCookie('admin_access_token')) {
+if (getCookie('admin_access_token')) {
     location.href = 'admin-control-panel.html'
+} else {
+    getAllProd()
 }
 
 function getAllProd() {

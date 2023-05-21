@@ -28,7 +28,7 @@ function getCategories(categContainer, selectedCateg = '') {
                 `</select>
                             <small></small>
                         </div>`
-        } else if (getCookie('user_access_token') || getCookie('supplier_access_token')) {
+        } else {
             categoriesDiv = `<option value="all-products">كل المنتجات</option>` + options
         }
 
