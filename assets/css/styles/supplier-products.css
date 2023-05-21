@@ -3,6 +3,7 @@
     --dark-cyan: #1CB3CB;
     --light-cyan: #36C7DE;
     --dark-green: #59A52B;
+    --light-green: #69c132;
 }
 
 .card,
@@ -108,6 +109,10 @@ input:not(.searchInp) {
     color: #fff;
 }
 
+#exampleModalToggle .btn-outline-secondary {
+    padding-left: 50px;
+}
+
 
 .btn-info,
 .btn-primary,
@@ -119,6 +124,16 @@ input:not(.searchInp) {
 .btn-info:hover,
 .btn-primary:hover {
     background-color: var(--light-cyan);
+}
+
+.btn-success {
+    background-color: var(--dark-green);
+    border: var(--dark-green);
+}
+
+.btn-success:hover,
+.btn-success:focus {
+    background-color: var(--light-green);
 }
 
 .form-control:focus {
@@ -148,7 +163,8 @@ table tr td {
 
 #addProd-plus-btn,
 #updateProd-plus-btn,
-#addCateg-plus-btn {
+#addCateg-plus-btn,
+#updateCateg-plus-btn {
     margin-right: 10px;
 
     position: relative;
@@ -251,4 +267,34 @@ table tr td {
 
     position: absolute;
     top: 14px;
+}
+
+/* add & update categories */
+#exampleModalToggle .removeUpdateCategContainer {
+    width: 80px;
+    height: 70px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#exampleModalToggle svg {
+    width: 24px !important;
+    height: 24px !important;
+
+    cursor: pointer;
+}
+
+
+#exampleModalToggle svg:hover .edit-svg {
+    fill: var(--dark-green);
+}
+
+#exampleModalToggle .updateCategImg {
+    max-width: 100px;
+    max-height: 100px;
+
+    display: block;
+    margin: auto;
 }

@@ -53,6 +53,11 @@
     font-weight: 500;
 }
 
+#add-category-form .custom-form-control small,
+#update-category-form .custom-form-control small {
+    bottom: 0;
+}
+
 #log-in-form .formErrorMsg,
 #sign-up-form .formErrorMsg {
     visibility: hidden;

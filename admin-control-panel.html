@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/libs.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/styles/form-validation.css">
     <link rel="stylesheet" href="assets/css/styles/supplier-products.css">
+    <link rel="stylesheet" href="assets/css/styles/form-validation.css">
 </head>
 
 <body class="page-home">
@@ -133,17 +133,17 @@
 
             <div class="section-category">
                 <div class="container">
-                    <div class="row mb-3 d-flex justify-content-around px-5">
-                        <div class="col-12 col-md-4 mt-5">
+                    <div class="row mb-3 d-flex justify-content-around px-5 px-md-0">
+                        <div class="col-12 col-md-6 mt-5">
                             <button type="submit" class="btn btn-outline-info btn-lg" id="addProdBtn"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal1"><img
                                     src="assets/img/icons/square-plus-regular.svg" alt="plus-icon" class="ms-2">إضافة
                                 منتج جديد</button>
                         </div>
-                        <div class="col-12 col-md-4 mt-5">
+                        <div class="col-12 col-md-6 mt-5">
                             <button type="submit" class="btn btn-outline-success btn-lg" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal4"><img src="assets/img/icons/square-plus-regular.svg"
-                                    alt="plus-icon" class="ms-2">إضافة قسم جديد</button>
+                                data-bs-target="#exampleModalToggle"><img src="assets/img/icons/square-plus-regular.svg"
+                                    alt="plus-icon" class="ms-2">إضافة أو تعديل قسم</button>
                         </div>
                     </div>
 
@@ -216,8 +216,7 @@
 
 
                         <div class="modal-footer mr-auto" dir="ltr">
-                            <button type="submit" id="add-new-product" class="btn btn-info mb-2"
-                                data-bs-dismiss="modal">إضافة
+                            <button type="submit" id="add-new-product" class="btn btn-info mb-2">إضافة
                                 المنتج</button>
                         </div>
                     </form>
@@ -279,7 +278,7 @@
                         </div>
 
                         <div class="modal-footer mr-auto" dir="ltr">
-                            <button type="submit" class="btn btn-secondary mb-2" data-bs-dismiss="modal">حفظ
+                            <button type="submit" class="btn btn-secondary mb-2">حفظ
                                 التعديلات</button>
                         </div>
                     </form>
@@ -311,14 +310,61 @@
     <!-- #endregion Delete Product Modal -->
 
 
-    <!-- #region Add Category Modal -->
-    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <!-- #region Add | Update Category Modal -->
+    <!-- Main Modal -->
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+        tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable h-100 d-flex align-items-center m-auto my-5"
             style="max-width: 70%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h4 class="modal-title" id="exampleModalLabel1">إضافة قسم جديد</h4>
+                    <h4 class="modal-title" id="exampleModalToggleLabel">إضافة أو تعديل قسم</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row my-3">
+                        <div class="col-12 col-md-5">
+                            <button type="submit" class="btn btn-outline-secondary btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalToggle2"><img
+                                    src="assets/img/icons/square-plus-regular.svg" alt="plus-icon" class="ms-2">إضافة
+                                قسم جديد</button>
+                        </div>
+                    </div>
+
+                    <div class="row py-3">
+                        <div class="col-12">
+                            <table class="table">
+                                <!-- <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Handle</th>
+                                    </tr>
+                                </thead> -->
+                                <tbody class="categTable">
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Category Modal -->
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable h-100 d-flex align-items-center m-auto my-5"
+            style="max-width: 70%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title" id="exampleModalToggleLabel2">إضافة قسم جديد</h4>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="add-category-form" enctype="multipart/form-data">
@@ -328,6 +374,7 @@
                                     <label for="name" class="my-1">إضافة قسم جديد</label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         placeholder="اسم القسم">
+                                    <small></small>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8 d-flex align-items-center">
@@ -350,10 +397,84 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer" dir="ltr">
+                    <button class="btn btn-info" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">عودة
+                        للصفحة السابقة</button>
+                </div>
             </div>
         </div>
     </div>
-    <!-- #endregion Add Category Modal -->
+
+    <!-- Update Category Modal-->
+    <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable h-100 d-flex align-items-center m-auto my-5"
+            style="max-width: 70%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title" id="exampleModalToggleLabel3">تعديل على قسم</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="update-category-form" enctype="multipart/form-data">
+                        <div class="row py-3">
+                            <div class="col-12 col-md-4">
+                                <div class="custom-form-control">
+                                    <label for="name" class="my-1">اسم قسم</label>
+                                    <input type="text" name="name" id="update-category-name" class="form-control"
+                                        placeholder="اسم القسم">
+                                    <small></small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8 d-flex align-items-center">
+                                <div class="custom-form-control">
+                                    <label for="img" class="my-1 d-block">صورة للقسم</label>
+                                    <input type="file" name="img" id="update-category-img" class="form-control d-block">
+                                    <small></small>
+                                </div>
+                                <button type="submit" class="btn btn-success" id="updateCateg-plus-btn">حفظ
+                                    التعديلات</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="categories"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" dir="ltr">
+                    <button class="btn btn-info" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">عودة
+                        للصفحة السابقة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Remove Category Modal -->
+    <div class="modal fade" id="exampleModalToggle4" tabindex="-1" aria-labelledby="exampleModalToggleLabel4"
+        aria-hidden="true">
+        <div class="modal-dialog delete-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title" id="exampleModalToggleLabel4">حذف قسم</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="fs-6 text-center">هل أنت متأكد أنك تريد حذف هذا القسم ؟</p>
+                </div>
+                <div class="modal-footer" dir="ltr">
+                    <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle"
+                        data-bs-toggle="modal">إلغاء الحذف</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteCateg"
+                        data-bs-target="#exampleModalToggle" data-bs-toggle="modal">نعم</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #endregion Add | Update Category Modal -->
 
     <!-- #region Add Product Modal -->
     <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -546,6 +667,7 @@
     <script src="assets/js/libs.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/scripts/admin-control-panel.js" type="module"></script>
+    <script src="assets/js/scripts/page-categories.js" type="module"></script>
     <script src="assets/js/scripts/log-out.js" type="module"></script>
 </body>
 

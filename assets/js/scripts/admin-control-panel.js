@@ -1,6 +1,7 @@
 import { getCookie } from './cookies.js'
 import { checkName, checkCategory, checkDescription, checkDetails, checkImgs, checkCategName, checkCategImg, deleteFormInputsError } from './form-validation.js'
 import { getCategories } from './get-categories.js'
+import { getCategPage } from './page-categories.js'
 import { getProductsByCateg } from './products-by-category.js'
 import { search } from './search.js'
 
@@ -309,46 +310,47 @@ if (getCookie(adminToken)) {
             productId = e.target.parentElement.getAttribute('product-id')
 
             getProductImgs(productId)
-        }
-    })
 
-    imgsInput.addEventListener('change', event => {
-        const preloader = document.querySelector('.fetchDataLoader #page-preloader')
-        preloader.classList.toggle('hide')
-
-        let formData = new FormData(prodImgForm);
-
-        let data = Object.fromEntries(formData)
-
-        const myHeaders = new Headers();
-
-        const options = {
-            method: 'POST',
-            headers: myHeaders,
-            body: formData
-        }
-
-        delete options.headers['Content-Type'];
-        myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
-
-        fetch(`http://linkloop.co:5000/products/add-img/${productId}`, options)
-            .then(res => {
-                console.log(res);
+            imgsInput.addEventListener('change', event => {
+                const preloader = document.querySelector('.fetchDataLoader #page-preloader')
                 preloader.classList.toggle('hide')
 
-                if (res.status === 200) {
-                    getProductImgs(productId)
-                    getAllProducts()
+                let formData = new FormData(prodImgForm);
 
-                    return res.json();
+                let data = Object.fromEntries(formData)
+
+                const myHeaders = new Headers();
+
+                const options = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: formData
                 }
-            })
-            .then(data => {
-                console.log(data)
-            })
-            .catch(err => console.log(err))
 
+                delete options.headers['Content-Type'];
+                myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
+
+                fetch(`http://linkloop.co:5000/products/add-img/${productId}`, options)
+                    .then(res => {
+                        console.log(res);
+                        preloader.classList.toggle('hide')
+
+                        if (res.status === 200) {
+                            getProductImgs(productId)
+                            getAllProducts()
+
+                            return res.json();
+                        }
+                    })
+                    .then(data => {
+                        console.log(data)
+                    })
+                    .catch(err => console.log(err))
+
+            })
+        }
     })
+
 } else {
     location.href = 'admin-log-in.html'
 }
@@ -409,14 +411,14 @@ if (getCookie(adminToken)) {
 
 // #region new category
 let addCategForm = document.getElementById('add-category-form')
-let categoryNameInput = document.getElementById('name')
-let categImgInput = document.getElementById('img')
+let categoryNameInput = document.querySelector('#add-category-form #name')
+let categImgInput = document.querySelector('#add-category-form #img')
+
+let filterByCategCol = document.getElementById('category')
 
 if (getCookie(adminToken)) {
     addCategForm.addEventListener('submit', event => {
         event.preventDefault();
-
-        let categName = categoryNameInput.value.trim();
 
         checkCategName(categoryNameInput)
         checkCategImg(categImgInput)
@@ -452,6 +454,205 @@ if (getCookie(adminToken)) {
     location.href = 'admin-log-in.html'
 }
 // #endregion new category
+
+// #region Update category
+let updateCategForm = document.getElementById('update-category-form')
+let updateCategoryName = document.getElementById('update-category-name')
+let updateCategImg = document.getElementById('update-category-img')
+
+let categTable = document.querySelector('.categTable')
+
+if (getCookie(adminToken)) {
+    let categId = ''
+    categTable.addEventListener('click', (e) => {
+        if (e.target.matches('.removeUpdateCategContainer svg')) {
+            categId = e.target.getAttribute('categ-id')
+
+
+            updateCategForm.addEventListener('submit', event => {
+                event.preventDefault();
+
+                checkCategName(updateCategoryName)
+                checkCategImg(updateCategImg)
+
+                let formData = new FormData(updateCategForm);
+
+                let data = Object.fromEntries(formData)
+                console.log(data)
+
+                const myHeaders = new Headers();
+
+                const options = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: formData
+                }
+
+                delete options.headers['Content-Type'];
+                myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
+
+                fetch(`http://linkloop.co:5000/products/edit-categ/${categId}`, options)
+                    .then(res => {
+                        console.log(res);
+                        if (res.status == 200) {
+                            // getCategories(filterByCategCol)
+                            return res.json();
+                        }
+                    })
+                    .then(data => console.log(data))
+                    .catch(err => console.log(err))
+
+
+
+                // const preloader = document.querySelector('.fetchDataLoader #page-preloader')
+                // preloader.classList.toggle('hide')
+
+                // let formData2 = new FormData();
+                // formData2.append('img', updateCategImg.files[0])
+
+                // checkCategImg(updateCategImg)
+
+                // let data2 = Object.fromEntries(formData2)
+
+                // const myHeaders2 = new Headers();
+
+                // const options2 = {
+                //     method: 'POST',
+                //     headers: myHeaders2,
+                //     body: formData2
+                // }
+
+                // delete options2.headers['Content-Type'];
+                // myHeaders2.append('authorization', `Bearer ${getCookie(adminToken)}`);
+
+                // fetch(`http://linkloop.co:5000/products/edit-categ/${categId}`, options2)
+                //     .then(res => {
+                //         console.log(res);
+                //         preloader.classList.toggle('hide')
+
+                //         if (res.status === 200) {
+                //             // getProductImgs(productId)
+                //             getCategories(categColAddProd)
+
+                //             return res.json();
+                //         }
+                //     })
+                //     .then(data => {
+                //         console.log(data)
+                //     })
+                //     .catch(err => console.log(err))
+
+            })
+        }
+    })
+
+} else {
+    location.href = 'admin-log-in.html'
+}
+
+
+// upload category img
+// if (getCookie(adminToken)) {
+//     categTable.addEventListener('click', (e) => {
+//         if (e.target.matches('img')) {
+//             let categId = e.target.getAttribute('categ-id')
+//             console.log(categId)
+//             // getProductImgs(categId)
+
+//             // imgsInput.addEventListener('change', event => {
+//             //     const preloader = document.querySelector('.fetchDataLoader #page-preloader')
+//             //     preloader.classList.toggle('hide')
+
+//             //     let formData = new FormData(prodImgForm);
+
+//             //     let data = Object.fromEntries(formData)
+
+//             //     const myHeaders = new Headers();
+
+//             //     const options = {
+//             //         method: 'POST',
+//             //         headers: myHeaders,
+//             //         body: formData
+//             //     }
+
+//             //     delete options.headers['Content-Type'];
+//             //     myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
+
+//             //     fetch(`http://linkloop.co:5000/products/edit-categ/${categId}`, options)
+//             //         .then(res => {
+//             //             console.log(res);
+//             //             preloader.classList.toggle('hide')
+
+//             //             if (res.status === 200) {
+//             //                 // getProductImgs(productId)
+//             //                 getCategories(categColAddProd)
+
+//             //                 return res.json();
+//             //             }
+//             //         })
+//             //         .then(data => {
+//             //             console.log(data)
+//             //         })
+//             //         .catch(err => console.log(err))
+
+//             // })
+//         }
+//     })
+
+// } else {
+//     location.href = 'admin-log-in.html'
+// }
+
+// #endregion Update category
+
+// #region  remove category
+const confirmDeleteCateg = document.getElementById('confirmDeleteCateg')
+
+if (getCookie(adminToken)) {
+    let categId = ''
+
+    categTable.addEventListener('click', (e) => {
+        if (e.target.matches('.removeUpdateCategContainer .btn-close')) {
+            categId = e.target.getAttribute('categ-id')
+            console.log(categId)
+
+            confirmDeleteCateg.addEventListener('click', () => {
+                const preloader = document.querySelector('.all-products-parent #page-preloader')
+                preloader.classList.toggle('hide')
+
+                const myHeaders = new Headers();
+                myHeaders.append('authorization', `Bearer ${getCookie(adminToken)}`);
+
+                const options = {
+                    method: 'GET',
+                    headers: myHeaders
+                }
+
+                fetch(`http://linkloop.co:5000/products/remove-categ/${categId}`, options)
+                    .then(res => {
+                        console.log(res);
+                        preloader.classList.toggle('hide')
+
+                        if (res.status === 200) {
+                            getCategPage()
+                            return res.json();
+                        }
+                    })
+                    .then(data => {
+                        console.log(data)
+                    })
+                    .catch(err => console.log(err))
+
+            })
+
+
+        }
+    })
+
+} else {
+    location.href = 'admin-log-in.html'
+}
+// #endregion remove category
 
 
 
