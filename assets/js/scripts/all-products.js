@@ -14,16 +14,11 @@ let moreDetailsBtn = document.getElementById('more-details')
 let url = `${serverUrl}/products/all`
 
 const userToken = 'user_access_token'
-const supplierToken = 'supplier_access_token'
 
-if (getCookie('admin_access_token')) {
-    location.href = 'admin-control-panel.html'
-} else {
-    getAllProd()
-}
+
+getAllProd()
 
 function getAllProd() {
-    // allProductsDiv.innerHTML = ''
     const preloader = document.querySelector('.all-products-parent #page-preloader')
     preloader.classList.toggle('hide')
 

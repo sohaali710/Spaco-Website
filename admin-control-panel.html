@@ -666,6 +666,15 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/libs.js"></script>
     <script src="assets/js/main.js"></script>
+    <script type="module">
+        import { getCookie, deleteCookie } from './assets/js/scripts/cookies.js'
+
+        if (getCookie('user_access_token')) {
+            deleteCookie('user_access_token')
+        } else if (getCookie('supplier_access_token')) {
+            deleteCookie('supplier_access_token')
+        }
+    </script>
     <script src="assets/js/scripts/admin-control-panel.js" type="module"></script>
     <script src="assets/js/scripts/page-categories.js" type="module"></script>
     <script src="assets/js/scripts/log-out.js" type="module"></script>

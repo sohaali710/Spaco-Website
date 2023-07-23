@@ -20,15 +20,15 @@ function getCategPage() {
         if (getCookie("admin_access_token")) {
             categoriesTable.innerHTML = ''
 
-            categories.forEach((categ => {
+            categories.forEach((categ) => {
                 const { _id, name, img } = categ
 
-                // if (getCookie("admin_access_token")) {
+
                 categoriesTable.innerHTML += `
         <tr>
                                 <td>${name}</td>
                                 <td>
-                                    <img src="${img.replace('public', 'http://linkloop.co:5000')}" class="updateCategImg" alt="category image"
+                                    <img src="${img.replace('public', serverUrl)}" class="updateCategImg" alt="category image"
                                     categ-id="${_id}"></img>
                                 </td>
                                 <td>
@@ -46,7 +46,7 @@ function getCategPage() {
                                     </div>
                                 </td>
                             </tr>`
-            }))
+            })
         } else {
             categoriesContainer.innerHTML = ''
 
@@ -59,7 +59,7 @@ function getCategPage() {
             <a class="category-item__link uk-inline-clip uk-transition-toggle"
                 href="page-category-products.html?category=${name}" tabindex="0">
                 <div class="category-item__media">
-                    <img src="${img.replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>
+                    <img src="${img.replace('public', serverUrl)}" class="card-img-top rounded-0 product-img" alt="..."></img>
                     <div class="uk-transition-fade">
                         <div class="uk-overlay-primary uk-position-cover"></div>
                         <div class="uk-position-center"><span
