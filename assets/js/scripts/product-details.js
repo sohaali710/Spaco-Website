@@ -3,7 +3,9 @@ let productDetailsContainer = document.querySelector('.product-details')
 
 const selectedProdId = location.search.split("=")[1];
 
-fetch(`http://linkloop.co:5000/products/product-by-id/${selectedProdId}`).then(res => res.json()).then(data => {
+const serverUrl = 'https://space-k8fr.onrender.com'
+
+fetch(`${serverUrl}/products/product-by-id/${selectedProdId}`).then(res => res.json()).then(data => {
     console.log(data);
     let { name, category, description, details, imgs, _id } = data.data
 
@@ -13,7 +15,7 @@ fetch(`http://linkloop.co:5000/products/product-by-id/${selectedProdId}`).then(r
     if (!imgs.length) { imagesSlider = `<li><div class="no-img">لم يتم إضافة صورة لهذا المنتج</div></li>`; }
 
     imgs.forEach((img, index) => {
-        img = img.replace('public', 'http://linkloop.co:5000')
+        img = img.replace('public', serverUrl)
 
         imagesSlider += `
                         <li><a href="${img}">

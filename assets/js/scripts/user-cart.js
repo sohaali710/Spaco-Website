@@ -7,6 +7,7 @@ let displayPriceBtn = document.querySelector('#display-price')
 
 let cartIconCount = document.querySelector('.cart-btn__icon')
 
+const serverUrl = 'https://space-k8fr.onrender.com'
 
 const url = ''
 let cartProducts = []
@@ -21,7 +22,7 @@ if (getCookie('user-cart')) {
         const preloader = document.querySelector('.fetchDataLoader #page-preloader')
         preloader.classList.toggle('hide')
 
-        fetch(`http://linkloop.co:5000/products/product-by-id/${productId}`)
+        fetch(`${serverUrl}/products/product-by-id/${productId}`)
             .then(res => {
                 preloader.classList.toggle('hide')
 
@@ -30,7 +31,7 @@ if (getCookie('user-cart')) {
             .then(data => {
                 console.log(data.data)
                 const { name, imgs } = data.data
-                const img = imgs[0].replace('public', 'http://linkloop.co:5000')
+                const img = imgs[0].replace('public', serverUrl)
 
                 let row = `
                     <tr>

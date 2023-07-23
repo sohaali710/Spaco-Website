@@ -6,6 +6,8 @@ const formElement = document.getElementById('log-in-form');
 let emailInput = document.getElementById('email')
 let passwordInput = document.getElementById('password')
 
+const serverUrl = 'https://space-k8fr.onrender.com'
+
 let data = {};
 let cookieName = 'user_access_token'
 let userType = 'user'
@@ -56,7 +58,7 @@ if (getCookie('user_access_token')) {
         data = Object.fromEntries(formData)
 
         if (checkEmailReturn && checkPassReturn) {
-            fetch(`http://linkloop.co:5000/${userType}/login`, {
+            fetch(`${serverUrl}/${userType}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

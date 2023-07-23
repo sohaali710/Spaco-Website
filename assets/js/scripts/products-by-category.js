@@ -5,6 +5,8 @@ import { search } from "./search.js"
 let categProducts, allProducts = []
 let searchInp = document.querySelector('.searchInp')
 
+const serverUrl = 'https://space-k8fr.onrender.com'
+
 function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
     productsContainer.innerHTML = ''
 
@@ -17,7 +19,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
 
     console.log(selectedCateg)
     if (selectedCateg === 'all-products') {
-        fetch(`http://linkloop.co:5000/products/all`)
+        fetch(`${serverUrl}/products/all`)
             .then(res => {
                 preloader.classList.toggle('hide')
 
@@ -50,7 +52,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
 
                     if (getCookie('admin_access_token')) {
                         img = (imgs.length !== 0) ?
-                            `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
+                            `<img src="${imgs[0].replace('public', serverUrl)}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                             : `<div class="no-img">إضافة صورة للمنتج</div>`;
 
 
@@ -80,7 +82,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
                                 </div>`
                     } else {
                         img = (imgs.length !== 0) ?
-                            `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
+                            `<img src="${imgs[0].replace('public', serverUrl)}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                             : `<div class="no-img">لم يتم إضافة صورة لهذا المنتج</div>`;
 
                         let userSupplierBtn = ''
@@ -136,7 +138,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
             })
             .catch(err => console.log(err))
     } else {
-        fetch(`http://linkloop.co:5000/products/product-by-category/${selectedCateg}`)
+        fetch(`${serverUrl}/products/product-by-category/${selectedCateg}`)
             .then(res => {
                 preloader.classList.toggle('hide')
                 console.log(preloader)
@@ -168,7 +170,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
 
                     if (getCookie('admin_access_token')) {
                         img = (imgs.length !== 0) ?
-                            `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
+                            `<img src="${imgs[0].replace('public', serverUrl)}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                             : `<div class="no-img">إضافة صورة للمنتج</div>`;
 
 
@@ -198,7 +200,7 @@ function getProductsByCateg(productsContainer, selectedCateg = 'all-products') {
                                     </div>`
                     } else {
                         img = (imgs.length !== 0) ?
-                            `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
+                            `<img src="${imgs[0].replace('public',)}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                             : `<div class="no-img">لم يتم إضافة صورة لهذا المنتج</div>`;
 
                         let userSupplierBtn = ''

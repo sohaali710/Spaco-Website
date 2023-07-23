@@ -10,6 +10,8 @@ let data = {};
 let adminToken = 'admin_access_token'
 let redirectTo = 'admin-control-panel.html'
 
+const serverUrl = 'https://space-k8fr.onrender.com'
+
 
 if (getCookie(adminToken)) {
     location.href = redirectTo
@@ -26,7 +28,7 @@ if (getCookie(adminToken)) {
 
         // if (checkEmailReturn && checkPassReturn) {
         if (checkEmailReturn) {
-            fetch(`http://linkloop.co:5000/admin/login`, {
+            fetch(`${serverUrl}/admin/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

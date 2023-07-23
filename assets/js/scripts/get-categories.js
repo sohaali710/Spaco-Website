@@ -1,10 +1,12 @@
 // in select [admin (add,update product forms) or user search]
 import { getCookie } from "./cookies.js"
 
+const serverUrl = 'https://space-k8fr.onrender.com'
+
 function getCategories(categContainer, selectedCateg = '') {
     let options = ''
 
-    fetch('http://linkloop.co:5000/products/categs').then(res => res.json()).then(data => {
+    fetch(`${serverUrl}/products/categs`).then(res => res.json()).then(data => {
         data.data.forEach((categ => {
             if (categ.name == selectedCateg) {
                 options += `<option value="${categ.name}" selected>${categ.name}</option>`

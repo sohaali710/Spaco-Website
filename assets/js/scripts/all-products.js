@@ -8,8 +8,10 @@ import { search } from './search.js'
 let allProductsDiv = document.querySelector('.all-products')
 let allProducts = []
 
+const serverUrl = 'https://space-k8fr.onrender.com'
+
 let moreDetailsBtn = document.getElementById('more-details')
-let url = 'http://linkloop.co:5000/products/all'
+let url = `${serverUrl}/products/all`
 
 const userToken = 'user_access_token'
 const supplierToken = 'supplier_access_token'
@@ -74,7 +76,7 @@ function getAllProd() {
                 }
 
                 let img = (imgs.length !== 0) ?
-                    `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
+                    `<img src="${imgs[0].replace('public', `${serverUrl}`)}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                     : `<div class="no-img">لم يتم إضافة صورة لهذا المنتج</div>`;
 
 

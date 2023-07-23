@@ -1,6 +1,8 @@
 import { getCookie } from './cookies.js'
 
-let supplierToken = 'supplier_access_token'
+const supplierToken = 'supplier_access_token'
+
+const serverUrl = 'https://space-k8fr.onrender.com'
 
 /** from all products page */
 function addToStoreAPI(productId) {
@@ -14,7 +16,7 @@ function addToStoreAPI(productId) {
         body: JSON.stringify({ id: productId })
     }
 
-    fetch('http://linkloop.co:5000/supplier/add-prods', options)
+    fetch(`${serverUrl}/supplier/add-prods`, options)
         .then(res => {
             console.log(res);
             if (res.status == 200) {
@@ -41,7 +43,7 @@ function addToStore() {
                 headers: myHeaders
             }
 
-            fetch('http://linkloop.co:5000/supplier/all-products', options)
+            fetch(`${serverUrl}/supplier/all-products`, options)
                 .then(res => { if (res.status == 200) return res.json() })
                 .then(data => {
                     if (data) {

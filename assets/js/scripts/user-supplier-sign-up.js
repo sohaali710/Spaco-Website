@@ -1,6 +1,8 @@
 import { getCookie } from './cookies.js'
 import { checkUsername, checkEmail, checkPassword, checkConfirmPass, checkMobile, checkAddress, checkTaxes, setFormError, deleteFormError, removeCheckTaxes } from './form-validation.js'
 
+const serverUrl = 'https://space-k8fr.onrender.com'
+
 const formElement = document.getElementById('sign-up-form');
 
 let nameInput = document.getElementById('name')
@@ -64,7 +66,7 @@ if (getCookie('user_access_token')) {
 
         if (checkNameReturn && checkEmailReturn && checkPassReturn && checkConfirmPassReturn && checkMobileReturn && checkAddressReturn) {
             if (taxesFlag) {
-                fetch(`http://linkloop.co:5000/${userType}/signup`, {
+                fetch(`${serverUrl}/${userType}/signup`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

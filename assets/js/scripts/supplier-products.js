@@ -3,8 +3,10 @@ import { getCategories } from './get-categories.js'
 import { getProductsByCateg } from './products-by-category.js'
 import { search } from './search.js'
 
+const serverUrl = 'https://space-k8fr.onrender.com'
+
 const supplierToken = 'supplier_access_token'
-const url = 'http://linkloop.co:5000/supplier/all-products'
+const url = `${serverUrl}/supplier/all-products`
 
 let allProductsDiv = document.querySelector('.supplier-all-products')
 let allProducts = []
@@ -64,7 +66,7 @@ function getAllProducts() {
                                 </button>`
 
                     let img = (imgs.length !== 0) ?
-                        `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
+                        `<img src="${imgs[0].replace('public', serverUrl)}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                         : `<div class="no-img">لم يتم إضافة صورة لهذا المنتج</div>`;
 
 

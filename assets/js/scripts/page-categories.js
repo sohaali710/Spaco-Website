@@ -10,8 +10,10 @@ const categoriesContainer = document.querySelector('.categories-container')
 const categoriesTable = document.querySelector('.categTable')
 let categoryItem = ''
 
+const serverUrl = 'https://space-k8fr.onrender.com'
+
 function getCategPage() {
-    fetch('http://linkloop.co:5000/products/categs').then(res => res.json()).then(data => {
+    fetch(`${serverUrl}/products/categs`).then(res => res.json()).then(data => {
         const categories = data.data
 
 
@@ -23,7 +25,7 @@ function getCategPage() {
 
                 // if (getCookie("admin_access_token")) {
                 categoriesTable.innerHTML += `
-                            <tr>
+        <tr>
                                 <td>${name}</td>
                                 <td>
                                     <img src="${img.replace('public', 'http://linkloop.co:5000')}" class="updateCategImg" alt="category image"
@@ -40,7 +42,7 @@ function getCategPage() {
 
                                         <button type="button" id="removeDetailsBtn" class="btn-close"
                                             aria-label="Close" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModalToggle4" categ-id="${_id}" ></button>
+                                            data-bs-target="#exampleModalToggle4" categ-id="${_id}"></button>
                                     </div>
                                 </td>
                             </tr>`
@@ -52,22 +54,22 @@ function getCategPage() {
                 const { _id, name, img } = categ
 
                 categoriesContainer.innerHTML += `
-                            <div class="categ-item">
-                                <div class="category-item">
-                                    <a class="category-item__link uk-inline-clip uk-transition-toggle"
-                                        href="page-category-products.html?category=${name}" tabindex="0">
-                                        <div class="category-item__media">
-                                        <img src="${img.replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>
-                                            <div class="uk-transition-fade">
-                                                <div class="uk-overlay-primary uk-position-cover"></div>
-                                                <div class="uk-position-center"><span
-                                                        data-uk-icon="icon: plus; ratio: 2"></span></div>
-                                            </div>
-                                        </div>
-                                        <div class="category-item__title"> <span>${name}</span></div>
-                                    </a>
-                                </div>
-                            </div>`
+        <div class= "categ-item">
+        <div class="category-item">
+            <a class="category-item__link uk-inline-clip uk-transition-toggle"
+                href="page-category-products.html?category=${name}" tabindex="0">
+                <div class="category-item__media">
+                    <img src="${img.replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>
+                    <div class="uk-transition-fade">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center"><span
+                            data-uk-icon="icon: plus; ratio: 2"></span></div>
+                    </div>
+                </div>
+                <div class="category-item__title"> <span>${name}</span></div>
+            </a>
+        </div>
+                            </div> `
             }))
         }
     })

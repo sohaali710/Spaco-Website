@@ -9,7 +9,9 @@ let categProductsDiv = document.querySelector('.category-products')
 let pageTitle = document.querySelector('.page-head__title')
 let categProducts = []
 
-let url = 'http://linkloop.co:5000/products/product-by-category'
+const serverUrl = 'https://space-k8fr.onrender.com'
+
+let url = `${serverUrl}/products/product-by-category`
 
 const selectedCategory = decodeURI(location.search.split("=")[1]);
 console.log(selectedCategory)
@@ -45,7 +47,7 @@ fetch(`${url}/${selectedCategory}`)
             }
 
             let img = (imgs.length !== 0) ?
-                `<img src="${imgs[0].replace('public', 'http://linkloop.co:5000')}" class="card-img-top rounded-0 product-img" alt="..."></img>`
+                `<img src="${imgs[0].replace('public', `${serverUrl}`)}" class="card-img-top rounded-0 product-img" alt="..."></img>`
                 : `<div class="no-img">لم يتم إضافة صورة لهذا المنتج</div>`;
 
 
