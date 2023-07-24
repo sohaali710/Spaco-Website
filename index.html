@@ -482,6 +482,13 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/libs.js"></script>
     <script src="assets/js/main.js"></script>
+    <script type="module">
+        import { getCookie, deleteCookie } from './assets/js/scripts/cookies.js'
+
+        if (getCookie('admin_access_token')) {
+            deleteCookie('admin_access_token')
+        }
+    </script>
     <script src="assets/js/scripts/nav-get-categories.js" type="module"></script>
     <script src="assets/js/scripts/nav-cart-icon.js" type="module"></script>
     <script src="assets/js/scripts/page-categories.js" type="module"></script>
